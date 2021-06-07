@@ -1,4 +1,4 @@
-# Ethan Goh Portfolio
+# Ethan Goh's Portfolio
 A website built to show-off abilities of myself in a single website.
 
 ## Setting up the project
