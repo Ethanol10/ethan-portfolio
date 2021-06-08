@@ -15,8 +15,12 @@ import myVideo from './videos/promo.mp4'
 const useStyles = makeStyles( (theme) => ({
   root: {
     width: '100%',
-    height: '80vh',
+    height: '100%',
     position: 'relative',
+    alignItems: 'center',
+    left: '50%',
+    marginRight: '-50%',
+    transform: 'translate(-50%, 0%)',
     '& video': {
       objectFit: 'cover',
     },
@@ -60,11 +64,61 @@ function App() {
               color="#fff"
             >
               <Typography variant="h3" component="h1" className={classes.title}>
-                ETHAN GOH
+                E T H A N | G O H
               </Typography>
             </Box>
           </div>
         </div>
+        
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      <p>eeeeeeeeeee</p>
+      
       </Router>
     </React.Fragment>
   );

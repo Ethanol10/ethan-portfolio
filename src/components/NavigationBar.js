@@ -20,7 +20,11 @@ const useStyles = makeStyles({
     width: 'auto',
   },
   button: {
-    padding: '3 3px'
+    width: 80,
+    height: 80,
+    padding: '20px',
+    zIndex: 5,
+    position: 'fixed'
   }
 });
 
