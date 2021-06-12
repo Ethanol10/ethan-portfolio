@@ -10,10 +10,13 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavigationBar from './components/NavigationBar';
-import myVideo from './videos/promo.mp4'
+import myVideo from './media/promo.mp4';
+import profileImg from './media/profile.png';
+import paragraphText from './media/paragraph.js';
 
 const useStyles = makeStyles( (theme) => ({
-  root: {
+  //Home page
+  home: {
     width: '100%',
     height: '100%',
     position: 'relative',
@@ -36,16 +39,22 @@ const useStyles = makeStyles( (theme) => ({
   title: {
     paddingBottom: theme.spacing(4),
   },
+
+  //Profile
+  profile:{
+    padding: "10px",
+    display: "flex",
+    justifyContent: "center"
+  },
 }));
 function App() {
   const classes = useStyles();
-
   return (
     <React.Fragment>
       <Router>
         <NavigationBar />
         
-        <div className={classes.root}>
+        <div className={classes.home}>
           <ReactPlayer 
             url={myVideo} 
             controls={false} 
@@ -69,56 +78,11 @@ function App() {
             </Box>
           </div>
         </div>
-        
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      <p>eeeeeeeeeee</p>
-      
+        <h1>ABOUT</h1>
+        <div className={classes.profile}>
+          <img src={profileImg} padding="0 10px"/>
+          <p padding="0 10px">{paragraphText.aboutText}</p>
+        </div>     
       </Router>
     </React.Fragment>
   );
