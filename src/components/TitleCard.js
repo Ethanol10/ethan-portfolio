@@ -54,7 +54,7 @@ export default function TitleCard(){
                 color="#fff"
             >
                 <Typography variant="h3" component="h1" className={classes.title}>
-                E T H A N | G O H
+                ETHAN GOH
                 </Typography>
             </Box>
         </div>
