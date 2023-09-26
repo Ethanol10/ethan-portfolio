@@ -18,6 +18,7 @@ const useStyles = makeStyles({
         '& video': {
         objectFit: 'cover',
         },
+        zIndex: "-100"
     },
     overlay: {
         position: 'absolute',

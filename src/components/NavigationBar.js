@@ -1,31 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@mui/styles/';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-
-const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
-  button: {
-    width: 80,
-    height: 80,
-    padding: '20px',
-    zIndex: 5,
-    position: 'fixed'
-  }
-});
+import {navigationBarStyles} from '../styles/NavigationBarStyle.js';
 
 export default function NavigationBar(){
-  const classes = useStyles();
+  const classes = navigationBarStyles();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -69,10 +53,10 @@ export default function NavigationBar(){
   );
 
   return(
-    <div>
+    <div className={classes.nav}>
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <MenuIcon className={classes.button} onClick={toggleDrawer('left', true)}></MenuIcon>
+          <MenuIcon className={classes.button} onClick={toggleDrawer('left', true)}/>
           <Drawer anchor={'left'} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>
