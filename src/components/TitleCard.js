@@ -1,11 +1,11 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles/';
 import React from 'react';
 import ReactPlayer from 'react-player'
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography'
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography'
 import myVideo from '../media/promo.mp4';
 
-const useStyles = makeStyles( (theme) =>({
+const useStyles = makeStyles({
     //Home page
     home: {
         width: '100%',
@@ -27,10 +27,7 @@ const useStyles = makeStyles( (theme) =>({
         height: '100%',
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
-    title: {
-        paddingBottom: theme.spacing(4),
-    },
-}));
+});
   
 export default function TitleCard(){
     const classes = useStyles();

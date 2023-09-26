@@ -1,16 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import { Nav, Navbar, Form, FormControl } from 'react-bootstrap';
-import styled from 'styled-components';
-import MenuIcon from '@material-ui/icons/Menu';
+import { makeStyles } from '@mui/styles/';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const useStyles = makeStyles({
   list: {
@@ -56,7 +52,7 @@ export default function NavigationBar(){
     >
       <List>
         {['About', 'Tech Stack', 'Academic and Professional Experience', 'Projects'].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}

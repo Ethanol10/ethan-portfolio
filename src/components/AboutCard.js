@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@mui/styles/';
 import React from 'react';
 import profileImg from '../media/profile.png';
 import paragraphText from '../media/paragraph.js';
@@ -11,12 +11,23 @@ const useStyles = makeStyles( (theme) =>({
     },
     profile:{
         margin: "1% 20%",
-        display: "flex",
-        gap: "0px 50px"
+        gap: "0px 50px",
+    },
+    profile_img:
+    {
+        // height: "30rem",
+        width: "100%",
+        height: "100%",
+        maxHeight: "30rem",
+        float: "left",
+        maxWidth: "20rem",
+        objectFit: "cover",
+        marginRight: "1.5rem",
+        marginBottom: "1.5rem",
     },
 }));
   
-export default function TextSections(){
+export default function AboutCard(){
     const classes = useStyles();
     return (
         <div>
@@ -24,7 +35,7 @@ export default function TextSections(){
                 <h1>ABOUT</h1>
             </div>
             <div className={classes.profile}>
-                <img src={profileImg}/>
+                <img alt="Ethan Goh Profile" src={profileImg} className={classes.profile_img}/>
                 <p>{paragraphText.aboutText}</p>
             </div> 
         </div>
