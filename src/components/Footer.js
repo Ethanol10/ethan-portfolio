@@ -7,6 +7,7 @@ export default function Footer(){
     return (
         <div className={classes.footer}>
             <h1>CONTACT</h1>
+            <p>If you wish to contact me, you can contact me through the following:</p>
         </div>
     );
 }

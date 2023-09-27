@@ -3,8 +3,9 @@ import ReactPlayer from 'react-player'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import myVideo from '../media/promo.mp4';
-import {titleCardStyles} from '../styles/TitleCardStyles.js';
-  
+import { titleCardStyles } from '../styles/TitleCardStyle';
+
+
 export default function TitleCard(){
     const classes = titleCardStyles();
     return (
