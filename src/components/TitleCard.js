@@ -1,37 +1,12 @@
-import { makeStyles } from '@mui/styles/';
 import React from 'react';
 import ReactPlayer from 'react-player'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import myVideo from '../media/promo.mp4';
-
-const useStyles = makeStyles({
-    //Home page
-    home: {
-        width: '100%',
-        height: '100%',
-        position: 'relative',
-        alignItems: 'center',
-        left: '50%',
-        marginRight: '-50%',
-        transform: 'translate(-50%, 0%)',
-        '& video': {
-        objectFit: 'cover',
-        },
-        zIndex: "-100"
-    },
-    overlay: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    },
-});
+import {titleCardStyles} from '../styles/TitleCardStyles.js';
   
 export default function TitleCard(){
-    const classes = useStyles();
+    const classes = titleCardStyles();
     return (
     <div className={classes.home}>
         <ReactPlayer 
