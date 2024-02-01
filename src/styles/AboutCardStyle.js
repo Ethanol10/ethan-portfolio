@@ -6,8 +6,8 @@ export const aboutCardStyles = makeStyles( (theme) =>({
         [theme.breakpoints.up("xs")]:{
             paddingTop: "5rem",
             paddingBottom: "5rem",
-            paddingLeft: "5rem",
-            paddingRight: "5rem",
+            paddingLeft: "4rem",
+            paddingRight: "4rem",
             minHeight: "50rem",
         },
         [theme.breakpoints.up('sm')]: {
@@ -55,10 +55,35 @@ export const aboutCardStyles = makeStyles( (theme) =>({
         width: "100%",
         height: "100%",
         maxHeight: "30rem",
-        float: "left",
         maxWidth: "20rem",
         objectFit: "cover",
+        float:"left",
         marginRight: "2rem",
         marginBottom: "1.5rem",
+
+        [theme.breakpoints.up("xs")]: {    
+            marginRight: "auto",
+            marginLeft: "auto",    
+        },
+        [theme.breakpoints.up("sm")]: {       
+            marginRight: "auto", 
+            marginLeft: "auto",
+        },
+        [theme.breakpoints.up("md")]: {
+            marginRight: "2rem",
+            marginLeft: "auto",
+        }
     },
+    profile: 
+    {
+        [theme.breakpoints.up("xs")]: {        
+            display: "grid",
+        },
+        [theme.breakpoints.up("sm")]: {        
+            display: "grid",
+        },
+        [theme.breakpoints.up("md")]: {
+            display: "block",
+        }
+    }
 }));

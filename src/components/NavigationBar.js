@@ -24,6 +24,11 @@ export default function NavigationBar(){
 
     setState({...state, [anchor]: open});
   }
+
+  const onClickItem = (selectedSection) => {
+    // Ugly hack to scroll to the correct section
+    
+  }  
   
   const list = (anchor) => (
     <div
@@ -36,7 +41,7 @@ export default function NavigationBar(){
     >
       <List>
         {['About', 'Tech Stack', 'Academic and Professional Experience', 'Projects'].map((text, index) => (
-          <ListItem key={text}>
+          <ListItem onClick={() => onClickItem(text)} className={classes.listitem} key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -44,7 +49,7 @@ export default function NavigationBar(){
       <Divider />
       <List>
         {['Contact'].map((text, index) => (
-          <ListItem key={text}>
+          <ListItem className={classes.listitem} key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}
