@@ -44,7 +44,7 @@ export default function NavigationBar(){
       <Divider />
       <List>
         {['Contact'].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}

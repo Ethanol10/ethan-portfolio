@@ -3,7 +3,7 @@ import ReactPlayer from 'react-player'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import myVideo from '../media/promo.mp4';
-import { titleCardStyles } from '../styles/TitleCardStyle';
+import { titleCardStyles } from '../styles/TitleCardStyles';
 
 
 export default function TitleCard(){
