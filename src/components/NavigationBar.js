@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import {navigationBarStyles} from '../styles/NavigationBarStyle.js';
 
-export default function NavigationBar(){
+export default function NavigationBar(props){
   const classes = navigationBarStyles();
   const [state, setState] = React.useState({
     top: false,
@@ -27,7 +27,7 @@ export default function NavigationBar(){
 
   const onClickItem = (selectedSection) => {
     // Ugly hack to scroll to the correct section
-    
+    props.scrollToSectionCallback(selectedSection);
   }  
   
   const list = (anchor) => (
@@ -40,7 +40,7 @@ export default function NavigationBar(){
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['About', 'Tech Stack', 'Academic and Professional Experience', 'Projects'].map((text, index) => (
+        {['Home', 'About', 'Tech Stack', 'Academic and Professional Experience', 'Projects'].map((text, index) => (
           <ListItem onClick={() => onClickItem(text)} className={classes.listitem} key={text}>
             <ListItemText primary={text} />
           </ListItem>
@@ -49,7 +49,7 @@ export default function NavigationBar(){
       <Divider />
       <List>
         {['Contact'].map((text, index) => (
-          <ListItem className={classes.listitem} key={text}>
+          <ListItem onClick={() => onClickItem(text)} className={classes.listitem} key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}

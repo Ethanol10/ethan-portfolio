@@ -6,10 +6,13 @@ import myVideo from '../media/promo.mp4';
 import { titleCardStyles } from '../styles/TitleCardStyles';
 
 
-export default function TitleCard(){
+export default function TitleCard(props){
     const classes = titleCardStyles();
+
+    const {innerRef} = props;
+
     return (
-    <div className={classes.home}>
+    <div ref={innerRef} className={classes.home}>
         <ReactPlayer 
         url={myVideo} 
         controls={false} 

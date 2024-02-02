@@ -1,12 +1,16 @@
 import {aboutCardStyles} from '../styles/AboutCardStyle.js';
+import {generalStyles} from '../styles/GeneralStyle.js';
 import React from 'react';
 import profileImg from '../media/profile.png';
 import paragraphText from '../media/paragraph.js';
   
-export default function AboutCard(){
+export default function AboutCard(props){
     const classes = aboutCardStyles();
+    const generalClasses = generalStyles();
+    const {innerRef} = props;
+
     return (
-        <div className={classes.about}>
+        <div ref={innerRef} className={generalClasses.generalFormatting}>
             <div className={classes.title}>
                 <h1>ABOUT</h1>
             </div>
