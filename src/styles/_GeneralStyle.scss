@@ -1,0 +1,34 @@
+.general-formatting{
+    min-height: 30rem;
+
+    @media (min-width: $xs){
+        padding: 5rem 2rem 5rem 2rem;
+        min-height: 50rem;
+    }
+    @media (min-width: $sm){
+        padding: 5rem 5rem 5rem 5rem;
+        min-height: 50rem;
+    }
+    @media (min-width: $md){
+        padding: 5rem 8rem 5rem 8rem;
+        min-height: 50rem;
+    }
+    @media (min-width: $lg){
+        padding: 5rem 11rem 5rem 11rem;
+        min-height: 50rem;
+    }
+    @media (min-width: $xl){
+        padding: 5rem 15rem 5rem 15rem;
+        min-height: 50rem;
+    }
+    @media (min-width: $xxl){
+        padding: 5rem 20rem 5rem 20rem;
+        min-height: 50rem;
+    }
+    @media (min-width: $xxxl){
+        padding: 5rem 35rem 5rem 35rem;
+        min-height: 50rem;
+    }
+
+    transition: all 0.5s ease-in-out;
+}

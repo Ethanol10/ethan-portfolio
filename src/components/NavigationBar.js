@@ -1,15 +1,13 @@
 import React from 'react';
-import clsx from 'clsx';
+import classNames from 'classnames';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
-import {navigationBarStyles} from '../styles/NavigationBarStyle.js';
 
 export default function NavigationBar(props){
-  const classes = navigationBarStyles();
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -32,8 +30,8 @@ export default function NavigationBar(props){
   
   const list = (anchor) => (
     <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+      className={classNames("nav-bar_list", {
+        ["nav-bar_full-list"]: anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
@@ -41,7 +39,7 @@ export default function NavigationBar(props){
     >
       <List>
         {['Home', 'About', 'Tech Stack', 'Academic and Professional Experience', 'Projects'].map((text, index) => (
-          <ListItem onClick={() => onClickItem(text)} className={classes.listitem} key={text}>
+          <ListItem onClick={() => onClickItem(text)} className="nav-bar_list-item" key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -49,7 +47,7 @@ export default function NavigationBar(props){
       <Divider />
       <List>
         {['Contact'].map((text, index) => (
-          <ListItem onClick={() => onClickItem(text)} className={classes.listitem} key={text}>
+          <ListItem onClick={() => onClickItem(text)} className="nav-bar_list-item" key={text}>
             <ListItemText primary={text} />
           </ListItem>
         ))}
@@ -58,10 +56,10 @@ export default function NavigationBar(props){
   );
 
   return(
-    <div className={classes.nav}>
+    <div className="nav-bar_nav">
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <MenuIcon className={classes.button} onClick={toggleDrawer('left', true)}/>
+          <MenuIcon className="nav-bar_button" onClick={toggleDrawer('left', true)}/>
           <Drawer anchor={'left'} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

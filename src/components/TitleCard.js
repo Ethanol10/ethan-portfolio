@@ -3,16 +3,13 @@ import ReactPlayer from 'react-player'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import myVideo from '../media/promo.mp4';
-import { titleCardStyles } from '../styles/TitleCardStyles';
-
 
 export default function TitleCard(props){
-    const classes = titleCardStyles();
 
     const {innerRef} = props;
 
     return (
-    <div ref={innerRef} className={classes.home}>
+    <div ref={innerRef} className="title-card_home">
         <ReactPlayer 
         url={myVideo} 
         controls={false} 
@@ -21,7 +18,7 @@ export default function TitleCard(props){
         volume={0}
         width="100%"
         height="100%"/>
-        <div className={classes.overlay}>
+        <div className="title-card_overlay">
             <Box
                 height="100%"
                 display="flex"
@@ -30,8 +27,8 @@ export default function TitleCard(props){
                 alignItems="center"
                 color="#fff"
             >
-                <Typography variant="h3" component="h1" className={classes.title}>
-                ETHAN GOH
+                <Typography variant="h3" component="h1">
+                    ETHAN GOH
                 </Typography>
             </Box>
         </div>

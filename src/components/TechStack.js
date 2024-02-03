@@ -1,13 +1,9 @@
 import React from 'react';
-import {techStackStyles} from '../styles/TechStackStyle.js';
-import { generalStyles } from '../styles/GeneralStyle.js';
 import classNames from 'classnames';
 
 export default function TechStack(props){
     const {innerRef} = props;
-    const classes = techStackStyles();
-    const generalClasses = generalStyles();
-    const techStackClassCombined = classNames(classes.techStack, generalClasses.generalFormatting);
+    const techStackClassCombined = classNames("tech-stack_background", "general-formatting");
     
     return (
         <div ref={innerRef} className={techStackClassCombined}>
