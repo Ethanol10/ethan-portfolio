@@ -1,0 +1,34 @@
+.nav-bar_list{
+  width: 250px; 
+}
+
+.nav-bar_list-item{
+  &:hover {
+    background: #ABDEFF;
+    border-radius: 5%;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.nav-bar_full-list{
+  width: 'auto';
+}
+
+.nav-bar_button{
+  z-index: 10;
+  filter: invert(100%);
+  &:hover{
+    background: #FFFFFF;
+    border-radius: 25%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    filter: invert(0%);
+  }
+}
+
+.nav-bar_nav{
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+}

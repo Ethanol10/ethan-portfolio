@@ -1,0 +1,18 @@
+$xs: 200px;
+$sm: 300px;
+$md: 600px;
+$lg: 900px;
+$xl: 1200px;
+$xxl: 1536px;
+$xxxl: 1920px;
+
+//Colours
+$contactMeColour: #D4D4D4;
+$techStackColour: #B4C9D6;
+
+@import "../styles/GeneralStyle";
+@import "../styles/TitleCardStyles";
+@import "../styles/AboutCardStyle";
+@import "../styles/TechStackStyle";
+@import "../styles/NavigationBarStyle";
+@import "../styles/FooterStyle";
