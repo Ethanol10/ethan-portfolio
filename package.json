@@ -28,7 +28,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "gh-pages": "^6.1.1"
   },
-  "homepage": "https://ethangoh.work",
+  "homepage": "https://ethanol10.github.io/ethan-portfolio/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
