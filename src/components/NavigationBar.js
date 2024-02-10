@@ -31,7 +31,7 @@ export default function NavigationBar(props){
   const list = (anchor) => (
     <div
       className={classNames("nav-bar_list", {
-        ["nav-bar_full-list"]: anchor === 'top' || anchor === 'bottom',
+        "nav-bar_full-list": anchor === 'top' || anchor === 'bottom',
       })}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
