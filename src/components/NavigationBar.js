@@ -28,11 +28,15 @@ export default function NavigationBar(props){
     props.scrollToSectionCallback(selectedSection);
   }  
   
+/*
+  {
+    ["nav-bar_full-list"]: anchor === 'top' || anchor === 'bottom',
+  }
+*/
+
   const list = (anchor) => (
     <div
-      className={classNames("nav-bar_list", {
-        ["nav-bar_full-list"]: anchor === 'top' || anchor === 'bottom',
-      })}
+      className={classNames("nav-bar_list")}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}

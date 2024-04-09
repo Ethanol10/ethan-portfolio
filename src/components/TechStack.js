@@ -11,24 +11,14 @@ export default function TechStack(props){
             
         </div>
     );
-
     /*
-        List programming languages that I am familar with
-        C#
-        Java
-        Python
-        JS
-        C
-        C++
-
-        List Libraries that i am familiar with
-        React
-        Node.js
-        WebAssembly
-        THREEJS
-
-        List Programs that I am familar with
-        Unity
-
+        Show grid
+        if clicked, expand into one of the clicked fields
+        Back button returns to grid
+        
+        Two views?:
+            - Grid view or card view, shows all of my stuff
+            - Expanded view, shows details regarding that one specific field
+        
     */
 }
