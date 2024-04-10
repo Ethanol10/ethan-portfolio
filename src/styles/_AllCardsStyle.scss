@@ -1,7 +1,14 @@
-.all_cards_container {
+.all_cards__container {
+    display: block;
+}
+
+.all_cards__all_columns{
+    width: 100em;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
+
+    
+    &.all_cards__all_columns__selected{
+        width: 10em;
+    }
 }
