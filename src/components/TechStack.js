@@ -4,6 +4,7 @@ import classNames from 'classnames';
 export default function TechStack(props){
     const {innerRef} = props;
     const techStackClassCombined = classNames("tech-stack_background", "general-formatting");
+    const [isSingular, setIsSingular] = React.useState();
     
     return (
         <div ref={innerRef} className={techStackClassCombined}>
