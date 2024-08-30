@@ -17,16 +17,22 @@ export default function TechStack(props){
         cardList.forEach(
             (element) => {
                 elements.push(
-                    <div>
-                        <p>{element.name}</p>
-                        <img alt={element.token} src={element.img}/>
-                    </div>
+                    RenderCardItem(element)
                 );
             })
 
         return (
             <div>
                 {elements}
+            </div>
+        );
+    }
+
+    const RenderCardItem = (element) => {
+        return (
+            <div className={element.className}>
+                <p>{element.name}</p>
+                <img alt={element.token} src={element.img}/>
             </div>
         );
     }
