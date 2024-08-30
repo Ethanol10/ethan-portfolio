@@ -1,17 +1,43 @@
 import React from 'react';
 import classNames from 'classnames';
+import { cardList } from '../media/cardlist';
 
 export default function TechStack(props){
     const {innerRef} = props;
     const techStackClassCombined = classNames("tech-stack_background", "general-formatting");
-    const [isSingular, setIsSingular] = React.useState();
+    const [isSingular, setIsSingular] = React.useState(false);
     
+    const RenderSingular = () => {
+        return (<div></div>);
+    }
+
+    const RenderCardList = () => {
+        const elements = [];
+
+        cardList.forEach(
+            (element) => {
+                elements.push(
+                    <div>
+                        <p>{element.name}</p>
+                        <img alt={element.token} src={element.img}/>
+                    </div>
+                );
+            })
+
+        return (
+            <div>
+                {elements}
+            </div>
+        );
+    }
+
     return (
         <div ref={innerRef} className={techStackClassCombined}>
             <h1>TECH STACK</h1>
-            <div>
-
-            </div>
+            {isSingular ? 
+                RenderSingular() :
+                RenderCardList()
+            }
         </div>
     );
 
