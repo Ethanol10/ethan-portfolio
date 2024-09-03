@@ -7,7 +7,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 
-export default function NavigationBar(props){
+export default function NavigationBar(props) {
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -20,14 +20,20 @@ export default function NavigationBar(props){
       return;
     }
 
-    setState({...state, [anchor]: open});
+    setState({ ...state, [anchor]: open });
   }
 
   const onClickItem = (selectedSection) => {
     // Ugly hack to scroll to the correct section
     props.scrollToSectionCallback(selectedSection);
-  }  
-  
+  }
+
+  /*
+    {
+      ["nav-bar_full-list"]: anchor === 'top' || anchor === 'bottom',
+    }
+  */
+
   const list = (anchor) => (
     <div
       className={classNames("nav-bar_list", {
@@ -55,11 +61,11 @@ export default function NavigationBar(props){
     </div>
   );
 
-  return(
+  return (
     <div className="nav-bar_nav">
       {['left'].map((anchor) => (
         <React.Fragment key={anchor}>
-          <MenuIcon className="nav-bar_button" onClick={toggleDrawer('left', true)}/>
+          <MenuIcon className="nav-bar_button" onClick={toggleDrawer('left', true)} />
           <Drawer anchor={'left'} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             {list(anchor)}
           </Drawer>

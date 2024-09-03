@@ -1,0 +1,14 @@
+.all_cards__container {
+    display: block;
+}
+
+.all_cards__all_columns{
+    width: 100em;
+    display: flex;
+    flex-wrap: wrap;
+
+    
+    &.all_cards__all_columns__selected{
+        width: 10em;
+    }
+}

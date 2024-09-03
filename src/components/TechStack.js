@@ -2,11 +2,11 @@ import React from 'react';
 import classNames from 'classnames';
 import { cardList } from '../media/cardlist';
 
-export default function TechStack(props){
-    const {innerRef} = props;
+export default function TechStack(props) {
+    const { innerRef } = props;
     const techStackClassCombined = classNames("tech-stack_background", "general-formatting");
     const [isSingular, setIsSingular] = React.useState(false);
-    
+
     const RenderSingular = () => {
         return (<div></div>);
     }
@@ -32,7 +32,7 @@ export default function TechStack(props){
         return (
             <div className={element.className}>
                 <p>{element.name}</p>
-                <img alt={element.token} src={element.img}/>
+                <img alt={element.token} src={element.img} />
             </div>
         );
     }
@@ -40,47 +40,38 @@ export default function TechStack(props){
     return (
         <div ref={innerRef} className={techStackClassCombined}>
             <h1>TECH STACK</h1>
-            {isSingular ? 
+            {isSingular ?
                 RenderSingular() :
                 RenderCardList()
             }
         </div>
     );
 
-/*
-        Two views:
-        Singular Tech
-        has icon or whole text view.
-        When not selected: 
-            Show Icon
-            Hover triggers float animation on y axis.
-
-        When Selected:
-            Animate moving from current position to expand to the side
-            Text opacity 0 -> 100
-            
-        When cross hit:
-            Text opacity 100 -> 0
-            Animate moving from side panel back to original position in all stack
-*/
+    /*
+            Two views:
+            Singular Tech
+            has icon or whole text view.
+            When not selected: 
+                Show Icon
+                Hover triggers float animation on y axis.
+    
+            When Selected:
+                Animate moving from current position to expand to the side
+                Text opacity 0 -> 100
+                
+            When cross hit:
+                Text opacity 100 -> 0
+                Animate moving from side panel back to original position in all stack
+    */
 
     /*
-        List programming languages that I am familar with
-        C#
-        Java
-        Python
-        JS
-        C
-        C++
-
-        List Libraries that i am familiar with
-        React
-        Node.js
-        WebAssembly
-        THREEJS
-
-        List Programs that I am familar with
-        Unity
-
+        Show grid
+        if clicked, expand into one of the clicked fields
+        Back button returns to grid
+        
+        Two views?:
+            - Grid view or card view, shows all of my stuff
+            - Expanded view, shows details regarding that one specific field
+        
     */
 }
