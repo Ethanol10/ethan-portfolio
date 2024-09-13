@@ -1,0 +1,1 @@
+export const TECH_STACK_ROW_SIZE = 3;

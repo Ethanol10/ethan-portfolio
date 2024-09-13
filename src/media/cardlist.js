@@ -6,18 +6,36 @@ export const cardList =
         "token": "csharp",
         "name": "C#",
         "img": csharpimg1, 
-        "classname": "class"
+        "imgClassname": "csharp-img"
     },
     {
         "token": "csharp",
         "name": "C#",
         "img": csharpimg1, 
-        "classname": "class"
+        "imgClassname": "csharp-img"
     },
     {
         "token": "csharp",
         "name": "C#",
         "img": csharpimg1, 
-        "classname": "class"
+        "imgClassname": "csharp-img"
+    },
+    {
+        "token": "csharp",
+        "name": "C#",
+        "img": csharpimg1, 
+        "imgClassname": "csharp-img"
+    },
+    {
+        "token": "csharp",
+        "name": "C#",
+        "img": csharpimg1, 
+        "imgClassname": "csharp-img"
+    },
+    {
+        "token": "csharp",
+        "name": "C#",
+        "img": csharpimg1, 
+        "imgClassname": "csharp-img"
     },
 ]

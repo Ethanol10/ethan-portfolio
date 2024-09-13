@@ -1,3 +1,23 @@
 .tech-stack_background{
     background-color: $techStackColour,
 }
+
+.tech-stack_row{
+    display:flex;
+    padding: 4rem 0rem 4rem 0rem;
+}
+
+.tech-stack_item{
+    flex:1;
+    display: flex;
+}
+
+.tech-stack_close-icon{
+    width: 30px;
+    height: 30px;
+}
+
+.csharp-img{
+    max-width: 200px;
+    max-height: 200px;
+}
