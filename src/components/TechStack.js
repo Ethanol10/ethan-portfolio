@@ -11,11 +11,19 @@ export default function TechStack(props) {
     const [currentSelectedItem, setCurrentSelectedItem] = React.useState(null);
 
     const RenderSingular = () => {
+
+        //X in right corner
+        // layout rest in a top down
         return (
-            <div>
+            <div className="tech-stack_singular-selection">
+                <div>
+                    <img alt={currentSelectedItem.token} src={currentSelectedItem.img} className={currentSelectedItem.imgClassname} />    
+                    <div className="tech-stack_singular-text-block">
+                        <h2>{currentSelectedItem.name}</h2>
+                        <p>{currentSelectedItem.name}</p>
+                    </div>
+                </div>
                 <img onClick={SingularCardItemOnClick} src={close_icon} alt={"Close"} className="tech-stack_close-icon"></img>
-                <p>{currentSelectedItem.name}</p>
-                <img alt={currentSelectedItem.token} src={currentSelectedItem.img} className={currentSelectedItem.imgClassname} />
             </div>
         );
     }
@@ -54,15 +62,19 @@ export default function TechStack(props) {
 
     const RenderCardItem = (element) => {
         return (
-            <div className="tech-stack_item" onClick={() => CardItemOnClick(element)}>
-                <img alt={element.token} src={element.img} className={element.imgClassname} />
+            <div className="tech-stack_item">
+                <div className="tech-stack_item-text">
+                    <h3>{element.name}</h3>
+                </div>
+                <img onClick={() => CardItemOnClick(element)} alt={element.token} src={element.img} className={element.imgClassname}/>
             </div>
         );
     }
 
     const CardItemOnClick = (elementClicked) => {
-        setIsSingular(true);
-        setCurrentSelectedItem(elementClicked);
+        // setIsSingular(true);
+        // setCurrentSelectedItem(elementClicked);
+        return;
     }
 
     const SingularCardItemOnClick = () => {

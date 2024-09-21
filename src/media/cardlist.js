@@ -1,41 +1,46 @@
-import csharpimg1 from './csharp.webp'
+import csharpimg from './csharp.png'
+import pythonimg from './python.png'
+import javascriptimg from './javascript.png'
+import reactimg from './react.png'
+import unityimg from './unity.png'
+import djangoimg from './django.png'
 
 export const cardList = 
 [
     {
         "token": "csharp",
         "name": "C#",
-        "img": csharpimg1, 
-        "imgClassname": "csharp-img"
+        "img": csharpimg, 
+        "imgClassname": "csharp-img",
     },
     {
-        "token": "csharp",
-        "name": "C#",
-        "img": csharpimg1, 
-        "imgClassname": "csharp-img"
+        "token": "python",
+        "name": "Python",
+        "img": pythonimg, 
+        "imgClassname": "python-img"
     },
     {
-        "token": "csharp",
-        "name": "C#",
-        "img": csharpimg1, 
-        "imgClassname": "csharp-img"
+        "token": "javascript",
+        "name": "JavaScript",
+        "img": javascriptimg, 
+        "imgClassname": "javascript-img"
     },
     {
-        "token": "csharp",
-        "name": "C#",
-        "img": csharpimg1, 
-        "imgClassname": "csharp-img"
+        "token": "react",
+        "name": "React",
+        "img": reactimg, 
+        "imgClassname": "react-img"
     },
     {
-        "token": "csharp",
-        "name": "C#",
-        "img": csharpimg1, 
-        "imgClassname": "csharp-img"
+        "token": "unity",
+        "name": "Unity",
+        "img": unityimg, 
+        "imgClassname": "unity-img"
     },
     {
-        "token": "csharp",
-        "name": "C#",
-        "img": csharpimg1, 
-        "imgClassname": "csharp-img"
-    },
+        "token": "django",
+        "name": "Django",
+        "img": djangoimg, 
+        "imgClassname": "django-img"
+    }
 ]
