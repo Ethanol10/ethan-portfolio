@@ -13,9 +13,30 @@
 }
 
 .tech-stack_item-text{
-    position:absolute;
-    
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 }
+
+.tech-stack_item-absolute-container{
+    position: absolute;
+    color: rgba(1, 1, 1, 0);
+    background: radial-gradient(#B4C9D6, #ffffff00);
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+
+    transition: color 0.25s ease-in-out, opacity 0.25s ease-in-out;
+
+    &:hover{
+        color: rgba(1,1,1,1);
+        opacity: 1
+    }
+}
+
 
 .tech-stack_singular-selection{
     padding: 4rem 0rem 4rem 0rem;

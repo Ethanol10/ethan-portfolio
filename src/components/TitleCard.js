@@ -28,7 +28,7 @@ export default function TitleCard(props){
                 color="#fff"
             >
                 <Typography variant="h3" component="h1">
-                    ETHAN GOH
+                    ETHAN GOH (This page is unfinished.)
                 </Typography>
             </Box>
         </div>

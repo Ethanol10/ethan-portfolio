@@ -63,8 +63,10 @@ export default function TechStack(props) {
     const RenderCardItem = (element) => {
         return (
             <div className="tech-stack_item">
-                <div className="tech-stack_item-text">
-                    <h3>{element.name}</h3>
+                <div className="tech-stack_item-absolute-container">
+                    <div className="tech-stack_item-text">
+                        <h3>{element.name}</h3>
+                    </div>
                 </div>
                 <img onClick={() => CardItemOnClick(element)} alt={element.token} src={element.img} className={element.imgClassname}/>
             </div>

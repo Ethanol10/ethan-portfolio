@@ -7,6 +7,8 @@ import TechStack from './components/TechStack.js';
 import Footer from './components/Footer';
 import "./styles/index.scss";
 import "./styles/App.scss";
+import Projects from './components/Projects.js';
+import Experience from './components/Experience.js';
 
 function App() {
   const TitleCardRef = React.useRef(null);
@@ -48,6 +50,8 @@ function App() {
       <TitleCard innerRef={TitleCardRef}/>
       <AboutCard innerRef={AboutCardRef}/>
       <TechStack innerRef={TechStackRef}/>
+      <Experience innerRef={AcademicRef}/>
+      <Projects innerRef={ProjectsRef}/>
       <Footer innerRef={FooterRef} />
     </>
   );
