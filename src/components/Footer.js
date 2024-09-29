@@ -6,15 +6,19 @@ import linkedinImg from '../media/linkedin.png';
 export default function Footer(props){
     const {innerRef} = props;
     const footerClassCombined = classNames("footer_footer", "general-formatting");
-    const githubImgClassname = classNames("footer_icon-img");
+    const iconClassname = classNames("footer_icon-img");
 
     return (
         <div ref={innerRef} className={footerClassCombined}>
             <h1>CONTACT DETAILS</h1>
             <p>If you wish to contact me, you can contact me through the following:</p>
             <div className='footer_icons-container'>   
-                <img className={githubImgClassname} src={linkedinImg} alt="linkedIn link"></img>         
-                <img className={githubImgClassname} href='https://github.com/Ethanol10/' src={githubImg} alt='github repo link'></img>
+                <a href='https://www.linkedin.com/in/ethan-goh-a85a39160/'>
+                    <img className={iconClassname} src={linkedinImg} alt="linkedIn link"></img>
+                </a>
+                <a href='https://github.com/Ethanol10/'>
+                    <img className={iconClassname} src={githubImg} alt='github repo link'/>
+                </a>
             </div>
             <p style={{'padding-top': '1rem'}}>Built in React</p>
             <h6>Attribution for images</h6>
