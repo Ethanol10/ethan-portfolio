@@ -12,7 +12,7 @@ A website built to show-off abilities of myself in a single website.
 `export NODE_OPTIONS=--openssl-legacy-provider; npm run start`
 
 ## Deploying to Github pages:
-`npm deploy`
+`npm run deploy`
 
 ## Acknowledgements
 * Built in React
