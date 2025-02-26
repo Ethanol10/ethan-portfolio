@@ -9,7 +9,8 @@ $xxxl: 1920px;
 //Colours
 $contactMeColour: #D4D4D4;
 $buildDetails: #6e6e6e;
-$techStackColour: #B4C9D6;
+$techStackColour: #97caea;
+$experienceColour: #aadeff;
 
 @import "../styles/GeneralStyle";
 @import "../styles/TitleCardStyles";
@@ -18,3 +19,4 @@ $techStackColour: #B4C9D6;
 @import "../styles/NavigationBarStyle";
 @import "../styles/FooterStyle";
 @import "../styles/AllCardsStyle";
+@import "../styles/ExperienceCardStyle";

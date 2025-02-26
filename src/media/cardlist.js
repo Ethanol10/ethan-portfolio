@@ -8,37 +8,37 @@ import djangoimg from './django.png'
 export const cardList = 
 [
     {
-        "token": "csharp",
+        "id": "csharp",
         "name": "C#",
         "img": csharpimg, 
         "imgClassname": "csharp-img",
     },
     {
-        "token": "python",
+        "id": "python",
         "name": "Python",
         "img": pythonimg, 
         "imgClassname": "python-img"
     },
     {
-        "token": "javascript",
+        "id": "javascript",
         "name": "JavaScript",
         "img": javascriptimg, 
         "imgClassname": "javascript-img"
     },
     {
-        "token": "react",
+        "id": "react",
         "name": "React",
         "img": reactimg, 
         "imgClassname": "react-img"
     },
     {
-        "token": "unity",
+        "id": "unity",
         "name": "Unity",
         "img": unityimg, 
         "imgClassname": "unity-img"
     },
     {
-        "token": "django",
+        "id": "django",
         "name": "Django",
         "img": djangoimg, 
         "imgClassname": "django-img"

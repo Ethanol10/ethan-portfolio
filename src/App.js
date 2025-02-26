@@ -49,8 +49,8 @@ function App() {
       <NavigationBar scrollToSectionCallback={scrollToSectionCallback}/>
       <TitleCard innerRef={TitleCardRef}/>
       <AboutCard innerRef={AboutCardRef}/>
-      <TechStack innerRef={TechStackRef}/>
       <Experience innerRef={AcademicRef}/>
+      <TechStack innerRef={TechStackRef}/>
       <Projects innerRef={ProjectsRef}/>
       <Footer innerRef={FooterRef} />
     </>

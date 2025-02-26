@@ -15,7 +15,7 @@ export default function TechStack(props) {
         //X in right corner
         // layout rest in a top down
         return (
-            <div className="tech-stack_singular-selection">
+            <div key={currentSelectedItem.id} className="tech-stack_singular-selection">
                 <div>
                     <img alt={currentSelectedItem.token} src={currentSelectedItem.img} className={currentSelectedItem.imgClassname} />    
                     <div className="tech-stack_singular-text-block">
@@ -43,7 +43,12 @@ export default function TechStack(props) {
             }
         }
 
-        const finalResult = rows.map(item => RenderRowOfCards(item));
+        var finalResult = [];
+        for(var j = 0; j < rows.length; j++){
+            finalResult.push(RenderRowOfCards(rows[j], j));
+        }
+
+        // const finalResult = rows.map(item => RenderRowOfCards(item));
 
         return (
             <div>
@@ -52,9 +57,9 @@ export default function TechStack(props) {
         );
     }
 
-    const RenderRowOfCards = (row) => {
+    const RenderRowOfCards = (row, id) => {
         return (
-            <div className='tech-stack_row'>
+            <div key={id} className='tech-stack_row'>
                 {row.map(item => RenderCardItem(item))}
             </div>
         );
@@ -62,7 +67,7 @@ export default function TechStack(props) {
 
     const RenderCardItem = (element) => {
         return (
-            <div className="tech-stack_item">
+            <div key={element.id} className="tech-stack_item">
                 <div className="tech-stack_item-absolute-container">
                     <div className="tech-stack_item-text">
                         <h3>{element.name}</h3>

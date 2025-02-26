@@ -44,7 +44,7 @@ export default function NavigationBar(props) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Home', 'About', 'Tech Stack', 'Academic and Professional Experience', 'Projects'].map((text, index) => (
+        {['Home', 'About', 'Academic and Professional Experience', 'Tech Stack', 'Projects'].map((text, index) => (
           <ListItem onClick={() => onClickItem(text)} className="nav-bar_list-item" key={text}>
             <ListItemText primary={text} />
           </ListItem>
