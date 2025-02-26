@@ -45,12 +45,8 @@ export default function Experience(props){
     const onClickExperience = (experience) => {
         if (selectedExperience === experience){
             setSelectedExperience(null);
-
-            console.log("Same Experience, setting null");
             return;
         }
-
-        console.log("Clicked on experience: ", experience);
         setSelectedExperience(experience);
     }
     
