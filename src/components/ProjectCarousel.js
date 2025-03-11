@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import utsImg from '../media/uts.jpeg'
+import arsonistImg from '../media/projects/arsonist1.png'
 
 export default function ProjectCarousel(props){
     const {innerRef} = props;
@@ -9,17 +9,10 @@ export default function ProjectCarousel(props){
 
     return(
         <div className='carousel_container'>
-            <div className='carousel_overflow-container'></div>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
-            <img src={utsImg}></img>
+            <div className='carousel_overflow-container'>
+                
+            </div>
+
         </div>
     );
 }
