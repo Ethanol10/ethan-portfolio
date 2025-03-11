@@ -12,7 +12,8 @@
 
     &.experience-card_container_clickable{
         border: 0.2rem solid #6fbffd;
-    
+        cursor:pointer;
+        
         &:hover{
             box-shadow: 8px 8px 10px #516a7c;
         }

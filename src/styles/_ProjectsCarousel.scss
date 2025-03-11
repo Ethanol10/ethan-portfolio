@@ -1,7 +1,79 @@
-// .carousel_container{
-//     overflow-x: hidden;
-// }
+.carousel_container{
+    width: 100%;
+    height: 100%;
+}
 
-// .carousel_overflow-container{
-//     overflow-x: scroll;
-// }
+.carousel_container-centering{
+    margin:auto;
+}
+
+.carousel_front-container{
+    position: absolute;
+    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .carousel_front-container_img{
+        width:720px;
+    }
+}
+
+.carousel_second-layer-left-container{
+    position: absolute;
+    z-index: 80;
+    left: 30%;
+    transform: translate(-30%, 25%);
+
+    .carousel_second-layer-left-container_img{
+        width:500px;
+        opacity: 50%;
+    }    
+}
+
+.carousel_second-layer-right-container{
+    position: absolute;
+    z-index: 80;
+    right: 30%;
+    transform: translate(30%, 25%);
+
+    .carousel_second-layer-right-container_img{
+        width:500px;
+        opacity: 50%;
+    }
+}
+
+.carousel_second-layer-left-container{
+    position: absolute;
+    z-index: 80;
+    left: 30%;
+    transform: translate(-30%, 25%);
+
+    .carousel_second-layer-left-container_img{
+        width:500px;
+        opacity: 50%;
+    }    
+}
+
+.carousel_hidden-layer-left-container{
+    position: absolute;
+    z-index: 60;
+    left: 15%;
+    transform: translate(-15%, 55%);
+
+    .carousel_hidden-layer-left-container_img{
+        width:350px;
+        opacity: 15%;
+    }
+}
+
+.carousel_hidden-layer-right-container{
+    position: absolute;
+    z-index: 60;
+    right: 15%;
+    transform: translate(15%, 55%);
+
+    .carousel_hidden-layer-right-container_img{
+        width:350px;
+        opacity: 15%;
+    }
+}

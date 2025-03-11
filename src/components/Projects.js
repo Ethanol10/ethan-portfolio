@@ -1,6 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import ProjectCarousel from './ProjectCarousel';
+import {projectsList} from "../media/projects/projectsList";
 
 export default function Projects(props){
     const {innerRef} = props;
@@ -13,7 +14,7 @@ export default function Projects(props){
         <div ref={innerRef} className="general-formatting">
             <div className="projects_formatting">
                 <h1>PROJECTS</h1>
-                <ProjectCarousel/>
+                <ProjectCarousel items={projectsList}/>
             </div>
         </div>
     );
