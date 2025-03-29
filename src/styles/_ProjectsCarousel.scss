@@ -7,38 +7,91 @@
     margin:auto;
 }
 
+.carousel_right-button {
+    position: absolute;
+    z-index: 999;
+    left: 50%;    
+    transform: translate(20rem, 500%);
+    color: white;
+}
+
+.carousel_left-button {
+    position: absolute;
+    z-index: 999;
+    left: 50%;    
+    transform: translate(-22rem, 500%);
+    color: white;
+}
+
 .carousel_front-container{
     position: absolute;
     z-index: 100;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, 0%);
 
-    .carousel_front-container_img{
+    & img{
         width:720px;
     }
-}
 
-.carousel_second-layer-left-container{
-    position: absolute;
-    z-index: 80;
-    left: 30%;
-    transform: translate(-30%, 25%);
+    &.transition-right{
+        animation-name: front-to-right-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        
+        & img {
+            animation-name: front-to-secondlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+        }
+    }
 
-    .carousel_second-layer-left-container_img{
-        width:500px;
-        opacity: 50%;
-    }    
+    &.transition-left{
+        animation-name: front-to-left-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        
+        & img {
+            animation-name: front-to-secondlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+        }
+    }
 }
 
 .carousel_second-layer-right-container{
     position: absolute;
     z-index: 80;
-    right: 30%;
-    transform: translate(30%, 25%);
-
-    .carousel_second-layer-right-container_img{
+    left: 70%;
+    transform: translate(-70%, 25%);
+    & img {
         width:500px;
         opacity: 50%;
+    }
+
+    &.transition-right{
+        animation-name: right-to-hidden-r-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        
+        & img {
+            animation-name: secondlayer-to-thirdlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+        }
+    }
+
+    &.transition-left{
+        animation-name: front-to-right-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction: reverse;
+        
+        & img {
+            animation-name: front-to-secondlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-direction: reverse;
+        }
     }
 }
 
@@ -48,10 +101,36 @@
     left: 30%;
     transform: translate(-30%, 25%);
 
-    .carousel_second-layer-left-container_img{
+    & img {
         width:500px;
         opacity: 50%;
-    }    
+    } 
+
+    &.transition-right{
+        animation-name: front-to-left-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction: reverse;
+        
+        & img {
+            animation-name: front-to-secondlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-direction: reverse;
+        }
+    }
+
+    &.transition-left{
+        animation-name: left-to-hidden-l-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        
+        & img {
+            animation-name: secondlayer-to-thirdlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+        }
+    }
 }
 
 .carousel_hidden-layer-left-container{
@@ -60,20 +139,235 @@
     left: 15%;
     transform: translate(-15%, 55%);
 
-    .carousel_hidden-layer-left-container_img{
+    & img {
         width:350px;
         opacity: 15%;
+    }
+
+    &.transition-right{
+        animation-name: left-to-hidden-l-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction: reverse;
+        
+        & img {
+            animation-name: secondlayer-to-thirdlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-direction: reverse;
+        }
+    }
+
+    &.transition-left{
+        animation-name: left-to-hidden-l-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        
+        & img {
+            animation-name: thirdlayer-to-hidden-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+        }
     }
 }
 
 .carousel_hidden-layer-right-container{
     position: absolute;
     z-index: 60;
-    right: 15%;
-    transform: translate(15%, 55%);
+    left: 85%;
+    transform: translate(-85%, 55%);
 
-    .carousel_hidden-layer-right-container_img{
+    & img {
         width:350px;
         opacity: 15%;
+    }
+
+    &.transition-right{
+        animation-name: right-to-hidden-r-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        
+        & img {
+            animation-name: thirdlayer-to-hidden-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+        }
+    }
+
+    &.transition-left{
+        animation-name: right-to-hidden-r-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction: reverse;
+        
+        & img {
+            animation-name: secondlayer-to-thirdlayer-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-direction: reverse;
+        }
+    }
+}
+
+.carousel_invis-layer-right-container {
+    position: absolute;
+    z-index: 30;
+    left: 95%;
+    transform: translate(-95%, 200%);
+
+    & img {
+        width:150px;
+        opacity: 0%;
+    }
+
+    &.transition-left{
+        animation-name: hidden-r-to-invis-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction: reverse;
+        
+        & img {
+            animation-name: thirdlayer-to-hidden-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-direction: reverse;
+        }
+    }
+}
+
+.carousel_invis-layer-left-container {
+    position: absolute;
+    z-index: 60;
+    left: 5%;
+    transform: translate(-5%, 200%);
+
+    & img {
+        width:150px;
+        opacity: 0%;
+    }
+
+    &.transition-right{
+        animation-name: hidden-l-to-invis-parent;
+        animation-duration: 0.5s;
+        animation-iteration-count: 1;
+        animation-direction: reverse;
+        
+        & img {
+            animation-name: thirdlayer-to-hidden-img;
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-direction: reverse;
+        }
+    }
+}
+
+//Front to second layers
+@keyframes front-to-left-parent{
+    from{
+        z-index: 100;
+        left: 50%;
+        transform: translate(-50%, 0%);
+    }
+    to {
+        z-index: 80;
+        left: 30%;
+        transform: translate(-30%, 25%);    
+    }
+}
+@keyframes front-to-right-parent {
+    from {
+        transform: translate(-50%, 0%);
+        left: 50%;
+        z-index: 100;
+    }
+    to {
+        z-index: 80;
+        left: 70%;
+        transform: translate(-70%, 25%);
+    }
+}
+
+//third layer transitions
+@keyframes right-to-hidden-r-parent {
+    from {
+        z-index: 80;
+        left: 70%;
+        transform: translate(-70%, 25%);
+    }
+    to {
+        z-index: 60;
+        left: 85%;
+        transform: translate(-85%, 55%);
+    }
+}
+@keyframes left-to-hidden-l-parent {
+    from {
+        z-index: 80;
+        left: 30%;
+        transform: translate(-30%, 25%);  
+    }
+    to {
+        z-index: 60;
+        left: 15%;
+        transform: translate(-15%, 55%);
+    }
+}
+
+//Hiding transitions
+@keyframes hidden-r-to-invis-parent{
+    from {
+        z-index: 60;
+        left: 85%;
+        transform: translate(-85%, 55%);
+    }
+    to {
+        z-index: 60;
+        left: 95%;
+        transform: translate(-95%, 200%);
+    }
+}
+@keyframes hidden-l-to-invis-parent{
+    from{
+        z-index: 60;
+        left: 15%;
+        transform: translate(-15%, 55%);
+    }
+    to {
+        z-index: 60;
+        left: 5%;
+        transform: translate(-5%, 200%);
+    }
+}
+
+
+// Image transitions
+@keyframes front-to-secondlayer-img{
+    from {
+        width: 720px;
+        opacity: 100%;
+    }
+    to {
+        width: 500px;
+        opacity: 50%;
+    }
+}
+@keyframes secondlayer-to-thirdlayer-img{
+    from {
+        width: 500px;
+        opacity: 50%;
+    }
+    to {
+        width:350px;
+        opacity: 15%;
+    }
+}
+@keyframes thirdlayer-to-hidden-img{
+    from {
+        width: 350px;
+        opacity: 15%;
+    }
+    to {
+        width: 150px;
+        opacity: 0%;
     }
 }
