@@ -18,7 +18,7 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 2 Mod",
         "description": "",
         "imgs": [
-            arsonist1, arsonist2, arsonist3
+            arsonist2, arsonist2, arsonist3
         ],
     },
     {
@@ -26,7 +26,7 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 2 Mod",
         "description": "",
         "imgs": [
-            arsonist1, arsonist2, arsonist3
+            arsonist3, arsonist2, arsonist3
         ],
     },
     {
@@ -42,11 +42,19 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 2 Mod",
         "description": "",
         "imgs": [
-            arsonist1, arsonist2, arsonist3
+            arsonist2, arsonist2, arsonist3
         ],
     },
     {
         "id": "arsonist-ror7",
+        "title": "Arsonist - Risk of Rain 2 Mod",
+        "description": "",
+        "imgs": [
+            arsonist3, arsonist2, arsonist3
+        ],
+    },
+    {
+        "id": "arsonist-ror8",
         "title": "Arsonist - Risk of Rain 2 Mod",
         "description": "",
         "imgs": [
