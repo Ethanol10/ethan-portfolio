@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import arsonistImg from '../media/projects/arsonist1.png'
 
 export default function ProjectCarousel(props){
-    const {items} = props;
+    const {items, setItem} = props;
     const frontContainer = useRef(null);
     const [isMovingRight, setIsMovingRight] = useState(false);
     const [isMovingLeft, setIsMovingLeft] = useState(false);
@@ -42,6 +42,8 @@ export default function ProjectCarousel(props){
 
         setIsMovingRight(false);
         setIsMovingLeft(false);
+
+        setItem(items[position]);
     }
 
     function triggerRightAnim(){
@@ -70,12 +72,20 @@ export default function ProjectCarousel(props){
 
     return(
         <div className='carousel_container'>
-            <div className='carousel_left-button' onClick={triggerLeftAnim}>
-                <p>testleft</p>
-            </div>
-            <div className='carousel_right-button' onClick={triggerRightAnim}>
-                <p>testright</p>
-            </div>
+            { position > 0 && 
+                (
+                    <div className='carousel_left-button' onClick={triggerLeftAnim}>
+                        <p>testleft</p>
+                    </div>
+                )
+            }
+            { position < items.length - 1 && 
+                (
+                    <div className='carousel_right-button' onClick={triggerRightAnim}>
+                        <p>testright</p>
+                    </div>    
+                )
+            }
             
             <div className='carousel_container-centering'>
 

@@ -37,11 +37,13 @@
         animation-name: front-to-right-parent;
         animation-duration: 0.5s;
         animation-iteration-count: 1;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: front-to-secondlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
     }
 
@@ -49,11 +51,13 @@
         animation-name: front-to-left-parent;
         animation-duration: 0.5s;
         animation-iteration-count: 1;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: front-to-secondlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
     }
 }
@@ -72,11 +76,13 @@
         animation-name: right-to-hidden-r-parent;
         animation-duration: 0.5s;
         animation-iteration-count: 1;
+        animation-fill-mode: forwards;
         
         & img {
             animation-name: secondlayer-to-thirdlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
     }
 
@@ -85,12 +91,14 @@
         animation-duration: 0.5s;
         animation-iteration-count: 1;
         animation-direction: reverse;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: front-to-secondlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
             animation-direction: reverse;
+            animation-fill-mode: forwards;
         }
     }
 }
@@ -111,12 +119,14 @@
         animation-duration: 0.5s;
         animation-iteration-count: 1;
         animation-direction: reverse;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: front-to-secondlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
             animation-direction: reverse;
+            animation-fill-mode: forwards;
         }
     }
 
@@ -124,11 +134,13 @@
         animation-name: left-to-hidden-l-parent;
         animation-duration: 0.5s;
         animation-iteration-count: 1;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: secondlayer-to-thirdlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
     }
 }
@@ -149,12 +161,14 @@
         animation-duration: 0.5s;
         animation-iteration-count: 1;
         animation-direction: reverse;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: secondlayer-to-thirdlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
             animation-direction: reverse;
+            animation-fill-mode: forwards;
         }
     }
 
@@ -162,13 +176,13 @@
         animation-name: left-to-hidden-l-parent;
         animation-duration: 0.5s;
         animation-iteration-count: 1;
-        animation-direction: alternate;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: thirdlayer-to-hidden-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
-            animation-direction: alternate;
+            animation-fill-mode: forwards;
         }
     }
 }
@@ -188,11 +202,13 @@
         animation-name: right-to-hidden-r-parent;
         animation-duration: 0.5s;
         animation-iteration-count: 1;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: thirdlayer-to-hidden-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
     }
 
@@ -201,12 +217,14 @@
         animation-duration: 0.5s;
         animation-iteration-count: 1;
         animation-direction: reverse;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: secondlayer-to-thirdlayer-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
             animation-direction: reverse;
+            animation-fill-mode: forwards;
         }
     }
 }
@@ -215,10 +233,10 @@
     position: absolute;
     z-index: 30;
     left: 95%;
-    transform: translate(-95%, 200%);
+    transform: translate(-95%, 55%);
 
     & img {
-        width:150px;
+        width:350px;
         opacity: 0%;
     }
 
@@ -227,25 +245,27 @@
         animation-duration: 0.5s;
         animation-iteration-count: 1;
         animation-direction: reverse;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: thirdlayer-to-hidden-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
             animation-direction: reverse;
+            animation-fill-mode: forwards;
         }
     }
 }
 
 .carousel_invis-layer-left-container {
     position: absolute;
-    z-index: 60;
-    left: 5%;
-    transform: translate(-5%, 200%);
+    z-index: 30;
+    left: 15%;
+    transform: translate(-15%, 55%);
 
     & img {
-        width:150px;
-        opacity: 0%;
+        width: 350px;
+        opacity: 15%;
     }
 
     &.transition-left{
@@ -253,12 +273,14 @@
         animation-duration: 0.5s;
         animation-iteration-count: 1;
         animation-direction: reverse;
-        
+        animation-fill-mode: forwards;
+
         & img {
             animation-name: thirdlayer-to-hidden-img;
             animation-duration: 0.5s;
             animation-iteration-count: 1;
             animation-direction: reverse;
+            animation-fill-mode: forwards;
         }
     }
 }
@@ -369,7 +391,7 @@
         opacity: 15%;
     }
     to {
-        width: 150px;
+        width:350px;
         opacity: 0%;
     }
 }
