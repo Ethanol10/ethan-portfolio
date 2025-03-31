@@ -14,22 +14,28 @@ export default function Projects(props){
         }
 
         setSelectedProject(item);
+
     }
 
     useEffect(() => {
-        setProject(null); // Default first!
+        if (!selectedProject){
+            setProject(null); // Default first!
+        }
     });
 
-    console.log(selectedProject);
     return(
         <div ref={innerRef} className="general-formatting">
             <div className="projects_formatting">
                 <h1>PROJECTS</h1>
                 <ProjectCarousel items={projectsList} setItem={setProject}/>
+            </div>
+            <div className='projects_selected-project'>
                 { selectedProject && 
                     (
-                        <h2>{selectedProject.title}</h2>
-                    
+                        <>
+                            <h2>{selectedProject.title}</h2>
+                            <p>{selectedProject.description}</p>
+                        </>
                     )
                 }
             </div>

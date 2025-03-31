@@ -33,17 +33,12 @@ export default function ProjectCarousel(props){
                 setPosition(position + 1);
             }
         }
-        else{
+        else if (isMovingLeft){
             //-1
             if(position > 0){
                 setPosition(position - 1);
             }
         }
-
-        setIsMovingRight(false);
-        setIsMovingLeft(false);
-
-        setItem(items[position]);
     }
 
     function triggerRightAnim(){
@@ -53,6 +48,12 @@ export default function ProjectCarousel(props){
     function triggerLeftAnim(){
         setIsMovingLeft(true);
     }
+
+    useEffect( () => {
+        setItem(items[position]);
+        setIsMovingRight(false);
+        setIsMovingLeft(false);
+    }, [position, items, setItem]); 
 
     useEffect(() => {
         const eventListener = frontContainer.current;
