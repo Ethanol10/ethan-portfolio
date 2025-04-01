@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
+import  { PROJECTS_CAROUSEL_IMG_TRANSITION_TIMER_MILLIS }from '../consts';
 
 export default function ProjectCarousel(props){
     const {items, setItem} = props;
@@ -84,7 +85,7 @@ export default function ProjectCarousel(props){
         const eventListener = frontContainer.current;
         const interval = setInterval(() => {
             queueImageUpdate();
-        }, 4000);
+        }, PROJECTS_CAROUSEL_IMG_TRANSITION_TIMER_MILLIS);
 
         eventListener.addEventListener("animationend", onAnimationEnd);
         eventListenerSubImg.addEventListener("animationend", animationEndSlideshow);
