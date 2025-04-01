@@ -5,14 +5,18 @@ import arsonistImg from '../media/projects/arsonist1.png'
 export default function ProjectCarousel(props){
     const {items, setItem} = props;
     const frontContainer = useRef(null);
+    const frontContainerSubsequentImg = useRef(null);
     const [isMovingRight, setIsMovingRight] = useState(false);
     const [isMovingLeft, setIsMovingLeft] = useState(false);
     const [position, setPosition] = useState(0);
+    const [imgIndex, setImgIndex] = useState(0);  
+    const [imageTransition, setImageTransition] = useState(false);
     
     // List 5 items in a sort of stack, in actuality 7 but two are hidden.
     // try render the first three stacked ontop of each other
     let frontClassnames = classNames('carousel_front-container', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
-    let frontImgClassnames = classNames('carousel_front-container_img', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
+    let frontImgClassnames = classNames('carousel_front-container_img', {'slideshow-transition-active': imageTransition});
+    let frontSubsequentImgClassnames = classNames('carousel_front-container_subsequent-img', {'slideshow-transition-active': imageTransition});
     let rightClassnames = classNames('carousel_second-layer-right-container', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
     let rightImgClassnames = classNames('carousel_second-layer-right-container_img', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
     let leftClassnames = classNames('carousel_second-layer-left-container', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
@@ -40,13 +44,34 @@ export default function ProjectCarousel(props){
             }
         }
     }
+    
+    function animationEndSlideshow(){
+        if(!imageTransition){
+            return;
+        }
+        setImageTransition(false);
+        setImgIndex((imgIndex + 1) % items[position].imgs.length);
+    }
 
     function triggerRightAnim(){
         setIsMovingRight(true);
+
+        //reset img index and transition
+        setImgIndex(0);
+        setImageTransition(false);
     }
 
     function triggerLeftAnim(){
         setIsMovingLeft(true);
+
+        //reset img index and transition
+        setImgIndex(0);
+        setImageTransition(false);
+    }
+
+    function queueImageUpdate(){
+        console.log("update image!", imgIndex);
+        setImageTransition(true);
     }
 
     useEffect( () => {
@@ -56,11 +81,20 @@ export default function ProjectCarousel(props){
     }, [position, items, setItem]); 
 
     useEffect(() => {
+        const eventListenerSubImg = frontContainerSubsequentImg.current;
         const eventListener = frontContainer.current;
+        const interval = setInterval(() => {
+            queueImageUpdate();
+        }, 4000);
 
         eventListener.addEventListener("animationend", onAnimationEnd);
+        eventListenerSubImg.addEventListener("animationend", animationEndSlideshow);
 
-        return () => eventListener.removeEventListener("animationend", onAnimationEnd);
+        return () => {
+            eventListener.removeEventListener("animationend", onAnimationEnd);
+            eventListenerSubImg.removeEventListener("animationend", animationEndSlideshow);
+            clearInterval(interval);
+        };
     });
 
     let frontImg = items[position];
@@ -91,7 +125,8 @@ export default function ProjectCarousel(props){
             <div className='carousel_container-centering'>
 
                 <div ref={frontContainer} className={frontClassnames}>
-                    { frontImg && (<img className={frontImgClassnames} src={frontImg?.imgs[0]}></img>)}
+                    { frontImg && (<img className={frontImgClassnames} src={frontImg?.imgs[imgIndex]}></img>)}
+                    { frontImg && (<img ref={frontContainerSubsequentImg} className={frontSubsequentImgClassnames} src={frontImg?.imgs[imgIndex + 1 % frontImg?.imgs.length]}></img>)}
                 </div>
 
                 <div className={leftClassnames}>

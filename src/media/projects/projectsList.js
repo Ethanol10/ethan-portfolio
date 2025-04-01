@@ -18,7 +18,7 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 3 Mod",
         "description": "",
         "imgs": [
-            arsonist2, arsonist2, arsonist3
+            arsonist2, arsonist1, arsonist3
         ],
     },
     {

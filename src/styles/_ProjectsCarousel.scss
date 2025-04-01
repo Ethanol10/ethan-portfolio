@@ -33,6 +33,34 @@
         width:720px;
     }
 
+    .carousel_front-container_subsequent-img{
+        opacity: 0%;
+        z-index: 50;
+        position: absolute;
+        top:0;
+        left:0;
+
+        &.slideshow-transition-active{
+            animation-name: front-to-front-img;
+            animation-duration: 0.25s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+    }
+
+    .carousel_front-container_img{
+        z-index: 100;
+        opacity: 100%;
+
+        &.slideshow-transition-active{
+            animation-name: front-to-front-img;
+            animation-duration: 0.25s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-direction: reverse;
+        }
+    }
+
     &.transition-left{
         animation-name: front-to-right-parent;
         animation-duration: 0.5s;
@@ -365,6 +393,20 @@
 
 
 // Image transitions
+@keyframes front-to-front-img{
+    from {
+        opacity: 0%;
+        z-index: 50;
+        left: 0;
+        top: 0;
+    }
+    to {
+        opacity: 100%;
+        z-index: 100;
+        left: 0;
+        top: 0;
+    }
+}
 @keyframes front-to-secondlayer-img{
     from {
         width: 720px;
