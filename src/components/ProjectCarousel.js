@@ -55,31 +55,34 @@ export default function ProjectCarousel(props){
 
     function triggerRightAnim(){
         setIsMovingRight(true);
-
-        //reset img index and transition
-        setImgIndex(0);
-        setImageTransition(false);
+        resetImgTransitionState();
     }
 
+    
     function triggerLeftAnim(){
         setIsMovingLeft(true);
+        resetImgTransitionState();
+    }
 
+    function resetImgTransitionState(){
         //reset img index and transition
         setImgIndex(0);
         setImageTransition(false);
     }
 
+    //Queue the image update
     function queueImageUpdate(){
-        console.log("update image!", imgIndex);
         setImageTransition(true);
     }
 
+    //Run on position change
     useEffect( () => {
         setItem(items[position]);
         setIsMovingRight(false);
         setIsMovingLeft(false);
     }, [position, items, setItem]); 
 
+    //Run on component instantiation
     useEffect(() => {
         const eventListenerSubImg = frontContainerSubsequentImg.current;
         const eventListener = frontContainer.current;
@@ -97,6 +100,7 @@ export default function ProjectCarousel(props){
         };
     });
 
+    // Get the images to display
     let frontImg = items[position];
     let leftImg = position > 0 ? items[position - 1] : null;
     let rightImg = position < items.length - 1 ? items[position + 1] : null;
@@ -127,6 +131,7 @@ export default function ProjectCarousel(props){
                 <div ref={frontContainer} className={frontClassnames}>
                     { frontImg && (<img alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>)}
                     { frontImg && (<img alt={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].caption} ref={frontContainerSubsequentImg} className={frontSubsequentImgClassnames} src={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].img}></img>)}
+                    { frontImg && (<p>{frontImg.imgs[imgIndex].caption}</p>)}
                 </div>
 
                 <div className={leftClassnames}>

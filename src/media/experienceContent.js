@@ -1,12 +1,15 @@
 import utsImg from './uts.jpeg'
 import thinkunImg from './thinkun.jpeg'
 import gradconnectionImg from './gradconnection_logo.jpeg'
+import { MONTHS_COMPACT } from '../consts'
+
+const currentDate = new Date();
 
 export const professionalExperienceContent = [
     {
         "id": "gc",
         "title": "SEEK: GradConnection - Associate Software Engineer",
-        "date_range": "Feb 2022 - Present",
+        "date_range": `Feb 2022 - ${MONTHS_COMPACT[currentDate.getMonth()]} ${currentDate.getUTCFullYear()} (Present)`,
         "short_description": "Worked on the development and maintenance of GradConnection's website, tackling issues on both the Frontend and Backend in React and Django respectively.",
         "can_expand": true,
         "img": gradconnectionImg,

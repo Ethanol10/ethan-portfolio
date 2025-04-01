@@ -1,7 +1,9 @@
 import arsonist1 from "./arsonist1.png";
 import arsonist2 from "./arsonist2.png";
 import arsonist3 from "./arsonist3.png";
-
+import arsonistancientscepterposter from "./arsonistancientsceptreposter.png";
+import githubImg from "../github-logo.png";
+import thunderstore from "../thunderstore.png";
 
 export const projectsList = 
 [
@@ -11,13 +13,15 @@ export const projectsList =
         "related_urls": [
             {
                 "title": "Thundestore (Download link)",
-                "url": "https://thunderstore.io/package/PopcornFactory/Arsonist_Mod/"
+                "url": "https://thunderstore.io/package/PopcornFactory/Arsonist_Mod/",
+                "img": thunderstore,
             }, 
             {
                 "title": "Github (Source code)",
-                "url": "https://github.com/Popcorn-Factory/Arsonist-RoR2"
+                "url": "https://github.com/Popcorn-Factory/Arsonist-RoR2",
+                "img": githubImg,
             }],
-        "description": "This is a Modification that adds a playable character survivor to the game Risk of Rain 2 (RoR2). You play as a pyromaniac who has a variety of fire-oriented abilities. This character requires resource management and careful planning in order to make the most of his abilities. I have worked on the programming for all this mod's abilities, creating various custom components that work together and implement new functionality not seen in the base game of RoR2. I have also pushed to create VFX in the style of the original game, to make it seamlessly fit into the game as if it were a character apart of the base game. So far this mod has received 3 major updates, and has a total of 1,279,409 downloads total since 1/4/2025.",
+        "description": "This is a Modification to the game Risk of Rain 2 (RoR2) that adds a playable character survivor.\n You play as a pyromaniac who has a variety of fire-oriented abilities. This character requires resource management and careful planning in order to make the most of his abilities. I have worked on the programming for all this character's abilities, creating various custom components that work together and implement new functionality not seen in the base game of RoR2.\n I have also pushed to create VFX in the style of the original game, to make it seamlessly fit into the game as if it were a character apart of the base game. So far this mod has received 3 major updates, and has a total of 1,279,409 downloads total since Apr 2025.",
         "imgs": [
             {
                 "img": arsonist1,
@@ -32,6 +36,27 @@ export const projectsList =
                 "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0."
             },
         ],
+        "videos": [
+            {
+                "title": "Arsonist v1.0 Release Trailer",
+                "location": "youtube",
+                "url": "https://www.youtube.com/watch?v=Aez62FNzMTg"
+            },
+            {
+                "title": "Arsonist v2.0 Update Trailer",
+                "location": "youtube",
+                "url": "https://www.youtube.com/watch?v=y8EZUXso7Lc"
+            }
+        ],
+        "body_images": [
+            {   
+                "title": "Arsonist v3.0 Update Poster",
+                "attribution": "Poster Art by DragonRollZ",
+                "img": arsonistancientscepterposter,
+            }
+
+        ]
+        
     },
     {
         "id": "lee-hyperreal-ror2",

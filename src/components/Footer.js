@@ -5,6 +5,8 @@ import linkedinImg from '../media/linkedin.png';
 
 export default function Footer(props){
     const {innerRef} = props;
+
+    const currentDate = new Date();
     const footerClassCombined = classNames("footer_footer", "general-formatting");
     const iconClassname = classNames("footer_icon-img");
 
@@ -32,6 +34,10 @@ export default function Footer(props){
                 <a href="https://www.flaticon.com/free-icons/react" title="react icons">React icons created by srip - Flaticon</a>
             </div>
             <p>Please inform me that I have missed an attribution if you believe that is the case! I will add it here.</p>
+
+            <p>こっちまで来たの？　本当に来てくれてありがとう！！　また今度来てね！</p>
+
+            <p style={{fontWeight: "600"}}>Ethan Goh {currentDate.getFullYear()}</p>
         </div>
     );
 }
