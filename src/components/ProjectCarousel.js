@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import arsonistImg from '../media/projects/arsonist1.png'
 
 export default function ProjectCarousel(props){
     const {items, setItem} = props;
@@ -16,7 +15,7 @@ export default function ProjectCarousel(props){
     // try render the first three stacked ontop of each other
     let frontClassnames = classNames('carousel_front-container', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
     let frontImgClassnames = classNames('carousel_front-container_img', {'slideshow-transition-active': imageTransition});
-    let frontSubsequentImgClassnames = classNames('carousel_front-container_subsequent-img', {'slideshow-transition-active': imageTransition});
+    let frontSubsequentImgClassnames = classNames('carousel_front-container_subsequent-img', {'slideshow-transition-active': imageTransition, "transition-right": isMovingRight, "transition-left": isMovingLeft});
     let rightClassnames = classNames('carousel_second-layer-right-container', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
     let rightImgClassnames = classNames('carousel_second-layer-right-container_img', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
     let leftClassnames = classNames('carousel_second-layer-left-container', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
@@ -125,34 +124,34 @@ export default function ProjectCarousel(props){
             <div className='carousel_container-centering'>
 
                 <div ref={frontContainer} className={frontClassnames}>
-                    { frontImg && (<img className={frontImgClassnames} src={frontImg?.imgs[imgIndex]}></img>)}
-                    { frontImg && (<img ref={frontContainerSubsequentImg} className={frontSubsequentImgClassnames} src={frontImg?.imgs[imgIndex + 1 % frontImg?.imgs.length]}></img>)}
+                    { frontImg && (<img alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>)}
+                    { frontImg && (<img alt={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].caption} ref={frontContainerSubsequentImg} className={frontSubsequentImgClassnames} src={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].img}></img>)}
                 </div>
 
                 <div className={leftClassnames}>
                     { leftImg && 
-                        ( <img className={leftImgClassnames} src={leftImg?.imgs[0]}></img>)
+                        ( <img alt={leftImg?.imgs[0].caption} className={leftImgClassnames} src={leftImg?.imgs[0].img}></img>)
                     }
                 </div>
 
                 <div className={rightClassnames}>
-                    { rightImg && (<img className={rightImgClassnames} src={rightImg?.imgs[0]}></img>)} 
+                    { rightImg && (<img alt={rightImg?.imgs[0].caption} className={rightImgClassnames} src={rightImg?.imgs[0].img}></img>)} 
                 </div>
 
                 <div className={leftHiddenClassnames}>
-                    { leftHiddenImg && (<img className={leftImgHiddenClassnames} src={leftHiddenImg?.imgs[0]}></img>)}
+                    { leftHiddenImg && (<img alt={leftHiddenImg?.imgs[0].caption} className={leftImgHiddenClassnames} src={leftHiddenImg?.imgs[0].img}></img>)}
                 </div>
 
                 <div className={rightHiddenClassnames}>
-                    { rightHiddenImg && (<img className={rightImgHiddenClassnames} src={rightHiddenImg?.imgs[0]}></img>)}
+                    { rightHiddenImg && (<img alt={rightHiddenImg?.imgs[0].caption} className={rightImgHiddenClassnames} src={rightHiddenImg?.imgs[0].img}></img>)}
                 </div>
 
                 <div className={rightInvisClassnames}>
-                    { rightInvisImg && (<img className={rightImgInvisClassnames} src={rightInvisImg?.imgs[0]}></img>)}
+                    { rightInvisImg && (<img alt={rightInvisImg?.imgs[0].caption} className={rightImgInvisClassnames} src={rightInvisImg?.imgs[0].img}></img>)}
                 </div>
 
                 <div className={leftInvisClassnames}>
-                    { leftInvisImg && (<img className={leftImgInvisClassnames} src={leftInvisImg.imgs[0]}></img>)}
+                    { leftInvisImg && (<img alt={leftInvisImg?.imgs[0].caption} className={leftImgInvisClassnames} src={leftInvisImg.imgs[0].img}></img>)}
                 </div>
             </div>
         </div>

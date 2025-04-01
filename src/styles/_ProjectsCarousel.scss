@@ -46,6 +46,10 @@
             animation-iteration-count: 1;
             animation-fill-mode: forwards;
         }
+
+        &.transition-left, &.transition-right{
+            opacity: 0%;
+        }
     }
 
     .carousel_front-container_img{

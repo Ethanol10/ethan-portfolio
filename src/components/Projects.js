@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import classNames from 'classnames';
+import React, { useState, useEffect } from 'react';
 import ProjectCarousel from './ProjectCarousel';
 import {projectsList} from "../media/projects/projectsList";
 

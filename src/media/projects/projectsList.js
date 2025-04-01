@@ -8,17 +8,48 @@ export const projectsList =
     {
         "id": "arsonist-ror2",
         "title": "Arsonist - Risk of Rain 2 Mod",
-        "description": "This is a mod I was a main developer on for a mod in Risk of Rain 2. This took collaborative effort from a team of designers, 3D modellers, a sound designer and a programmer. The mod adds a new survivor to the game, with a unique playstyle and abilities. The mod is available on Thunderstore, a modding platform for Risk of Rain 2.",
+        "related_urls": [
+            {
+                "title": "Thundestore (Download link)",
+                "url": "https://thunderstore.io/package/PopcornFactory/Arsonist_Mod/"
+            }, 
+            {
+                "title": "Github (Source code)",
+                "url": "https://github.com/Popcorn-Factory/Arsonist-RoR2"
+            }],
+        "description": "This is a Modification that adds a playable character survivor to the game Risk of Rain 2 (RoR2). You play as a pyromaniac who has a variety of fire-oriented abilities. This character requires resource management and careful planning in order to make the most of his abilities. I have worked on the programming for all this mod's abilities, creating various custom components that work together and implement new functionality not seen in the base game of RoR2. I have also pushed to create VFX in the style of the original game, to make it seamlessly fit into the game as if it were a character apart of the base game. So far this mod has received 3 major updates, and has a total of 1,279,409 downloads total since 1/4/2025.",
         "imgs": [
-            arsonist1, arsonist2, arsonist3
+            {
+                "img": arsonist1,
+                "caption": "Arsonist fighting an Elder Lemurian using the Ancient Scepter mod, firing the Flamethrower ability."
+            }, 
+            {
+                "img": arsonist2,
+                "caption": "Arsonist firing a powered up fireball ability using the Ancient Scepter mod."
+            }, 
+            {
+                "img": arsonist3,
+                "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0."
+            },
         ],
     },
     {
-        "id": "arsonist-ror3",
-        "title": "Arsonist - Risk of Rain 3 Mod",
+        "id": "lee-hyperreal-ror2",
+        "title": "Lee: Hyperreal - Risk of Rain 2 Mod",
         "description": "",
         "imgs": [
-            arsonist2, arsonist1, arsonist3
+            {
+                "img": arsonist1,
+                "caption": "Arsonist fighting an Elder Lemurian using the Ancient Scepter mod, firing the Flamethrower ability."
+            }, 
+            {
+                "img": arsonist2,
+                "caption": "Arsonist firing a powered up fireball ability using the Ancient Scepter mod. "
+            }, 
+            {
+                "img": arsonist3,
+                "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0"
+            },
         ],
     },
     {
@@ -26,7 +57,18 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 4 Mod",
         "description": "",
         "imgs": [
-            arsonist3, arsonist2, arsonist3
+            {
+                "img": arsonist1,
+                "caption": "Arsonist fighting an Elder Lemurian using the Ancient Scepter mod, firing the Flamethrower ability."
+            }, 
+            {
+                "img": arsonist2,
+                "caption": "Arsonist firing a powered up fireball ability using the Ancient Scepter mod. "
+            }, 
+            {
+                "img": arsonist3,
+                "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0"
+            },
         ],
     },
     {
@@ -34,7 +76,18 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 5 Mod",
         "description": "",
         "imgs": [
-            arsonist1, arsonist2, arsonist3
+            {
+                "img": arsonist1,
+                "caption": "Arsonist fighting an Elder Lemurian using the Ancient Scepter mod, firing the Flamethrower ability."
+            }, 
+            {
+                "img": arsonist2,
+                "caption": "Arsonist firing a powered up fireball ability using the Ancient Scepter mod. "
+            }, 
+            {
+                "img": arsonist3,
+                "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0"
+            },
         ],
     },
     {
@@ -42,7 +95,18 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 6 Mod",
         "description": "",
         "imgs": [
-            arsonist2, arsonist2, arsonist3
+            {
+                "img": arsonist1,
+                "caption": "Arsonist fighting an Elder Lemurian using the Ancient Scepter mod, firing the Flamethrower ability."
+            }, 
+            {
+                "img": arsonist2,
+                "caption": "Arsonist firing a powered up fireball ability using the Ancient Scepter mod. "
+            }, 
+            {
+                "img": arsonist3,
+                "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0"
+            },
         ],
     },
     {
@@ -50,7 +114,18 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 7 Mod",
         "description": "",
         "imgs": [
-            arsonist3, arsonist2, arsonist3
+            {
+                "img": arsonist1,
+                "caption": "Arsonist fighting an Elder Lemurian using the Ancient Scepter mod, firing the Flamethrower ability."
+            }, 
+            {
+                "img": arsonist2,
+                "caption": "Arsonist firing a powered up fireball ability using the Ancient Scepter mod. "
+            }, 
+            {
+                "img": arsonist3,
+                "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0"
+            },
         ],
     },
     {
@@ -58,7 +133,18 @@ export const projectsList =
         "title": "Arsonist - Risk of Rain 8 Mod",
         "description": "",
         "imgs": [
-            arsonist1, arsonist2, arsonist3
+            {
+                "img": arsonist1,
+                "caption": "Arsonist fighting an Elder Lemurian using the Ancient Scepter mod, firing the Flamethrower ability."
+            }, 
+            {
+                "img": arsonist2,
+                "caption": "Arsonist firing a powered up fireball ability using the Ancient Scepter mod. "
+            }, 
+            {
+                "img": arsonist3,
+                "caption": "Arsonist setting off one of the new abilities that was introduced in v3.0"
+            },
         ],
     }
 ]
