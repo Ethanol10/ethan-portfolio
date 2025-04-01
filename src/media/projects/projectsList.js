@@ -40,12 +40,12 @@ export const projectsList =
             {
                 "title": "Arsonist v1.0 Release Trailer",
                 "location": "youtube",
-                "url": "https://www.youtube.com/watch?v=Aez62FNzMTg"
+                "url": "https://www.youtube.com/embed/Aez62FNzMTg"
             },
             {
                 "title": "Arsonist v2.0 Update Trailer",
                 "location": "youtube",
-                "url": "https://www.youtube.com/watch?v=y8EZUXso7Lc"
+                "url": "https://www.youtube.com/embed/y8EZUXso7Lc"
             }
         ],
         "body_images": [
