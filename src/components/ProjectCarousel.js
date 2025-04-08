@@ -123,14 +123,14 @@ export default function ProjectCarousel(props){
                     { position > 0 && 
                         (
                             <div className={leftButtonClassnames} onClick={triggerLeftAnim}>
-                                <img className='carousel_left-button_arrow' src={right_arrow}/>
+                                <img alt="left-button" className='carousel_left-button_arrow' src={right_arrow}/>
                             </div>
                         )
                     }
                     { position < items.length - 1 && 
                         (
                             <div className={rightButtonClassnames} onClick={triggerRightAnim}>
-                                <img className='carousel_right-button_arrow' src={right_arrow}/>
+                                <img alt="right-button" className='carousel_right-button_arrow' src={right_arrow}/>
                             </div>    
                         )
                     }
