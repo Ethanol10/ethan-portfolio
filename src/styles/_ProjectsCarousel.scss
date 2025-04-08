@@ -10,17 +10,110 @@
 .carousel_right-button {
     position: absolute;
     z-index: 999;
-    left: 50%;    
-    transform: translate(20rem, 500%);
     color: white;
+    opacity: 50%;
+    top: 0px;
+    right: 0px;
+    width: 10rem;
+    height: 100%;
+    background-image: radial-gradient( farthest-corner at 100% 50%, rgb(178, 178, 178) 0%, rgba(255, 255, 255, 0) 50%);
+    transition: all 0.3s ease-in-out;
+
+    .carousel_right-button_arrow{
+        position:absolute;
+        right: 0;
+        top: 41%;
+        width: 3rem;
+        height: 3rem;
+        opacity: 0%;
+        transform: translateX(-50%);
+        margin: auto auto;
+        transition: all 0.3s ease-in-out;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    &:hover{     
+        opacity: 100%;
+        .carousel_right-button_arrow{
+            position:absolute;
+            right: 0;
+            top: 41%;
+            width: 3rem;
+            height: 3rem;
+            opacity: 100%;
+            transform: translateX(0%);
+            margin: auto auto;
+            transition: all 0.3s ease-in-out;
+    
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &.disable {
+        transition: all 0.1s ease-in-out;
+        opacity: 0%;
+        pointer-events: none;
+    }
 }
 
 .carousel_left-button {
     position: absolute;
     z-index: 999;
-    left: 50%;    
-    transform: translate(-22rem, 500%);
     color: white;
+    opacity: 50%;
+    top: 0px;
+    left: 0px;
+    width: 10rem;
+    height: 100%;
+    background-image: radial-gradient( farthest-corner at 0% 50%, rgb(178, 178, 178) 0%, rgba(255, 255, 255, 0) 50%);
+    transition: all 0.3s ease-in-out;
+
+    .carousel_left-button_arrow{
+        position:absolute;
+        left: 0;
+        top: 41%;
+        width: 3rem;
+        height: 3rem;
+        opacity: 0%;
+        rotate: 180deg;
+        transform: translateX(-50%);
+        margin: auto auto;
+        transition: all 0.3s ease-in-out;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    &:hover{     
+        opacity: 100%;
+        .carousel_left-button_arrow{
+            position:absolute;
+            left: 0;
+            top: 41%;
+            width: 3rem;
+            height: 3rem;
+            opacity: 100%;
+            transform: translateX(0%);
+            margin: auto auto;
+            transition: all 0.3s ease-in-out;
+    
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &.disable {
+        transition: all 0.1s ease-in-out;
+        opacity: 0%;
+        pointer-events: none;
+    }
 }
 
 .carousel_front-container{

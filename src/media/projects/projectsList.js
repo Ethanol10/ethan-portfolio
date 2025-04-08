@@ -56,7 +56,6 @@ export const projectsList =
             }
 
         ]
-        
     },
     {
         "id": "lee-hyperreal-ror2",

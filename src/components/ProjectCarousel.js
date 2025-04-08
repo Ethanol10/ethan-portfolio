@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import  { PROJECTS_CAROUSEL_IMG_TRANSITION_TIMER_MILLIS }from '../consts';
+import right_arrow from '../media/Icons/right_arrow.svg'; 
 
 export default function ProjectCarousel(props){
     const {items, setItem} = props;
@@ -29,6 +30,8 @@ export default function ProjectCarousel(props){
     let rightImgInvisClassnames = classNames('carousel_invis-layer-right-container_img', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
     let leftInvisClassnames = classNames('carousel_invis-layer-left-container', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
     let leftImgInvisClassnames = classNames('carousel_invis-layer-left-container_img', {'transition-right': isMovingRight}, {'transition-left': isMovingLeft});
+    let leftButtonClassnames = classNames('carousel_left-button', {'disable': isMovingRight || isMovingLeft});
+    let rightButtonClassnames = classNames('carousel_right-button', {'disable': isMovingRight || isMovingLeft});
 
     function onAnimationEnd(){
         if(isMovingRight){
@@ -111,27 +114,27 @@ export default function ProjectCarousel(props){
 
     return(
         <div className='carousel_container'>
-            { position > 0 && 
-                (
-                    <div className='carousel_left-button' onClick={triggerLeftAnim}>
-                        <p>testleft</p>
-                    </div>
-                )
-            }
-            { position < items.length - 1 && 
-                (
-                    <div className='carousel_right-button' onClick={triggerRightAnim}>
-                        <p>testright</p>
-                    </div>    
-                )
-            }
-            
             <div className='carousel_container-centering'>
 
                 <div ref={frontContainer} className={frontClassnames}>
                     { frontImg && (<img alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>)}
                     { frontImg && (<img alt={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].caption} ref={frontContainerSubsequentImg} className={frontSubsequentImgClassnames} src={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].img}></img>)}
                     { frontImg && (<p>{frontImg.imgs[imgIndex].caption}</p>)}
+                    { position > 0 && 
+                        (
+                            <div className={leftButtonClassnames} onClick={triggerLeftAnim}>
+                                <img className='carousel_left-button_arrow' src={right_arrow}/>
+                            </div>
+                        )
+                    }
+                    { position < items.length - 1 && 
+                        (
+                            <div className={rightButtonClassnames} onClick={triggerRightAnim}>
+                                <img className='carousel_right-button_arrow' src={right_arrow}/>
+                            </div>    
+                        )
+                    }
+            
                 </div>
 
                 <div className={leftClassnames}>
