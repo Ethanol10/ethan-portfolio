@@ -29,9 +29,9 @@ export default function TitleCard(props){
                 alignItems="center"
                 color="#fff"
             >
-                <Typography variant="h3" component="h1">
+                {/* <Typography variant="h3" component="h1">
                     ETHAN GOH (This page is unfinished.)
-                </Typography>
+                </Typography> */}
             </Box>
         </div>
     </div>
