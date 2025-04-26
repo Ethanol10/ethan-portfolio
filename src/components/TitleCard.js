@@ -1,7 +1,8 @@
 import React from 'react';
-import ReactPlayer from 'react-player'
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
+import ThreeEntrypoint from "../threejs/ThreeEntrypoint";
+import ReactPlayer from 'react-player'
 import myVideo from '../media/promo.mp4';
 
 export default function TitleCard(props){
@@ -10,14 +11,15 @@ export default function TitleCard(props){
 
     return (
     <div ref={innerRef} className="title-card_home">
-        <ReactPlayer 
+        {/* <ReactPlayer 
         url={myVideo} 
         controls={false} 
         playing={true} 
         loop={true}
         volume={0}
         width="100%"
-        height="100%"/>
+        height="100%"/> */}
+        <ThreeEntrypoint/>
         <div className="title-card_overlay">
             <Box
                 height="100%"
