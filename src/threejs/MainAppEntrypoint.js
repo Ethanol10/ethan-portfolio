@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { EulerToRad, isNumber } from './ThreeJSHelpers';
+import Boid from './boid';
 
 const targetFixedFramerate = 60
 const targetRenderInterval = 1 / targetFixedFramerate;
@@ -16,13 +17,16 @@ export default class Main{
       refContainer.current && refContainer.current.appendChild( this.renderer.domElement );
 
       //Setup Cube
-      let geometry = new THREE.BoxGeometry(1, 1, 1);
-      let material = new THREE.MeshStandardMaterial({ color: 0xFF0000 });
-      this.cube = new THREE.Mesh(geometry, material);
-      this.cube.castShadow = true;
-      this.cube.receiveShadow = true;
-      this.scene.add(this.cube);
-      this.cube.position.set(0,0,0);
+      // let geometry = new THREE.BoxGeometry(1, 1, 1);
+      // let material = new THREE.MeshStandardMaterial({ color: 0xFF0000 });
+      // this.cube = new THREE.Mesh(geometry, material);
+      // this.cube.castShadow = true;
+      // this.cube.receiveShadow = true;
+      // this.scene.add(this.cube);
+      // this.cube.position.set(0,0,0);
+      
+      this.boid = new Boid();
+      this.scene.add(this.boid.GetBoidObj());
 
       //Setup ground
       let groundGeometry = new THREE.PlaneGeometry(1, 1, 1);
@@ -52,9 +56,9 @@ export default class Main{
       // this.scene.add(directionalLight);
 
       //Setup camera
-      this.scene_cam.position.z = 5;
-      this.scene_cam.position.y = 5;
-      this.scene_cam.rotation.x = EulerToRad(-45);
+      this.scene_cam.position.z = 0;
+      this.scene_cam.position.y = 30;
+      this.scene_cam.rotation.x = EulerToRad(-90);
 
       this.clock = new THREE.Clock();
 
@@ -70,8 +74,7 @@ export default class Main{
     }
 
     FixedUpdate(delta){
-      this.cube.rotation.x += EulerToRad(90) * delta;
-      this.cube.rotation.y += EulerToRad(90) * delta;
+      this.boid.Update(delta);
     }
 
     Render(delta){
