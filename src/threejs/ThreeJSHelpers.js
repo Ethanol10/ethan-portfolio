@@ -5,3 +5,7 @@ export const EulerToRad = (input) => {
 export const RadToEuler = (input) => {
     return (input * 180) / Math.PI;
 }
+
+export var isNumber = function isNumber(value) {
+   return typeof value === 'number' && isFinite(value);
+}
