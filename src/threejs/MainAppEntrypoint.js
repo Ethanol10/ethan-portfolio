@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { EulerToRad, isNumber } from './ThreeJSHelpers';
-import Boid from './boid';
+import Boid from './objects/boid';
+import Ground from './objects/ground';
 
 const targetFixedFramerate = 60
 const targetRenderInterval = 1 / targetFixedFramerate;
@@ -12,35 +13,23 @@ export default class Main{
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
       this.renderer.setSize(window.innerWidth, window.innerHeight);
+      
+      this.clock = new THREE.Clock();
 
       //Attach to dom element
       refContainer.current && refContainer.current.appendChild( this.renderer.domElement );
-
-      //Setup Cube
-      // let geometry = new THREE.BoxGeometry(1, 1, 1);
-      // let material = new THREE.MeshStandardMaterial({ color: 0xFF0000 });
-      // this.cube = new THREE.Mesh(geometry, material);
-      // this.cube.castShadow = true;
-      // this.cube.receiveShadow = true;
-      // this.scene.add(this.cube);
-      // this.cube.position.set(0,0,0);
       
-      this.boid = new Boid();
-      this.scene.add(this.boid.GetBoidObj());
+      this.boid = new Boid(this.clock);
+      this.scene.add(this.boid.getObj());
+      this.boid2 = new Boid(this.clock);
+      this.scene.add(this.boid2.getObj());
+      this.boid2.getObj().position.set(-2,0,0);
 
-      //Setup ground
-      let groundGeometry = new THREE.PlaneGeometry(1, 1, 1);
-      let groundMaterial = new THREE.MeshStandardMaterial({color: 0xd1ffbd});
-      this.ground = new THREE.Mesh(groundGeometry, groundMaterial);
-      this.ground.receiveShadow = true;
-      this.scene.add(this.ground);
-      this.ground.position.set(0, -2, 0);
-      this.ground.scale.set(30, 30, 30);
-      this.ground.rotation.x = EulerToRad(-90);
+      this.ground = new Ground(this.clock);
+      this.scene.add(this.ground.getObj());
 
       //Setup Ambient Light
       this.ambientLight = new THREE.AmbientLight( 0xFFFFFF );
-      this.ambientLight.castShadow = true;
       this.scene.add(this.ambientLight);
 
       //Setup Point Light
@@ -56,11 +45,9 @@ export default class Main{
       // this.scene.add(directionalLight);
 
       //Setup camera
-      this.scene_cam.position.z = 0;
-      this.scene_cam.position.y = 30;
-      this.scene_cam.rotation.x = EulerToRad(-90);
-
-      this.clock = new THREE.Clock();
+      this.scene_cam.position.z = 5;
+      this.scene_cam.position.y = 2;
+      this.scene_cam.rotation.x = EulerToRad(-15);
 
       //setup timers
       this.gameLoopDelta = 0;
@@ -75,6 +62,7 @@ export default class Main{
 
     FixedUpdate(delta){
       this.boid.Update(delta);
+      this.boid2.Update(delta);
     }
 
     Render(delta){
