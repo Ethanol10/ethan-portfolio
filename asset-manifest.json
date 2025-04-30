@@ -1,9 +1,8 @@
 {
   "files": {
-    "main.css": "/static/css/main.31c7016a.css",
-    "main.js": "/static/js/main.a8ce1ef8.js",
+    "main.css": "/static/css/main.1ee48bdd.css",
+    "main.js": "/static/js/main.9bbb4f1b.js",
     "static/js/808.1da6e0b8.chunk.js": "/static/js/808.1da6e0b8.chunk.js",
-    "static/media/promo.mp4": "/static/media/promo.34b9ef0e62da391932b0.mp4",
     "static/media/arsonistancientsceptreposter.png": "/static/media/arsonistancientsceptreposter.c94384979689eb2ba330.png",
     "static/media/lee3.png": "/static/media/lee3.d03c5e425def8585be59.png",
     "static/media/lee7.png": "/static/media/lee7.e653e7f83b4973000814.png",
@@ -26,12 +25,12 @@
     "static/media/close_icon.svg": "/static/media/close_icon.97095bfbcebbbed61cb389a9917b3108.svg",
     "index.html": "/index.html",
     "static/media/right_arrow.svg": "/static/media/right_arrow.2b7c53f8ae436d1b7dec535f7d1b4ef6.svg",
-    "main.31c7016a.css.map": "/static/css/main.31c7016a.css.map",
-    "main.a8ce1ef8.js.map": "/static/js/main.a8ce1ef8.js.map",
+    "main.1ee48bdd.css.map": "/static/css/main.1ee48bdd.css.map",
+    "main.9bbb4f1b.js.map": "/static/js/main.9bbb4f1b.js.map",
     "808.1da6e0b8.chunk.js.map": "/static/js/808.1da6e0b8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.31c7016a.css",
-    "static/js/main.a8ce1ef8.js"
+    "static/css/main.1ee48bdd.css",
+    "static/js/main.9bbb4f1b.js"
   ]
 }
