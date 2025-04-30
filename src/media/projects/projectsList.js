@@ -11,6 +11,12 @@ import lee4 from "./lee4.png";
 import lee5 from "./lee5.png";
 import lee6 from "./lee6.png";
 import lee7 from "./lee7.png";
+import v2lee1 from "./v2lee1.png";
+import v2lee2 from "./v2lee2.png";
+import v2lee3 from "./v2lee3.png";
+import v2lee4 from "./v2lee4.png";
+import v2lee5 from "./v2lee5.png";
+import v2lee6 from "./v2lee6.png";
 import duo1 from "./duo1.jpg";
 import duo2 from "./duo2.jpg";
 
@@ -70,7 +76,7 @@ export const projectsList =
     {
         "id": "lee-hyperreal-ror2",
         "title": "Lee: Hyperreal - Risk of Rain 2 Mod",
-        "description": "This is a Risk of Rain 2 Mod that ports the character \"Lee: Hyperreal\" from the game \"Punishing: Grey Raven\". For this mod, I had worked with multiple other modders to a create a character that is as faithful to the original character from the aforementioned game.\n This character pulls abilities and concepts from the original game, for example, the character's ability to parry attacks, and the combination of the unique abilities that require matching 3 to power up the ability further. All these abilties utilise custom components that had to be created from scratch, which was a challenge to implement.\n I made sure to encapsulate these components similarly to the MVC concept, with data classes separated from the controllers that control the UI, helping to keep the code clean and easy to read. This mod has received 75,988 downloads since its release in May 2025.",
+        "description": "This is a Risk of Rain 2 Mod that ports the character \"Lee: Hyperreal\" from the game \"Punishing: Grey Raven\". For this mod, I had worked with multiple other modders to a create a character that is as faithful to the original character from the aforementioned game.\n This character pulls abilities and concepts from the original game, for example, the character's ability to parry attacks, and the combination of the unique abilities that require matching 3 to power up the ability further. All these abilties utilise custom components that had to be created from scratch, which was a challenge to implement.\n I made sure to encapsulate these components similarly to the MVC concept, with data classes separated from the controllers that control the UI, helping to keep the code clean and easy to read. This mod has received 75,988 downloads since its release in May 2025. \nIn a second major update, I utilised a dictionary to quickly retrieve pre-cached colour variants of existing effects, modified on startup to help keep the performance of the mod whiel granting a whole slew of new colours for player to enjoy.",
         "related_urls": [
             {
                 "title": "Thundestore (Download link)",
@@ -83,6 +89,30 @@ export const projectsList =
                 "img": githubImg,
             }],
         "imgs": [
+            {
+                "img": v2lee1,
+                "caption": "Lee: Hyperreal with new recoloured VFX and RoR-themed skin"
+            },
+            {
+                "img": v2lee2,
+                "caption": "Lee: Hyperreal with new recoloured VFX and RoR-themed skin"
+            },
+            {
+                "img": v2lee3,
+                "caption": "Lee: Hyperreal with new recoloured VFX and RoR-themed skin"
+            },
+            {
+                "img": v2lee4,
+                "caption": "Lee: Hyperreal with new recoloured VFX"
+            },
+            {
+                "img": v2lee5,
+                "caption": "Lee: Hyperreal with new recoloured VFX and RoR-themed skin"
+            },
+            {
+                "img": v2lee6,
+                "caption": "Lee: Hyperreal with new recoloured VFX"
+            },
             {
                 "img": lee1,
                 "caption": "Lee: Hyperreal in the Character Select screen."
