@@ -2,8 +2,8 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography'
 import ThreeEntrypoint from "../threejs/ThreeEntrypoint";
-import ReactPlayer from 'react-player'
-import myVideo from '../media/promo.mp4';
+// import ReactPlayer from 'react-player'
+// import myVideo from '../media/promo.mp4';
 
 export default function TitleCard(props){
 

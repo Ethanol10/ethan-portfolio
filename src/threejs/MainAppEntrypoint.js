@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { EulerToRad, isNumber } from './ThreeJSHelpers';
 import Boid from './objects/boid';
 import Ground from './objects/ground';
-import { BOID_BOUNDS, TARGET_FRAMERATE, TARGET_RENDER_FRAMETIME } from './StaticValues';
+import { TARGET_RENDER_FRAMETIME } from './StaticValues';
 
 export default class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
