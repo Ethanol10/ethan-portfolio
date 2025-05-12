@@ -15,6 +15,7 @@ export default class Main{
     constructor(refContainer, bounds){
       scene = new THREE.Scene();
       this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      // this.scene_cam = new THREE.OrthographicCamera(0, window.innerWidth, 0, window.innerHeight, 1, 1000);
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
       this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -30,7 +31,7 @@ export default class Main{
       let centerPoint = this.ground.getCenterPoint();
 
       this.boid = new Boid(this.clock);
-      this.boid2 = new Boid(this.clock);
+      // this.boid2 = new Boid(this.clock);
       // this.boid2.getObj().position.set(20, 0, 15);
 
       //Setup Ambient Light
@@ -50,12 +51,12 @@ export default class Main{
       // this.scene.add(directionalLight);
 
       //Setup camera
-      // this.scene_cam.position.z = this.ground.getCenterPoint().x;
-      // this.scene_cam.position.x = this.ground.getCenterPoint().y;
-      // this.scene_cam.position.y = 30;
+      this.scene_cam.position.z = this.ground.getCenterPoint().x + 20;
+      this.scene_cam.position.x = this.ground.getCenterPoint().y;
+      this.scene_cam.position.y = 15;
 
-      this.scene_cam.position.set(15, 5, 40);
-      this.scene_cam.rotation.x = EulerToRad(-15);
+      // this.scene_cam.position.set(15, 5, 40);
+      this.scene_cam.rotation.x = EulerToRad(-45);
 
       //setup timers
       this.gameLoopDelta = 0;
@@ -70,7 +71,7 @@ export default class Main{
 
     FixedUpdate(delta){
       this.boid.Update(delta);
-      this.boid2.Update(delta);
+      // this.boid2.Update(delta);
     }
 
     Render(delta){
