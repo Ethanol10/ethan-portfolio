@@ -12,6 +12,7 @@ export default class Boid{
         this.AMPLITUDE = 1;
         this.SPEED = 4;
         this.MAX_PITCH = 10;
+        this.target = this.Retarget();
 
         new GLTFLoader().load(airplane, (obj) => {this.onLoad(obj)}, this.onLoading, this.onLoadError);
         // let objLoader = new OBJLoader();
@@ -64,19 +65,43 @@ export default class Boid{
             return;
         }
 
-        // this.model_obj.rotation.x = EulerToRad(this.MAX_PITCH * (-1) * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
+        this.model_obj.rotation.x = EulerToRad(this.MAX_PITCH * (-1) * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
         // this.obj.rotation.y += EulerToRad(90) * delta;
 
-        let rotationToDirection = Math.atan2(this.directionalVector.x, this.directionalVector.z);
+        // console.log(rotationToDirection);
 
-        this.obj.rotation.y = rotationToDirection;
-        console.log(rotationToDirection);
-
+        // this.directionalVector.x = Math.sin(this.clock.elapsedTime);
         //Bob up and down
         // this.obj.position.y = this.HOVER_POSITION + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
 
-
+        this.RotateModel();
+        this.CheckTarget();
         this.Move(delta);
+    }
+
+    Retarget(){
+        return new THREE.Vector3(Math.random() * BOID_BOUNDS, 0, Math.random() * BOID_BOUNDS)
+    }
+    
+    RotateModel(){
+        //Calc Y angle on directional vector.
+        let rotationToDirection = Math.atan2(this.directionalVector.x, this.directionalVector.z);
+        this.obj.rotation.y = rotationToDirection;
+    }
+
+    CheckTarget(){
+        // this.directionalVector.lerp(this.target, 0.5);
+
+        let intermediate = new THREE.Vector3(this.target.x - this.obj.position.x, this.target.y - this.obj.position.y, this.target.z - this.obj.position.z);
+        intermediate.normalize();
+
+        this.directionalVector.lerp(intermediate, 0.1);
+
+        let distance = this.obj.position.distanceTo(this.target);
+        if(distance < 0.4){
+            this.target = this.Retarget();
+        }
+
     }
 
     Move(delta){

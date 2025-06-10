@@ -38,7 +38,7 @@ export default function Projects(props){
                     (
                         <>
                             <h2>{selectedProject.title}</h2>
-                            <p>{desc}</p>
+                            <>{desc}</>
                             {
                                 selectedProject.related_urls &&
                                 (
