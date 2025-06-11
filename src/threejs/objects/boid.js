@@ -12,6 +12,7 @@ export default class Boid{
         this.AMPLITUDE = 1;
         this.SPEED = 4;
         this.MAX_PITCH = 10;
+        this.SCALE = 1;
         this.target = this.Retarget();
 
         new GLTFLoader().load(airplane, (obj) => {this.onLoad(obj)}, this.onLoading, this.onLoadError);
@@ -32,13 +33,13 @@ export default class Boid{
         // this.obj = new THREE.Mesh(mesh, material);
         this.model_obj.castShadow = true;
         this.model_obj.receiveShadow = true;
-        this.model_obj.scale.set(2,2,2);
+        this.model_obj.scale.set(this.SCALE, this.SCALE, this.SCALE);
         this.model_obj.position.set(0, 0, 0);
 
         //Outer Object for positioning, irrespective of Rotation
         this.obj = new THREE.Object3D();
 
-        this.obj.position.set(BOID_BOUNDS / 2, 0, BOID_BOUNDS / 2);
+        this.obj.position.set(Math.random() * BOID_BOUNDS, 0, Math.random() * BOID_BOUNDS);
         this.obj.rotation.set(0, 0, 0);
         
         //add to Scene
