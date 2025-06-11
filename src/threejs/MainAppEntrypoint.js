@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { EulerToRad, isNumber } from './ThreeJSHelpers';
 import Boid from './objects/boid';
 import Ground from './objects/ground';
-import { TARGET_RENDER_FRAMETIME } from './StaticValues';
+import { TARGET_RENDER_FRAMETIME, BOID_COUNT } from './StaticValues';
 
 export function getScene(){
 	return scene;
@@ -29,10 +29,13 @@ export default class Main{
       scene.add(this.ground.getObj());
 
       let centerPoint = this.ground.getCenterPoint();
+      
+      this.boidList = [];
 
-      this.boid = new Boid(this.clock);
-      // this.boid2 = new Boid(this.clock);
-      // this.boid2.getObj().position.set(20, 0, 15);
+      for(let i = 0; i < BOID_COUNT; i++ ){
+        let newBoid = new Boid(this.clock);
+        this.boidList.push(newBoid);
+      }
 
       //Setup Ambient Light
       this.ambientLight = new THREE.AmbientLight( 0xFFFFFF );
@@ -70,7 +73,10 @@ export default class Main{
     }
 
     FixedUpdate(delta){
-      this.boid.Update(delta);
+      for(let i = 0; i < BOID_COUNT; i++){
+        this.boidList[i].Update(delta);
+      }
+      // this.boid.Update(delta);
       // this.boid2.Update(delta);
     }
 

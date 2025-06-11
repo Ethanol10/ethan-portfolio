@@ -72,7 +72,7 @@ export default class Boid{
 
         // this.directionalVector.x = Math.sin(this.clock.elapsedTime);
         //Bob up and down
-        // this.obj.position.y = this.HOVER_POSITION + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
+        this.obj.position.y = this.HOVER_POSITION + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
 
         this.RotateModel();
         this.CheckTarget();
@@ -91,8 +91,17 @@ export default class Boid{
 
     CheckTarget(){
         // this.directionalVector.lerp(this.target, 0.5);
+        let xDiff = this.target.x - this.obj.position.x;
+        let zDiff = this.target.z - this.obj.position.z;
 
-        let intermediate = new THREE.Vector3(this.target.x - this.obj.position.x, this.target.y - this.obj.position.y, this.target.z - this.obj.position.z);
+        // Always take the path that doesn't jerk the movement directly behind the boid. 
+        if(xDiff < 0){
+            xDiff = this.obj.position.x - this.target.x;
+        }
+        if(zDiff < 0){
+            zDiff = this.obj.position.z - this.target.z;
+        }
+        let intermediate = new THREE.Vector3(xDiff, 0, zDiff);
         intermediate.normalize();
 
         this.directionalVector.lerp(intermediate, 0.1);
