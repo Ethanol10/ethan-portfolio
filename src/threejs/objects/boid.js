@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { EulerToRad, easeInOutParabola } from '../ThreeJSHelpers';
 import { BOID_BOUNDS } from '../StaticValues';
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
-import { getScene } from '../MainAppEntrypoint';
+import { getScene, OBJECT_LIST } from '../MainAppEntrypoint';
 import airplane from '../../media/models/airplane_fixed.glb';
 
 export default class Boid{
@@ -21,7 +21,6 @@ export default class Boid{
         this.clock = clock;
         
         this.directionalVector = new THREE.Vector3(1, 0, -1); 
-        console.log("load lol");
     }
 
     onLoad(gltf){
@@ -47,10 +46,11 @@ export default class Boid{
         getScene().add(this.obj);
         this.model_obj.parent = this.obj;
         
+        OBJECT_LIST.push(this);
     }
 
     onLoading(xhr){
-        console.log( (xhr.loaded / (xhr.total * 100)) + "% loaded");
+        console.log( xhr.loaded + " loaded");
     }
 
     onLoadError(error){

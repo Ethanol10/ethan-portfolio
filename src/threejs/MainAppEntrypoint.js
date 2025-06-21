@@ -9,6 +9,7 @@ export function getScene(){
 }
 
 export let scene = null;
+export let OBJECT_LIST = [];
 
 export default class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
@@ -73,11 +74,9 @@ export default class Main{
     }
 
     FixedUpdate(delta){
-      for(let i = 0; i < BOID_COUNT; i++){
-        this.boidList[i].Update(delta);
+      for(let i = 0; i < OBJECT_LIST.length; i++){
+        OBJECT_LIST[i].Update(delta);
       }
-      // this.boid.Update(delta);
-      // this.boid2.Update(delta);
     }
 
     Render(delta){
