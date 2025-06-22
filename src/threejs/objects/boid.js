@@ -20,12 +20,12 @@ export default class Boid{
         this.MATCHING_FACTOR = 0.05;
         this.AVOID_FACTOR = 0.2;
         this.TURN_FACTOR = 50;
+        this.MAX_BIAS_FACTOR = 0.03;
         this.BIAS_FACTOR = 0.02;
 
         this.target = this.Retarget();
 
         new GLTFLoader().load(airplane, (obj) => {this.onLoad(obj)}, this.onLoading, this.onLoadError);
-        // let objLoader = new OBJLoader();
 
         this.clock = clock;
         
@@ -158,7 +158,7 @@ export default class Boid{
 
         this.directionalVector.x = this.directionalVector.x + (closeField.x * this.AVOID_FACTOR);
         this.directionalVector.z = this.directionalVector.z + (closeField.y * this.AVOID_FACTOR);
-    
+        
         // Turn objects back towards the bounds
         if(this.obj.position.x > BOID_BOUNDS){
             this.directionalVector.x -= this.TURN_FACTOR * delta;
