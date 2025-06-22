@@ -34,7 +34,8 @@ export default class Main{
       // this.scene_cam = new THREE.OrthographicCamera(0, window.innerWidth, 0, window.innerHeight, 1, 1000);
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
-      this.renderer.setSize(window.innerWidth, window.innerHeight);
+      this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+      this.renderer.setSize(refContainer.current?.clientWidth, window.innerHeight);
       
       this.clock = new THREE.Clock();
 
@@ -54,20 +55,24 @@ export default class Main{
       }
 
       //Setup Ambient Light
-      this.ambientLight = new THREE.AmbientLight( 0xFFFFFF );
+      this.ambientLight = new THREE.AmbientLight( 0x404040, 2 );
       scene.add(this.ambientLight);
+      
+      this.targetPoint = new THREE.Object3D();
+      this.targetPoint.position.set(centerPoint.x, 0, centerPoint.y);
+      scene.add(this.targetPoint);
 
       //Setup Point Light
       this.pointLight = new THREE.PointLight(0xFFFFFF, 50, 0);
       this.pointLight.position.set(centerPoint.x, 5, centerPoint.y);
       this.pointLight.castShadow = true;
+      this.pointLight.shadow.camera.near = 0.1;
+      this.pointLight.shadow.camera.far = 100;
+      this.pointLight.shadow.mapSize.width = 2048;
+      this.pointLight.shadow.mapSize.height = 2048;
+      this.pointLight.target = this.targetPoint;
       scene.add(this.pointLight)
 
-      // Setup Directional Light
-      // const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-      // directionalLight.position.set(0, 2, 4);
-      // directionalLight.castShadow = true;
-      // this.scene.add(directionalLight);
 
       //Setup camera
       this.scene_cam.position.z = this.ground.getCenterPoint().x + 20;
@@ -96,9 +101,6 @@ export default class Main{
 
     Render(delta){
       requestAnimationFrame(() => this.Render(this.clock.getDelta()));
-      // if( delta > 0){
-      //   console.log("frametime: ", 1 / delta);
-      // }
       if(isNumber(delta)){
         this.gameLoopDelta += delta;
       }

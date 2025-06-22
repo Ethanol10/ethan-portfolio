@@ -6,7 +6,7 @@ export default class Ground{
     constructor(clock){
         this.clock = clock;
         let groundGeometry = new THREE.PlaneGeometry(1, 1, 1);
-        let groundMaterial = new THREE.MeshStandardMaterial({color: 0xd1ffbd});
+        let groundMaterial = new THREE.MeshPhongMaterial({color: 0xd1ffbd});
         this.ground = new THREE.Mesh(groundGeometry, groundMaterial);
         this.ground.receiveShadow = true;
 

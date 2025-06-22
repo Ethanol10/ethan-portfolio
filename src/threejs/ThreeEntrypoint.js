@@ -13,7 +13,7 @@ function ThreeEntrypoint() {
 
 
   return (
-    <div ref={refContainer}></div>
+    <div ref={refContainer} className="threejs-container"></div>
   );
 }
 
