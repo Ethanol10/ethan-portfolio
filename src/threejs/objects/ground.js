@@ -12,7 +12,7 @@ export default class Ground{
 
         this.bounds = BOID_BOUNDS;
         this.ground.position.set(this.bounds / 2, -2, this.bounds / 2);
-        this.ground.scale.set(30, 30, 30);
+        this.ground.scale.set(BOID_BOUNDS * 4, BOID_BOUNDS * 4, BOID_BOUNDS * 4);
         this.ground.rotation.x = EulerToRad(-90);
         
         //Bounds start from 0,0

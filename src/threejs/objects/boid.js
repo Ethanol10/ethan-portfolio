@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { EulerToRad, easeInOutParabola } from '../ThreeJSHelpers';
 import { BOID_BOUNDS } from '../StaticValues';
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
-import { getScene, OBJECT_LIST } from '../MainAppEntrypoint';
+import { getScene, AddNewObject, MainObj } from '../MainAppEntrypoint';
 import airplane from '../../media/models/airplane_fixed.glb';
 
 export default class Boid{
@@ -10,9 +10,18 @@ export default class Boid{
         this.HOVER_POSITION = 0;
         this.WAVELENGTH = Math.random() * 5;
         this.AMPLITUDE = 1;
-        this.SPEED = 4;
+        this.MIN_SPEED = 20;
+        this.MAX_SPEED = 20;
         this.MAX_PITCH = 10;
         this.SCALE = 1;
+        this.VISUAL_RANGE = 20;
+        this.PROTECTED_RANGE = 2;
+        this.CENTERING_FACTOR = 0.0005;
+        this.MATCHING_FACTOR = 0.05;
+        this.AVOID_FACTOR = 0.2;
+        this.TURN_FACTOR = 50;
+        this.BIAS_FACTOR = 0.02;
+
         this.target = this.Retarget();
 
         new GLTFLoader().load(airplane, (obj) => {this.onLoad(obj)}, this.onLoading, this.onLoadError);
@@ -21,6 +30,9 @@ export default class Boid{
         this.clock = clock;
         
         this.directionalVector = new THREE.Vector3(1, 0, -1); 
+        this.intermediateDirectionalVector = this.directionalVector;
+
+        this.biasType = Math.trunc(Math.random() * 4);    
     }
 
     onLoad(gltf){
@@ -46,7 +58,7 @@ export default class Boid{
         getScene().add(this.obj);
         this.model_obj.parent = this.obj;
         
-        OBJECT_LIST.push(this);
+        AddNewObject(this);
     }
 
     onLoading(xhr){
@@ -67,16 +79,11 @@ export default class Boid{
         }
 
         this.model_obj.rotation.x = EulerToRad(this.MAX_PITCH * (-1) * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
-        // this.obj.rotation.y += EulerToRad(90) * delta;
 
-        // console.log(rotationToDirection);
-
-        // this.directionalVector.x = Math.sin(this.clock.elapsedTime);
         //Bob up and down
         this.obj.position.y = this.HOVER_POSITION + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
 
         this.RotateModel();
-        this.CheckTarget();
         this.Move(delta);
     }
 
@@ -90,83 +97,119 @@ export default class Boid{
         this.obj.rotation.y = rotationToDirection;
     }
 
-    CheckTarget(){
-        // this.directionalVector.lerp(this.target, 0.5);
-        let xDiff = this.target.x - this.obj.position.x;
-        let zDiff = this.target.z - this.obj.position.z;
-
-        // Always take the path that doesn't jerk the movement directly behind the boid. 
-        if(xDiff < 0){
-            xDiff = this.obj.position.x - this.target.x;
-        }
-        if(zDiff < 0){
-            zDiff = this.obj.position.z - this.target.z;
-        }
-        let intermediate = new THREE.Vector3(xDiff, 0, zDiff);
-        intermediate.normalize();
-
-        this.directionalVector.lerp(intermediate, 0.1);
-
-        let distance = this.obj.position.distanceTo(this.target);
-        if(distance < 0.4){
-            this.target = this.Retarget();
-        }
-
-    }
-
     Move(delta){
         if(!this.obj){
             return;
         }
 
-        this.obj.position.x += this.directionalVector.x * this.SPEED * delta;
-        this.obj.position.z += this.directionalVector.z * this.SPEED * delta;
+        // We use Vector2 to not waste allocation, apply on X/Z from X/Y
+        let posAvg = new THREE.Vector2();
+        let velAvg = new THREE.Vector2();
+        let neighbouringBoids = 0;
+        let closeField = new THREE.Vector2();
+        let visualRangeSquared = Math.pow(this.VISUAL_RANGE, 2);
+        let protectedRangeSquared = Math.pow(this.PROTECTED_RANGE, 2);
 
-        // Check bounds and see where it's going
-        if(this.obj.position.x > BOID_BOUNDS){
-            //Where are we going?
-            if (this.directionalVector.x > 0){
-                //Going right
-                this.obj.position.x = 0;
+        for(let i = 0; i < MainObj.boidList.length; i++){
+            // Filter out own ID
+            if (MainObj.boidList[i].id === this.id){
+                continue;
             }
-            else{
-                //Going left, set to right bound.
-                this.obj.position.x = BOID_BOUNDS;
+
+            let comparingBoid = MainObj.boidList[i];
+            
+            let dx = this.obj.position.x - comparingBoid.obj.position.x;
+            let dy = this.obj.position.z - comparingBoid.obj.position.z;
+
+            //Check if the differences are less than the visual range
+            if(Math.abs(dx) < this.VISUAL_RANGE && Math.abs(dy) < this.VISUAL_RANGE){
+                let squaredDistance = Math.pow(dx, 2) + Math.pow(dy, 2);
+                
+                //Check if the squared distance is less than the protected range
+                if (squaredDistance < protectedRangeSquared){
+                    closeField.x += this.obj.position.x - comparingBoid.obj.position.x;
+                    closeField.y += this.obj.position.z - comparingBoid.obj.position.z;
+                }
+                else if (squaredDistance < visualRangeSquared){
+                    posAvg.x += comparingBoid.obj.position.x;
+                    posAvg.y += comparingBoid.obj.position.z;
+                    velAvg.x += comparingBoid.directionalVector.x;
+                    velAvg.y += comparingBoid.directionalVector.y;
+                    neighbouringBoids += 1;
+                }
             }
         }
-        else if (this.obj.position.x < 0){
-            //Where are we going?
-            if (this.directionalVector.x > 0){
-                //Going right
-                this.obj.position.x = 0;
-            }
-            else{
-                //Going left, set to right bound.
-                this.obj.position.x = BOID_BOUNDS;
-            }
+
+        // Appropriately adjust the velocity based on neighboring boids
+        if(neighbouringBoids > 0){
+            posAvg.x = posAvg.x / neighbouringBoids;
+            posAvg.y = posAvg.y / neighbouringBoids;
+            velAvg.x = velAvg.x / neighbouringBoids;
+            velAvg.y = velAvg.y / neighbouringBoids;
+
+            this.directionalVector.x = this.directionalVector.x + 
+                (posAvg.x - this.obj.position.x) * this.CENTERING_FACTOR +
+                (velAvg.x - this.directionalVector.x) * this.MATCHING_FACTOR;
+                
+            this.directionalVector.z = this.directionalVector.z + 
+                (posAvg.y - this.obj.position.z) * this.CENTERING_FACTOR +
+                (velAvg.y - this.directionalVector.z) * this.MATCHING_FACTOR;
+        }
+
+        this.directionalVector.x = this.directionalVector.x + (closeField.x * this.AVOID_FACTOR);
+        this.directionalVector.z = this.directionalVector.z + (closeField.y * this.AVOID_FACTOR);
+    
+        // Turn objects back towards the bounds
+        if(this.obj.position.x > BOID_BOUNDS){
+            this.directionalVector.x -= this.TURN_FACTOR * delta;
+        }
+
+        if(this.obj.position.x < 0){
+            this.directionalVector.x += this.TURN_FACTOR * delta;
         }
 
         if(this.obj.position.z > BOID_BOUNDS){
-            //Where are we going?
-            if (this.directionalVector.z > 0){
-                //Going down
-                this.obj.position.z = 0;
-            }
-            else{
-                //Going up, set to lower bound.
-                this.obj.position.z = BOID_BOUNDS;
-            }
+            this.directionalVector.z -= this.TURN_FACTOR * delta;
         }
-        else if (this.obj.position.z < 0){
-            //Where are we going?
-            if (this.directionalVector.z > 0){
-                //Going right
-                this.obj.position.z = 0;
-            }
-            else{
-                //Going up, set to lower bound.
-                this.obj.position.z = BOID_BOUNDS;
-            }
+
+        if(this.obj.position.z < 0){
+            this.directionalVector.z += this.TURN_FACTOR * delta;
         }
+
+        //Apply Bias
+        switch(this.biasType){
+            case 0:
+                this.directionalVector.x = (1 - this.BIAS_FACTOR) * this.directionalVector.x + (this.BIAS_FACTOR * 1);
+                break;
+            case 1:
+                this.directionalVector.x = (1 - this.BIAS_FACTOR) * this.directionalVector.x + (this.BIAS_FACTOR * (-1));
+                break;
+            case 2:
+                this.directionalVector.z = (1 - this.BIAS_FACTOR) * this.directionalVector.z + (this.BIAS_FACTOR * 1);
+                break;
+            case 3:
+                this.directionalVector.z = (1 - this.BIAS_FACTOR) * this.directionalVector.z + (this.BIAS_FACTOR * (-1));
+                break;
+            default: 
+                //Follow case 0
+                this.directionalVector.z = (1 - this.BIAS_FACTOR) * this.directionalVector.x + (this.BIAS_FACTOR * 1);
+                break;
+        }
+
+
+        //Calc speed for boid
+        let speed = Math.sqrt(this.directionalVector.x * this.directionalVector.x + this.directionalVector.z * this.directionalVector.z);
+
+        if(speed < this.MIN_SPEED){
+            this.directionalVector.x = (this.directionalVector.x / speed) * this.MIN_SPEED;
+            this.directionalVector.z = (this.directionalVector.z / speed) * this.MIN_SPEED;
+        }
+        if(speed > this.MAX_SPEED){
+            this.directionalVector.x = (this.directionalVector.x / speed) * this.MAX_SPEED;
+            this.directionalVector.z = (this.directionalVector.z / speed) * this.MAX_SPEED;
+        }
+
+        this.obj.position.x += this.directionalVector.x * delta;
+        this.obj.position.z += this.directionalVector.z * delta;
     }
 }

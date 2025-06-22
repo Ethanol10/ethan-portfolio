@@ -8,12 +8,27 @@ export function getScene(){
 	return scene;
 }
 
+export function getAndIncrementObjectID(){
+  let old_id = OBJECT_ID_INT;
+  OBJECT_ID_INT += 1;
+  return old_id;
+}
+
+export function AddNewObject(obj){
+  OBJECT_LIST.push(obj);
+  obj.id = getAndIncrementObjectID();
+}
+
+export let OBJECT_ID_INT = 0;
 export let scene = null;
 export let OBJECT_LIST = [];
+export let MainObj = null;
 
 export default class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
     constructor(refContainer, bounds){
+      MainObj = this;
+
       scene = new THREE.Scene();
       this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
       // this.scene_cam = new THREE.OrthographicCamera(0, window.innerWidth, 0, window.innerHeight, 1, 1000);
