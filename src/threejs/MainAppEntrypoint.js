@@ -3,6 +3,7 @@ import { EulerToRad, isNumber } from './ThreeJSHelpers';
 import Boid from './objects/boid';
 import Ground from './objects/ground';
 import { TARGET_RENDER_FRAMETIME, BOID_COUNT } from './StaticValues';
+import Skybox from './objects/skybox';
 
 export function getScene(){
 	return scene;
@@ -30,10 +31,10 @@ export default class Main{
       MainObj = this;
 
       scene = new THREE.Scene();
-      this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
       // this.scene_cam = new THREE.OrthographicCamera(0, window.innerWidth, 0, window.innerHeight, 1, 1000);
       this.renderer = new THREE.WebGLRenderer();
-      this.renderer.shadowMap.enabled = true;
+      // this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
       this.renderer.setSize(refContainer.current?.clientWidth, window.innerHeight);
       
@@ -43,7 +44,8 @@ export default class Main{
       refContainer.current && refContainer.current.appendChild( this.renderer.domElement );
       
       this.ground = new Ground(this.clock);
-      scene.add(this.ground.getObj());
+
+      this.skybox = new Skybox();
 
       let centerPoint = this.ground.getCenterPoint();
       
@@ -63,25 +65,34 @@ export default class Main{
       scene.add(this.targetPoint);
 
       //Setup Point Light
-      this.pointLight = new THREE.PointLight(0xFFFFFF, 50, 0);
+      this.pointLight = new THREE.PointLight(new THREE.Color(1,1,1), 70);
       this.pointLight.position.set(centerPoint.x, 5, centerPoint.y);
       this.pointLight.castShadow = true;
       this.pointLight.shadow.camera.near = 0.1;
       this.pointLight.shadow.camera.far = 100;
       this.pointLight.shadow.mapSize.width = 2048;
       this.pointLight.shadow.mapSize.height = 2048;
-      this.pointLight.target = this.targetPoint;
+      // this.pointLight.target = this.targetPoint;
       scene.add(this.pointLight)
 
 
       //Setup camera
-      this.scene_cam.position.z = this.ground.getCenterPoint().x + 20;
-      this.scene_cam.position.x = this.ground.getCenterPoint().y;
-      this.scene_cam.position.y = 15;
 
       // this.scene_cam.position.set(15, 5, 40);
-      this.scene_cam.rotation.x = EulerToRad(-45);
+      // this.scene_cam.rotation.z = EulerToRad(80);
 
+      this.scene_cam_container = new THREE.Object3D();
+      scene.add(this.scene_cam_container);
+      scene.add(this.scene_cam);
+      this.scene_cam.parent = this.scene_cam_container;
+      this.scene_cam_container.position.set(this.ground.getCenterPoint().x, 0, this.ground.getCenterPoint().y);
+
+      
+      this.scene_cam.position.z = 30;
+      this.scene_cam.position.x = 0;
+      this.scene_cam.position.y = 15;
+
+      this.scene_cam.rotation.x = EulerToRad(-25);
       //setup timers
       this.gameLoopDelta = 0;
 
@@ -91,6 +102,8 @@ export default class Main{
 
     Update(delta){
       this.renderer.render(scene, this.scene_cam);
+      
+      this.scene_cam_container.rotation.y += EulerToRad(2) * delta;
     }
 
     FixedUpdate(delta){

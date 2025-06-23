@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { EulerToRad } from '../ThreeJSHelpers';
 import { BOID_BOUNDS } from '../StaticValues';
+// import { getScene } from '../MainAppEntrypoint';
 
 export default class Ground{
     constructor(clock){
@@ -32,6 +33,8 @@ export default class Ground{
             |_ _ _ _ _ _ _ _ _ _|
         (0, 10)                 (10, 10)
         */
+
+        // getScene().add(this.ground);
     }
 
     getBounds(){
