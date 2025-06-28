@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { MAX_TARGET_HIT, BOID_BOUNDS } from '../StaticValues';
-import { MainObj } from '../MainAppEntrypoint';
+import { MainObj, AddNewObject } from '../MainAppEntrypoint';
 
 export class Target{
     constructor(){
@@ -10,7 +10,8 @@ export class Target{
         this.MAXHIT = MAX_TARGET_HIT;
         this.RANGE = 3;
         this.countHit = 0;
-        
+
+        AddNewObject(this);        
     }
     
     Retarget(){

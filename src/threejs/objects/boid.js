@@ -2,34 +2,31 @@ import * as THREE from 'three';
 import { EulerToRad, easeInOutParabola } from '../ThreeJSHelpers';
 import { BOID_BOUNDS } from '../StaticValues';
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
-import { getScene, AddNewObject, MainObj } from '../MainAppEntrypoint';
+import { getScene, AddNewObject, MainObj, getClock } from '../MainAppEntrypoint';
 import airplane from '../../media/models/airplane_fixed.glb';
 
 export default class Boid{
-    constructor(clock){
+    constructor(){
         this.HOVER_POSITION = 0;
-        this.WAVELENGTH = Math.random() * 5;
+        this.WAVELENGTH = 2 + Math.random() * 5;
         this.AMPLITUDE = 1;
-        this.MIN_SPEED = 10;
-        this.MAX_SPEED = 20;
-        // this.MIN_SPEED = 1;
-        // this.MAX_SPEED = 5;
+        this.MIN_SPEED = 5;
+        this.MAX_SPEED = 10;
         this.MAX_PITCH = 10;
         this.SCALE = 1;
         this.VISUAL_RANGE = 20;
-        this.PROTECTED_RANGE = 2;
+        this.PROTECTED_RANGE = 5;
         this.CENTERING_FACTOR = 0.02;
         this.MATCHING_FACTOR = 0.05;
         this.AVOID_FACTOR = 0.5;
         this.TURN_FACTOR = 50;
         this.MAX_BIAS_FACTOR = 0.03;
-        this.BIAS_FACTOR = 0.01;
-
-        // this.target = this.Retarget();
+        this.BIAS_FACTOR = 0.00;
+        this.MIN_SHADOW_SIZE = 1;
 
         new GLTFLoader().load(airplane, (obj) => {this.onLoad(obj)}, this.onLoading, this.onLoadError);
 
-        this.clock = clock;
+        this.clock = getClock();
         
         this.directionalVector = new THREE.Vector3(0, 0, 0); 
         // this.intermediateDirectionalVector = this.directionalVector;
@@ -43,12 +40,10 @@ export default class Boid{
         let material = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
         // this.model_obj.material = material;
         this.model_obj.children[0].material = material;
-        this.model_obj.children[0].castShadow = true;
-        this.model_obj.children[0].receiveShadow = true;
+        // this.model_obj.children[0].castShadow = true;
+        // this.model_obj.children[0].receiveShadow = true;
 
         // this.obj = new THREE.Mesh(mesh, material);
-        this.model_obj.castShadow = true;
-        this.model_obj.receiveShadow = true;
         this.model_obj.scale.set(this.SCALE, this.SCALE, this.SCALE);
         this.model_obj.position.set(0, 0, 0);
 
@@ -56,12 +51,25 @@ export default class Boid{
         this.obj = new THREE.Object3D();
         this.obj.position.set(Math.random() * BOID_BOUNDS, 0, Math.random() * BOID_BOUNDS);
         this.obj.rotation.set(0, 0, 0);
-        
+
+        //Add custom shadow shape through cylinder lol
+        let shadowMesh = new THREE.CylinderGeometry(0.25, 0.5, 0.25);
+        let shadowMat = new THREE.MeshBasicMaterial({
+            color: 0x000000,
+            transparent: true,
+            opacity: 0.00001
+        });
+
+        this.shadowObj = new THREE.Mesh(shadowMesh, shadowMat);
+        this.shadowObj.castShadow = true;
+
         //add to Scene
+        getScene().add(this.shadowObj);
         getScene().add(this.model_obj);
         getScene().add(this.obj);
         this.model_obj.parent = this.obj;
-        
+        this.shadowObj.parent = this.obj;
+
         AddNewObject(this);
     }
 
@@ -77,7 +85,7 @@ export default class Boid{
         return this.obj;
     }
 
-    Update(delta){
+    FixedUpdate(delta){
         if(!this.obj){
             return;
         }
@@ -87,8 +95,15 @@ export default class Boid{
         //Bob up and down
         this.obj.position.y = this.HOVER_POSITION + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
 
+        //Scale shadow accordingly
+
+        this.shadowObj.scale.x = this.MIN_SHADOW_SIZE + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
+        this.shadowObj.scale.z = this.MIN_SHADOW_SIZE + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
         this.RotateModel();
         this.Move(delta);
+    }
+
+    Update(delta){
     }
 
     RotateModel(){

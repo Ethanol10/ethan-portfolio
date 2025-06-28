@@ -10,6 +10,10 @@ export function getScene(){
 	return scene;
 }
 
+export function getClock(){
+  return clock;
+}
+
 export function getAndIncrementObjectID(){
   let old_id = OBJECT_ID_INT;
   OBJECT_ID_INT += 1;
@@ -25,6 +29,7 @@ export let OBJECT_ID_INT = 0;
 export let scene = null;
 export let OBJECT_LIST = [];
 export let MainObj = null;
+export let clock = null;
 
 export default class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
@@ -39,12 +44,12 @@ export default class Main{
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
       this.renderer.setSize(refContainer.current?.clientWidth, window.innerHeight);
       
-      this.clock = new THREE.Clock();
+      clock = new THREE.Clock();
 
       //Attach to dom element
       refContainer.current && refContainer.current.appendChild( this.renderer.domElement );
       
-      this.ground = new Ground(this.clock);
+      this.ground = new Ground();
 
       this.skybox = new Skybox();
 
@@ -53,7 +58,7 @@ export default class Main{
       this.boidList = [];
 
       for(let i = 0; i < BOID_COUNT; i++ ){
-        this.boidList.push(new Boid(this.clock));
+        this.boidList.push(new Boid());
       }
 
       this.targetList = [];
@@ -62,7 +67,7 @@ export default class Main{
       }
 
       //Setup Ambient Light
-      this.ambientLight = new THREE.AmbientLight( 0x404040, 2 );
+      this.ambientLight = new THREE.AmbientLight( 0xe0e0e0, 2 );
       scene.add(this.ambientLight);
       
       this.targetPoint = new THREE.Object3D();
@@ -100,7 +105,7 @@ export default class Main{
       this.gameLoopDelta = 0;
 
       //Render First frame
-      this.Render(this.clock.getDelta());
+      this.Render(clock.getDelta());
     }    
 
     Update(delta){
@@ -108,23 +113,19 @@ export default class Main{
       
       this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
       
-      for(let i = 0; i < this.targetList.length; i++){
-        this.targetList[i].Update();
+      for(let i = 0; i < OBJECT_LIST.length; i++){
+        OBJECT_LIST[i].Update(delta);
       }
     }
 
     FixedUpdate(delta){
       for(let i = 0; i < OBJECT_LIST.length; i++){
-        OBJECT_LIST[i].Update(delta);
-      }
-
-      for(let i = 0; i < this.targetList.length; i++){
-        this.targetList[i].FixedUpdate();
+        OBJECT_LIST[i].FixedUpdate(delta);
       }
     }
 
     Render(delta){
-      requestAnimationFrame(() => this.Render(this.clock.getDelta()));
+      requestAnimationFrame(() => this.Render(clock.getDelta()));
       if(isNumber(delta)){
         this.gameLoopDelta += delta;
       }
