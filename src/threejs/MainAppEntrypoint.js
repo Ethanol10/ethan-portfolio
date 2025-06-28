@@ -4,6 +4,7 @@ import Boid from './objects/boid';
 import Ground from './objects/ground';
 import { TARGET_RENDER_FRAMETIME, BOID_COUNT } from './StaticValues';
 import Skybox from './objects/skybox';
+import { Target } from './objects/target';
 
 export function getScene(){
 	return scene;
@@ -27,14 +28,14 @@ export let MainObj = null;
 
 export default class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
-    constructor(refContainer, bounds){
+    constructor(refContainer){
       MainObj = this;
 
       scene = new THREE.Scene();
       this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
       // this.scene_cam = new THREE.OrthographicCamera(0, window.innerWidth, 0, window.innerHeight, 1, 1000);
       this.renderer = new THREE.WebGLRenderer();
-      // this.renderer.shadowMap.enabled = true;
+      this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
       this.renderer.setSize(refContainer.current?.clientWidth, window.innerHeight);
       
@@ -52,8 +53,12 @@ export default class Main{
       this.boidList = [];
 
       for(let i = 0; i < BOID_COUNT; i++ ){
-        let newBoid = new Boid(this.clock);
-        this.boidList.push(newBoid);
+        this.boidList.push(new Boid(this.clock));
+      }
+
+      this.targetList = [];
+      for(let i = 0; i < 4; i++){
+        this.targetList.push(new Target());
       }
 
       //Setup Ambient Light
@@ -65,16 +70,17 @@ export default class Main{
       scene.add(this.targetPoint);
 
       //Setup Point Light
-      this.pointLight = new THREE.PointLight(new THREE.Color(1,1,1), 70);
-      this.pointLight.position.set(centerPoint.x, 5, centerPoint.y);
+      this.pointLight = new THREE.PointLight(new THREE.Color(1,1,1), 20, 0, 1);
+      this.pointLight.position.set(centerPoint.x, 20, centerPoint.y);
       this.pointLight.castShadow = true;
       this.pointLight.shadow.camera.near = 0.1;
-      this.pointLight.shadow.camera.far = 100;
+      this.pointLight.shadow.camera.far = 50;
       this.pointLight.shadow.mapSize.width = 2048;
       this.pointLight.shadow.mapSize.height = 2048;
       // this.pointLight.target = this.targetPoint;
-      scene.add(this.pointLight)
-
+      scene.add(this.pointLight);
+      console.log(this.pointLight);
+      
 
       //Setup camera
 
@@ -103,12 +109,20 @@ export default class Main{
     Update(delta){
       this.renderer.render(scene, this.scene_cam);
       
-      this.scene_cam_container.rotation.y += EulerToRad(2) * delta;
+      this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
+      
+      for(let i = 0; i < this.targetList.length; i++){
+        this.targetList[i].Update();
+      }
     }
 
     FixedUpdate(delta){
       for(let i = 0; i < OBJECT_LIST.length; i++){
         OBJECT_LIST[i].Update(delta);
+      }
+
+      for(let i = 0; i < this.targetList.length; i++){
+        this.targetList[i].FixedUpdate();
       }
     }
 

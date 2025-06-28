@@ -10,27 +10,29 @@ export default class Boid{
         this.HOVER_POSITION = 0;
         this.WAVELENGTH = Math.random() * 5;
         this.AMPLITUDE = 1;
-        this.MIN_SPEED = 20;
+        this.MIN_SPEED = 10;
         this.MAX_SPEED = 20;
+        // this.MIN_SPEED = 1;
+        // this.MAX_SPEED = 5;
         this.MAX_PITCH = 10;
         this.SCALE = 1;
         this.VISUAL_RANGE = 20;
         this.PROTECTED_RANGE = 2;
-        this.CENTERING_FACTOR = 0.0005;
+        this.CENTERING_FACTOR = 0.02;
         this.MATCHING_FACTOR = 0.05;
-        this.AVOID_FACTOR = 0.2;
+        this.AVOID_FACTOR = 0.5;
         this.TURN_FACTOR = 50;
         this.MAX_BIAS_FACTOR = 0.03;
-        this.BIAS_FACTOR = 0.02;
+        this.BIAS_FACTOR = 0.01;
 
-        this.target = this.Retarget();
+        // this.target = this.Retarget();
 
         new GLTFLoader().load(airplane, (obj) => {this.onLoad(obj)}, this.onLoading, this.onLoadError);
 
         this.clock = clock;
         
-        this.directionalVector = new THREE.Vector3(1, 0, -1); 
-        this.intermediateDirectionalVector = this.directionalVector;
+        this.directionalVector = new THREE.Vector3(0, 0, 0); 
+        // this.intermediateDirectionalVector = this.directionalVector;
 
         this.biasType = Math.trunc(Math.random() * 4);    
     }
@@ -38,8 +40,11 @@ export default class Boid{
     onLoad(gltf){
         //Setup the object.
         this.model_obj = gltf.scene;
-        let material = new THREE.MeshStandardMaterial({ color: 0x0000FF });
-        this.model_obj.material = material;
+        let material = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
+        // this.model_obj.material = material;
+        this.model_obj.children[0].material = material;
+        this.model_obj.children[0].castShadow = true;
+        this.model_obj.children[0].receiveShadow = true;
 
         // this.obj = new THREE.Mesh(mesh, material);
         this.model_obj.castShadow = true;
@@ -49,7 +54,6 @@ export default class Boid{
 
         //Outer Object for positioning, irrespective of Rotation
         this.obj = new THREE.Object3D();
-
         this.obj.position.set(Math.random() * BOID_BOUNDS, 0, Math.random() * BOID_BOUNDS);
         this.obj.rotation.set(0, 0, 0);
         
@@ -87,10 +91,6 @@ export default class Boid{
         this.Move(delta);
     }
 
-    Retarget(){
-        return new THREE.Vector3(Math.random() * BOID_BOUNDS, 0, Math.random() * BOID_BOUNDS)
-    }
-    
     RotateModel(){
         //Calc Y angle on directional vector.
         let rotationToDirection = Math.atan2(this.directionalVector.x, this.directionalVector.z);
@@ -192,9 +192,11 @@ export default class Boid{
                 break;
             default: 
                 //Follow case 0
-                this.directionalVector.z = (1 - this.BIAS_FACTOR) * this.directionalVector.x + (this.BIAS_FACTOR * 1);
+                this.directionalVector.x = (1 - this.BIAS_FACTOR) * this.directionalVector.x + (this.BIAS_FACTOR * 1);
                 break;
         }
+
+        // this.directionalVector.x = MainObj.targetList[this.biasType].position.x;
 
 
         //Calc speed for boid

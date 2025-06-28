@@ -1,7 +1,7 @@
 import * as THREE from 'three';
 import { EulerToRad } from '../ThreeJSHelpers';
 import { BOID_BOUNDS } from '../StaticValues';
-// import { getScene } from '../MainAppEntrypoint';
+import { getScene } from '../MainAppEntrypoint';
 
 export default class Ground{
     constructor(clock){
@@ -12,10 +12,10 @@ export default class Ground{
         this.ground.receiveShadow = true;
 
         this.bounds = BOID_BOUNDS;
+        this.BOUND_FACTOR = 1;
         this.ground.position.set(this.bounds / 2, -2, this.bounds / 2);
-        this.ground.scale.set(BOID_BOUNDS * 4, BOID_BOUNDS * 4, BOID_BOUNDS * 4);
-        this.ground.rotation.x = EulerToRad(-90);
-        
+        this.ground.scale.set(BOID_BOUNDS * this.BOUND_FACTOR , BOID_BOUNDS *this.BOUND_FACTOR , BOID_BOUNDS * this.BOUND_FACTOR );
+        this.ground.rotation.x = EulerToRad(270);
         //Bounds start from 0,0
 
         /*
@@ -34,7 +34,7 @@ export default class Ground{
         (0, 10)                 (10, 10)
         */
 
-        // getScene().add(this.ground);
+        getScene().add(this.ground);
     }
 
     getBounds(){
