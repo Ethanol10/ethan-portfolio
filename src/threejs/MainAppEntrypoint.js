@@ -79,9 +79,6 @@ export default class Main{
       this.pointLight.shadow.mapSize.height = 2048;
       // this.pointLight.target = this.targetPoint;
       scene.add(this.pointLight);
-      console.log(this.pointLight);
-      
-
       //Setup camera
 
       // this.scene_cam.position.set(15, 5, 40);
