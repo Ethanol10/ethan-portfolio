@@ -3,7 +3,7 @@ import { EulerToRad, isNumber } from './ThreeJSHelpers';
 import Boid from './objects/boid';
 import Ground from './objects/ground';
 import { TARGET_RENDER_FRAMETIME, BOID_COUNT } from './StaticValues';
-import Skybox from './objects/skybox';
+// import Skybox from './objects/skybox';
 import { Target } from './objects/target';
 
 export function getScene(){
@@ -37,8 +37,10 @@ export default class Main{
       MainObj = this;
 
       scene = new THREE.Scene();
-      this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-      // this.scene_cam = new THREE.OrthographicCamera(0, window.innerWidth, 0, window.innerHeight, 1, 1000);
+
+      let divider = 64;
+      // this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+      this.scene_cam = new THREE.OrthographicCamera(-1 * window.innerWidth / divider, window.innerWidth / divider, window.innerHeight / divider, -1 * window.innerHeight / divider, -100, 2000);
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
@@ -51,7 +53,7 @@ export default class Main{
       
       this.ground = new Ground();
 
-      this.skybox = new Skybox();
+      // this.skybox = new Skybox();
 
       let centerPoint = this.ground.getCenterPoint();
       
@@ -67,7 +69,7 @@ export default class Main{
       }
 
       //Setup Ambient Light
-      this.ambientLight = new THREE.AmbientLight( 0xe0e0e0, 2 );
+      this.ambientLight = new THREE.AmbientLight( 0xcfcfcf, 2 );
       scene.add(this.ambientLight);
       
       this.targetPoint = new THREE.Object3D();
@@ -96,7 +98,7 @@ export default class Main{
       this.scene_cam_container.position.set(this.ground.getCenterPoint().x, 0, this.ground.getCenterPoint().y);
 
       
-      this.scene_cam.position.z = 30;
+      this.scene_cam.position.z = 50;
       this.scene_cam.position.x = 0;
       this.scene_cam.position.y = 15;
 
@@ -111,7 +113,7 @@ export default class Main{
     Update(delta){
       this.renderer.render(scene, this.scene_cam);
       
-      this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
+      // this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
       
       for(let i = 0; i < OBJECT_LIST.length; i++){
         OBJECT_LIST[i].Update(delta);

@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { EulerToRad, easeInOutParabola } from '../ThreeJSHelpers';
-import { BOID_BOUNDS } from '../StaticValues';
+import { BOID_BOUNDS, BOID_COLOR_LIST } from '../StaticValues';
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { getScene, AddNewObject, MainObj, getClock } from '../MainAppEntrypoint';
 import airplane from '../../media/models/airplane_fixed.glb';
@@ -10,8 +10,8 @@ export default class Boid{
         this.HOVER_POSITION = 0;
         this.WAVELENGTH = 2 + Math.random() * 5;
         this.AMPLITUDE = 1;
-        this.MIN_SPEED = 5;
-        this.MAX_SPEED = 10;
+        this.MIN_SPEED = 10;
+        this.MAX_SPEED = 15;
         this.MAX_PITCH = 10;
         this.SCALE = 1;
         this.VISUAL_RANGE = 20;
@@ -22,7 +22,7 @@ export default class Boid{
         this.TURN_FACTOR = 50;
         this.MAX_BIAS_FACTOR = 0.03;
         this.BIAS_FACTOR = 0.00;
-        this.MIN_SHADOW_SIZE = 1;
+        this.MIN_SHADOW_SIZE = 0.5;
 
         new GLTFLoader().load(airplane, (obj) => {this.onLoad(obj)}, this.onLoading, this.onLoadError);
 
@@ -37,7 +37,7 @@ export default class Boid{
     onLoad(gltf){
         //Setup the object.
         this.model_obj = gltf.scene;
-        let material = new THREE.MeshStandardMaterial({ color: 0xFFFFFF });
+        let material = new THREE.MeshStandardMaterial({ color: BOID_COLOR_LIST[Math.floor(Math.random() * BOID_COLOR_LIST.length)] });
         // this.model_obj.material = material;
         this.model_obj.children[0].material = material;
         // this.model_obj.children[0].castShadow = true;
@@ -54,6 +54,8 @@ export default class Boid{
 
         //Add custom shadow shape through cylinder lol
         let shadowMesh = new THREE.CylinderGeometry(0.25, 0.5, 0.25);
+
+        //Get random color from static vals
         let shadowMat = new THREE.MeshBasicMaterial({
             color: 0x000000,
             transparent: true,
@@ -97,8 +99,8 @@ export default class Boid{
 
         //Scale shadow accordingly
 
-        this.shadowObj.scale.x = this.MIN_SHADOW_SIZE + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
-        this.shadowObj.scale.z = this.MIN_SHADOW_SIZE + (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime)));
+        this.shadowObj.scale.x = Math.max(this.MIN_SHADOW_SIZE, (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime))));
+        this.shadowObj.scale.z = Math.max(this.MIN_SHADOW_SIZE, (this.AMPLITUDE * easeInOutParabola(Math.sin(this.WAVELENGTH * this.clock.elapsedTime))));
         this.RotateModel();
         this.Move(delta);
     }
