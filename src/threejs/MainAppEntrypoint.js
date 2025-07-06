@@ -31,16 +31,18 @@ export let OBJECT_LIST = [];
 export let MainObj = null;
 export let clock = null;
 
-export default class Main{
+export class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
     constructor(refContainer){
       MainObj = this;
 
+      this.refContainer = refContainer;
+
       scene = new THREE.Scene();
 
-      let divider = 64;
+      this.divider = 64;
       // this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-      this.scene_cam = new THREE.OrthographicCamera(-1 * window.innerWidth / divider, window.innerWidth / divider, window.innerHeight / divider, -1 * window.innerHeight / divider, -100, 2000);
+      this.scene_cam = new THREE.OrthographicCamera(-1 * window.innerWidth / this.divider, window.innerWidth / this.divider, window.innerHeight / this.divider, -1 * window.innerHeight / this.divider, 0.1, 2000);
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
@@ -124,6 +126,17 @@ export default class Main{
       for(let i = 0; i < OBJECT_LIST.length; i++){
         OBJECT_LIST[i].FixedUpdate(delta);
       }
+    }
+
+    ResizeCam(){
+      this.renderer.setSize(this.refContainer.current?.clientWidth, window.innerHeight);
+
+      this.scene_cam.left = -1 * window.innerWidth / this.divider;
+      this.scene_cam.right = window.innerWidth / this.divider;
+      this.scene_cam.top = window.innerHeight / this.divider;
+      this.scene_cam.bottom = -1 * window.innerHeight / this.divider;
+
+      this.scene_cam.updateProjectionMatrix();
     }
 
     Render(delta){

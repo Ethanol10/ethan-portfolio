@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import Main from './MainAppEntrypoint';
+import {Main, MainObj} from './MainAppEntrypoint';
 
 
 function ThreeEntrypoint() {
@@ -8,7 +8,21 @@ function ThreeEntrypoint() {
   useEffect(() => {
     let threeApp = new Main(refContainer);
 
+    const handleResize = () => {
+      if(MainObj !== null){
+        MainObj.ResizeCam();
+      }
+    };
+
+    //Set resize handler
+    window.addEventListener('resize', handleResize);
+
     threeApp.Render();
+
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
 
