@@ -129,12 +129,15 @@
         height: 400px;
         object-fit: scale-down;
         background-color: black;
+        overflow-x: hidden;
     }
 
     p {
         padding-top: 1rem;
         color: #747474;
         font-size: small; 
+        
+        overflow-x: hidden;
     }
 
     .carousel_front-container_subsequent-img{
@@ -143,6 +146,7 @@
         position: absolute;
         top:0;
         left:0;
+        overflow-x: hidden;
 
         &.slideshow-transition-active{
             animation-name: front-to-front-img;

@@ -102,9 +102,9 @@ export class Main{
       
       this.scene_cam.position.z = 50;
       this.scene_cam.position.x = 0;
-      this.scene_cam.position.y = 15;
+      this.scene_cam.position.y = 30;
 
-      this.scene_cam.rotation.x = EulerToRad(-25);
+      this.scene_cam.rotation.x = EulerToRad(-45);
       //setup timers
       this.gameLoopDelta = 0;
 
