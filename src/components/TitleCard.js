@@ -1,9 +1,6 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography'
 import ThreeEntrypoint from "../threejs/ThreeEntrypoint";
-// import ReactPlayer from 'react-player'
-// import myVideo from '../media/promo.mp4';
 
 export default function TitleCard(props){
 
@@ -11,27 +8,20 @@ export default function TitleCard(props){
 
     return (
     <div ref={innerRef} className="title-card_home">
-        {/* <ReactPlayer 
-        url={myVideo} 
-        controls={false} 
-        playing={true} 
-        loop={true}
-        volume={0}
-        width="100%"
-        height="100%"/> */}
         <ThreeEntrypoint/>
         <div className="title-card_overlay">
             <Box
                 height="100%"
                 display="flex"
-                flexDirection="column"
+                flexDirection="row"
                 justifyContent="center"
                 alignItems="center"
                 color="#fff"
             >
-                <Typography variant="h3" component="h1">
-                    ETHAN GOH (This page is unfinished.)
-                </Typography>
+                <h1 className="title-card_typography">
+                    ETHAN GOH (still not done yet!)
+                </h1>
+                <div className="title-card_carot"></div>
             </Box>
         </div>
     </div>

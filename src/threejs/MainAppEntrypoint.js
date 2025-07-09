@@ -110,21 +110,27 @@ export class Main{
 
       //Render First frame
       this.Render(clock.getDelta());
+
+      this.isFocused = true;
     }    
 
     Update(delta){
-      this.renderer.render(scene, this.scene_cam);
+      if(this.isFocused){
+        this.renderer.render(scene, this.scene_cam);
       
-      // this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
-      
-      for(let i = 0; i < OBJECT_LIST.length; i++){
-        OBJECT_LIST[i].Update(delta);
+        // this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
+        
+        for(let i = 0; i < OBJECT_LIST.length; i++){
+          OBJECT_LIST[i].Update(delta);
+        }
       }
     }
 
     FixedUpdate(delta){
-      for(let i = 0; i < OBJECT_LIST.length; i++){
-        OBJECT_LIST[i].FixedUpdate(delta);
+      if(this.isFocused){
+        for(let i = 0; i < OBJECT_LIST.length; i++){
+          OBJECT_LIST[i].FixedUpdate(delta);
+        }
       }
     }
 
@@ -137,6 +143,10 @@ export class Main{
       this.scene_cam.bottom = -1 * window.innerHeight / this.divider;
 
       this.scene_cam.updateProjectionMatrix();
+    }
+
+    SetFocusState(state){
+      this.isFocused = state;
     }
 
     Render(delta){

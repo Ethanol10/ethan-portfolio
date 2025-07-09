@@ -10,7 +10,6 @@ import { professionalExperienceContent, educationContent } from '../media/experi
 export default function Experience(props){
     const {innerRef} = props;
     const [selectedExperience, setSelectedExperience] = React.useState(null);
-    const [heightSelectedExperience, setHeightSelectedExperience] = React.useState(0);
     
     const techStackClassCombined = classNames("experience-card_background", "general-formatting");
 
@@ -54,7 +53,9 @@ export default function Experience(props){
     const RenderEducationList = () => {
         return(
             <div className="experience-card_education-list">
-                <h2>Academic Degrees</h2>
+                <h2>
+                    Academic Degrees
+                </h2>
                 {educationContent.map(education => RenderExperience(education, false))}
             </div>
         );
@@ -76,7 +77,9 @@ export default function Experience(props){
 
         return(
             <div className="experience-card_experience-list">
-                <h2>Professional Experience</h2>
+                <h2>
+                   Professional Experience
+                </h2>
                 {render_list}
             </div>
         );
@@ -96,7 +99,9 @@ export default function Experience(props){
     return(
         <div ref={innerRef} className={techStackClassCombined}>
             <div className="about-card_title">
-                <h1>ACADEMIC AND PROFESSIONAL EXPERIENCE</h1>
+                <h1 className="title-card_typography">
+                    ACADEMIC AND PROFESSIONAL EXPERIENCE
+                </h1>
             </div>
 
             {RenderAllSimple()}

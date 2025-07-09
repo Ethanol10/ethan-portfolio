@@ -91,7 +91,9 @@ export default function TechStack(props) {
 
     return (
         <div ref={innerRef} className={techStackClassCombined}>
-            <h1>TECH STACK</h1>
+            <h1>
+                TECH STACK
+            </h1>
             {isSingular ?
                 RenderSingular() :
                 RenderCardList()

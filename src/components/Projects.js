@@ -30,7 +30,9 @@ export default function Projects(props){
     return(
         <div ref={innerRef} className="general-formatting">
             <div className="projects_formatting">
-                <h1>PROJECTS</h1>
+                <h1>
+                    PROJECTS
+                </h1>
                 <ProjectCarousel items={projectsList} setItem={setProject}/>
             </div>
             <div className='projects_selected-project'>

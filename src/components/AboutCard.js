@@ -8,7 +8,9 @@ export default function AboutCard(props){
     return (
         <div ref={innerRef} className="general-formatting">
             <div className="about-card_title">
-                <h1>ABOUT</h1>
+                <h1>
+                    ABOUT
+                </h1>
             </div>
             <div className="about-card_profile">
                 <img alt="Ethan Goh" src={profileImg} className="about-card_profile-img"/>
