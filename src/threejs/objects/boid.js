@@ -4,6 +4,7 @@ import { BOID_BOUNDS, BOID_COLOR_LIST } from '../StaticValues';
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { getScene, AddNewObject, MainObj, getClock } from '../MainAppEntrypoint';
 import airplane from '../../media/models/airplane_fixed.glb';
+import { Windtrail } from './windtrail';
 
 export default class Boid{
     constructor(){
@@ -73,6 +74,9 @@ export default class Boid{
         this.shadowObj.parent = this.obj;
 
         AddNewObject(this);
+
+        this.trail = new Windtrail();
+        this.trail.target = this.obj;
     }
 
     onLoading(xhr){
