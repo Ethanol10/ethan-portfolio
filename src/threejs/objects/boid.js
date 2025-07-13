@@ -29,7 +29,7 @@ export default class Boid{
 
         this.clock = getClock();
         
-        this.directionalVector = new THREE.Vector3(0, 0, 0); 
+        this.directionalVector = new THREE.Vector3(0.1, 0.1, 0.1); 
         // this.intermediateDirectionalVector = this.directionalVector;
 
         this.biasType = Math.trunc(Math.random() * 4);    
@@ -76,7 +76,7 @@ export default class Boid{
         AddNewObject(this);
 
         this.trail = new Windtrail();
-        this.trail.target = this.obj;
+        this.trail.boid_target = this;
     }
 
     onLoading(xhr){
@@ -120,6 +120,12 @@ export default class Boid{
 
     Move(delta){
         if(!this.obj){
+            return;
+        }
+        
+        if(isNaN(this.obj.position.x) || isNaN(this.obj.position.z)){
+            this.obj.position.z = 0;
+            this.obj.position.x = 0;
             return;
         }
 
@@ -179,7 +185,7 @@ export default class Boid{
 
         this.directionalVector.x = this.directionalVector.x + (closeField.x * this.AVOID_FACTOR);
         this.directionalVector.z = this.directionalVector.z + (closeField.y * this.AVOID_FACTOR);
-        
+
         // Turn objects back towards the bounds
         if(this.obj.position.x > BOID_BOUNDS){
             this.directionalVector.x -= this.TURN_FACTOR * delta;
