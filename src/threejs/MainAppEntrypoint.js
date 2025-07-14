@@ -40,9 +40,11 @@ export class Main{
 
       scene = new THREE.Scene();
 
-      this.divider = 64;
+      this.divider = 2;
       this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
       // this.scene_cam = new THREE.OrthographicCamera(-1 * window.innerWidth / this.divider, window.innerWidth / this.divider, window.innerHeight / this.divider, -1 * window.innerHeight / this.divider, 0.1, 2000);
+      // this.FRUSTRUM_SIZE = 90;
+      // this.scene_cam = new THREE.OrthographicCamera(this.FRUSTRUM_SIZE * window.innerWidth / window.innerHeight / -this.divider, this.FRUSTRUM_SIZE * window.innerWidth / window.innerHeight / this.divider, this.FRUSTRUM_SIZE / -this.divider, this.FRUSTRUM_SIZE / this.divider, 0.1, 2000);
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
@@ -100,9 +102,9 @@ export class Main{
       this.scene_cam_container.position.set(this.ground.getCenterPoint().x, 0, this.ground.getCenterPoint().y);
 
       
-      this.scene_cam.position.z = 50;
+      this.scene_cam.position.z = 30;
       this.scene_cam.position.x = 0;
-      this.scene_cam.position.y = 30;
+      this.scene_cam.position.y = 15;
 
       this.scene_cam.rotation.x = EulerToRad(-45);
       // this.scene_cam_container.rotation.y = EulerToRad(180);

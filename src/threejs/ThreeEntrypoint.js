@@ -14,14 +14,29 @@ function ThreeEntrypoint() {
       }
     };
 
+    const handleFocus = () => {
+      if(MainObj !== null){
+        MainObj.SetFocusState(true);
+      }
+    }
+
+    const handleBlur = () => {
+      if(MainObj !== null){
+        MainObj.SetFocusState(false);
+      }
+    }
+
     //Set resize handler
     window.addEventListener('resize', handleResize);
-
+    window.addEventListener("focus", handleFocus);
+    window.addEventListener("blur", handleBlur);
     threeApp.Render();
 
 
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener("focus", handleFocus);
+      window.removeEventListener("blur", handleBlur);
     }
   }, []);
 
