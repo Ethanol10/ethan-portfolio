@@ -16,9 +16,9 @@ export class Windtrail{
 
         // Set gradient on texture
         let gradient = context.createLinearGradient( 0, 0, 64, 0 );
-        gradient.addColorStop( 0.0, 'rgba(255,255,255,0)' );
-        gradient.addColorStop( 0.5, 'rgba(255,255,255,128)' );
-        gradient.addColorStop( 1.0, 'rgba(255,255,255,0)' );
+        gradient.addColorStop( 0.0, 'rgba(255, 255, 255, 0)' );
+        gradient.addColorStop( 0.5, 'rgba(255, 255, 255, 0.5)' );
+        gradient.addColorStop( 1.0, 'rgba(255, 255, 255, 0)' );
         context.fillStyle = gradient;
         context.fillRect( 0, 0, 64, 8 );
 
@@ -69,22 +69,48 @@ export class Windtrail{
             // play them back sequentially in an array of 20 elements that constantly shift
             return;
         }        
-        
+    
         for( let i=0; i<43; i++ )
 		{
             // Go through each of the slices on the mesh, and set the positions accordingly.
             // I think we should store the last no of positions and apply it to the mesh positions.
             // let time = this.clock.elapsedTime;
-            if(i > this.target_trail.length - 1){
+
+            if (i > this.target_trail.length - 1){
+                continue;
+            }        
+
+            if(i === 0){
+                // Set the first position to the current target position
+                this.line.pos.setXYZ( i, this.boid_target.obj.position.x, this.boid_target.obj.position.y, this.boid_target.obj.position.z );
                 continue;
             }
+            if (i === 21){
+                // Set the middle position to the current target position
+                this.line.pos.setXYZ( i, this.boid_target.obj.position.x, this.boid_target.obj.position.y, this.boid_target.obj.position.z );
+                continue;
+            }
+
             
             let x = this.target_trail[this.target_trail.length - 1 - i].x;
-            let y = this.target_trail[this.target_trail.length - 1- i].y;
-            let z = this.target_trail[this.target_trail.length - 1- i].z;
+            let y = this.target_trail[this.target_trail.length - 1 - i].y + 0.15;
+            let z = this.target_trail[this.target_trail.length - 1 - i].z;
+
+            if(i > 20){
+                // Apply an offset to the y position to create a clear trail width.
+                y = this.target_trail[this.target_trail.length - 1 - i + 20].y - 0.15;
+                x = this.target_trail[this.target_trail.length - 1 - i + 20].x;
+                z = this.target_trail[this.target_trail.length - 1 - i + 20].z;
+            }
+
             this.line.pos.setXYZ( i, x, y, z );
+            
 		}
         
+        // if(this.target_trail.length > 50){
+        //     console.log(this.boid_target.obj.position.distanceTo(this.target_trail[this.target_trail.length - 1 - 42]), this.target_trail[0].x, this.boid_target.obj.position.x);
+        // }
+
         this.line.pos.needsUpdate = true;
     }
 
@@ -96,11 +122,11 @@ export class Windtrail{
 
         this.stopwatch += delta;
 
-        if(this.stopwatch >= 1 / 15){
+        if(this.stopwatch >= 1 / 60){
             this.stopwatch = 0;
 
             // Push a new element every 1/30th of a second.
-            this.target_trail.push(this.boid_target.obj.position);
+            this.target_trail.push(new THREE.Vector3(this.boid_target.obj.position.x, this.boid_target.obj.position.y, this.boid_target.obj.position.z));
 
             this.inc += 1;
 
