@@ -1,24 +1,28 @@
 import * as THREE from 'three';
 import { getScene, AddNewObject, getClock } from '../MainAppEntrypoint';
-import { SimplexNoise } from 'three/examples/jsm/Addons.js';
 
 export class Windtrail{
-    constructor(){
+    constructor(color){
         // Generate Texture with transparent edges
         let canvas = document.createElement( 'canvas' );
         canvas.width = 64;
         canvas.height = 8;
         this.clock = getClock();
         this.AMPLITUDE = 5;
+        this.THICKNESS = 0.25;
+
+        if (color === null){
+            this.color = 0xffffff; // Default to white if no color is provided
+        }
 
         // setup context
         let context = canvas.getContext( '2d' );
 
         // Set gradient on texture
         let gradient = context.createLinearGradient( 0, 0, 64, 0 );
-        gradient.addColorStop( 0.0, 'rgba(255, 255, 255, 0)' );
-        gradient.addColorStop( 0.5, 'rgba(255, 255, 255, 0.5)' );
-        gradient.addColorStop( 1.0, 'rgba(255, 255, 255, 0)' );
+        gradient.addColorStop( 0.0, '#' + color + "FF");
+        gradient.addColorStop( 0.5, '#' + color + "AA");
+        gradient.addColorStop( 1.0, '#' + color + "00");
         context.fillStyle = gradient;
         context.fillRect( 0, 0, 64, 8 );
 
@@ -29,18 +33,13 @@ export class Windtrail{
             new THREE.PlaneGeometry( 1, 1, 20, 1 ), // Create a 1x1 tex with 20 segments in the width, and 1 in the height
             new THREE.MeshBasicMaterial( {
                 map: texture,
-                // color: 0xffffff,
+                color: 0xffffff,
                 side:THREE.DoubleSide,
-                transparent: false,
-                // depthWrite: false,
+                transparent: true,
+                depthWrite: false,
             }
         ));
 		this.line.pos = this.line.geometry.getAttribute( 'position' );
-		this.line.rnda = Math.random();
-		this.line.rndb = Math.random();
-		this.line.rndc = Math.random();
-		this.line.rndd = Math.random();
-        this.simplex = new SimplexNoise();
 
         this.boid_target = null;
 
@@ -50,18 +49,6 @@ export class Windtrail{
         AddNewObject(this);
         this.stopwatch = 0;
     }
-
-    Elevation( x, y )
-    {
-        if( x*x > 24.9 ) return -1;
-        if( y*y > 24.9 ) return -1;
-
-        let major = 0.6 * this.simplex.noise( 0.1*x, 0.1*y );
-        let minor = 0.2 * this.simplex.noise( 0.3*x, 0.3*y );
-
-        return major + minor;
-    }
-
 
     Update(delta){
         if(this.boid_target === null){
@@ -77,6 +64,11 @@ export class Windtrail{
             // let time = this.clock.elapsedTime;
 
             if (i > this.target_trail.length - 1){
+                let x = this.target_trail[0].x;
+                let y = this.target_trail[0].y;
+                let z = this.target_trail[0].z;
+                // Set it to the last valid position if we don't have enough trail data
+                this.line.pos.setXYZ( i, x, y, z );
                 continue;
             }        
 
@@ -90,15 +82,16 @@ export class Windtrail{
                 this.line.pos.setXYZ( i, this.boid_target.obj.position.x, this.boid_target.obj.position.y, this.boid_target.obj.position.z );
                 continue;
             }
-
+            
+            let thickness = THREE.MathUtils.lerp(1, 0, i > 20 ? (i - 20) / 20 : i / 20) * this.THICKNESS;
             
             let x = this.target_trail[this.target_trail.length - 1 - i].x;
-            let y = this.target_trail[this.target_trail.length - 1 - i].y + 0.15;
+            let y = this.target_trail[this.target_trail.length - 1 - i].y + thickness;
             let z = this.target_trail[this.target_trail.length - 1 - i].z;
 
             if(i > 20){
                 // Apply an offset to the y position to create a clear trail width.
-                y = this.target_trail[this.target_trail.length - 1 - i + 20].y - 0.15;
+                y = this.target_trail[this.target_trail.length - 1 - i + 20].y - thickness;
                 x = this.target_trail[this.target_trail.length - 1 - i + 20].x;
                 z = this.target_trail[this.target_trail.length - 1 - i + 20].z;
             }

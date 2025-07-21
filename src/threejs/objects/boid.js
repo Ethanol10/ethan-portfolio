@@ -75,12 +75,12 @@ export default class Boid{
 
         AddNewObject(this);
 
-        this.trail = new Windtrail();
+        this.trail = new Windtrail(material.color.getHexString());
         this.trail.boid_target = this;
     }
 
     onLoading(xhr){
-        console.log( xhr.loaded + " loaded");
+        // console.log( xhr.loaded + " loaded");
     }
 
     onLoadError(error){

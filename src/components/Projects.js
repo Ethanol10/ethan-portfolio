@@ -49,7 +49,7 @@ export default function Projects(props){
                                         <div className='projects_link-container'>
                                             {selectedProject.related_urls.map((url, index) => {
                                                 return(
-                                                    <a href={url.url}>
+                                                    <a id={index} href={url.url}>
                                                         <img src={url.img} alt={url.title} key={index} href={url.url}></img>
                                                     </a>
                                                 )
