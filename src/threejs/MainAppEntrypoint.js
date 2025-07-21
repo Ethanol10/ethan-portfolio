@@ -150,6 +150,9 @@ export class Main{
       // this.scene_cam.bottom = -1 * window.innerHeight / this.divider;
 
       this.scene_cam.updateProjectionMatrix();
+
+      //Render once after the projection matrix and camera details have changed.
+      this.renderer.render(scene, this.scene_cam);
     }
 
     SetFocusState(state){
