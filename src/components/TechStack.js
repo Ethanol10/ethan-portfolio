@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import { cardList } from '../media/cardlist';
 import close_icon from '../media/Icons/close_icon.svg'; 
@@ -9,6 +9,21 @@ export default function TechStack(props) {
     const techStackClassCombined = classNames("tech-stack_background", "general-formatting");
     const [isSingular, setIsSingular] = React.useState(false);
     const [currentSelectedItem, setCurrentSelectedItem] = React.useState(null);
+    const [clientWidth, setClientWidth] = useState(null);
+
+    useEffect(() => {
+        setClientWidth(document.body.clientWidth);
+
+        function resize(e){
+            setClientWidth(document.body.clientWidth);
+        }
+
+        window.addEventListener("resize", resize);
+
+        return () => {
+            window.removeEventListener("resize", resize);
+        };
+    }, []);
 
     const RenderSingular = () => {
 
@@ -30,14 +45,22 @@ export default function TechStack(props) {
 
     const RenderCardList = () => {
         const rows = [];
+        let rowSize = TECH_STACK_ROW_SIZE;
 
-        var row = [];
+        if(clientWidth < 1000 ){
+            rowSize = 2;
+        }
+
+        if(clientWidth < 700){
+            rowSize = 1;
+        }
+        let row = [];
         for(var i = 0; i < cardList.length; i++){
-            if(row.length < TECH_STACK_ROW_SIZE){
+            if(row.length < rowSize){
                 row.push(cardList[i]);
             }
 
-            if(row.length >= TECH_STACK_ROW_SIZE || i === cardList.length - 1){
+            if(row.length >= rowSize || i === cardList.length - 1){
                 rows.push(row);
                 row = [];
             }

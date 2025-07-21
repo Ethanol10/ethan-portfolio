@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ProjectCarousel from './ProjectCarousel';
+import MobileProjectCarousel from './MobileProjectCarousel';
 import {projectsList} from "../media/projects/projectsList";
 
 export default function Projects(props){
     const {innerRef} = props;
     const [selectedProject, setSelectedProject] = useState(null);
+    const [clientWidth, setClientWidth] = useState(null);
     
     function setProject(item){
         if(!item){
@@ -16,11 +18,26 @@ export default function Projects(props){
 
     }
 
+    //Run this hook on start, add the listener!
+    useEffect(() => {
+        setClientWidth(document.body.clientWidth);
+
+        function resize(e){
+            setClientWidth(document.body.clientWidth);
+        }
+
+        window.addEventListener("resize", resize);
+
+        return () => {
+            window.removeEventListener("resize", resize);
+        };
+    }, []);
+
     useEffect(() => {
         if (!selectedProject){
             setProject(null); // Default first!
         }
-    });
+    }, [selectedProject])
 
     let description = selectedProject ? selectedProject.description : "";
     let split_desc = description.split("\n");
@@ -33,7 +50,13 @@ export default function Projects(props){
                 <h1>
                     PROJECTS
                 </h1>
-                <ProjectCarousel items={projectsList} setItem={setProject}/>
+                {
+                    clientWidth > 800 ? 
+                        <ProjectCarousel items={projectsList} setItem={setProject}/>
+                        :
+                        <MobileProjectCarousel items={projectsList} setItem={setProject}/>
+                }
+
             </div>
             <div className='projects_selected-project'>
                 { selectedProject && 

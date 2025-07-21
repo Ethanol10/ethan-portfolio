@@ -33,10 +33,10 @@ export class Windtrail{
             new THREE.PlaneGeometry( 1, 1, 20, 1 ), // Create a 1x1 tex with 20 segments in the width, and 1 in the height
             new THREE.MeshBasicMaterial( {
                 map: texture,
-                color: 0xffffff,
+                // color: 0xffffff,
                 side:THREE.DoubleSide,
                 transparent: true,
-                depthWrite: false,
+                // depthWrite: false,
             }
         ));
 		this.line.pos = this.line.geometry.getAttribute( 'position' );
