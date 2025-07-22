@@ -56,8 +56,8 @@ export default function Projects(props){
                         :
                         <MobileProjectCarousel items={projectsList} setItem={setProject}/>
                 }
-
             </div>
+
             <div className='projects_selected-project'>
                 { selectedProject && 
                     (
