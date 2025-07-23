@@ -99,7 +99,7 @@ export default function Experience(props){
     return(
         <div ref={innerRef} className={techStackClassCombined}>
             <div className="about-card_title">
-                <h1 className="title-card_typography">
+                <h1 className="experience_typography">
                     ACADEMIC AND PROFESSIONAL EXPERIENCE
                 </h1>
             </div>

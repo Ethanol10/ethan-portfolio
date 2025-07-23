@@ -19,7 +19,7 @@ export default function TitleCard(props){
                 color="#fff"
             >
                 <h1 className="title-card_typography">
-                    ETHAN GOH
+                    ETHAN GOH (almost there!)
                 </h1>
                 <div className="title-card_carot"></div>
             </Box>

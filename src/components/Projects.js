@@ -51,7 +51,7 @@ export default function Projects(props){
                     PROJECTS
                 </h1>
                 {
-                    clientWidth > 800 ? 
+                    clientWidth > 900 ? 
                         <ProjectCarousel items={projectsList} setItem={setProject}/>
                         :
                         <MobileProjectCarousel items={projectsList} setItem={setProject}/>

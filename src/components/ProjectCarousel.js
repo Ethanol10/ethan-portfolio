@@ -51,6 +51,7 @@ export default function ProjectCarousel(props){
     function animationEndSlideshow(){
         if(!imageTransition){
             return;
+            
         }
         setImageTransition(false);
         setImgIndex((imgIndex + 1) % items[position].imgs.length);

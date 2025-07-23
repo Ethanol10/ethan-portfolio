@@ -4,11 +4,15 @@
 
 .experience-card_container{
     display:flex;
-    margin: 2rem 0rem 2rem 0rem;
+    margin: 2rem 0rem;
     padding: 1rem;
     border-radius: 0.5rem;
     box-shadow: 2px 2px 5px #5183a4; //7ecafd
     transition: all 0.3s ease-in-out;
+
+    @media (max-width: $md){
+        display:block;
+    }
 
     &.experience-card_container_clickable{
         border: 0.2rem solid #6fbffd;
@@ -22,8 +26,14 @@
 
 .experience-card_simple-text-container{
     transition: all 0.3s ease-in-out;
+
 }
 
 .experience-card_simple-text-container{
     margin-left: 2rem;
+
+    @media (max-width: $md){
+        margin-top: 1rem;
+        margin-left: 0rem;
+    }
 }
