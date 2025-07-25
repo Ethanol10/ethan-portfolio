@@ -19,7 +19,7 @@ export class Windtrail{
         let context = canvas.getContext( '2d' );
 
         // Set gradient on texture
-        let gradient = context.createLinearGradient( 0, 0, 64, 0 );
+        let gradient = context.createLinearGradient( 0, 0, canvas.width, canvas.height );
         gradient.addColorStop( 0.0, '#' + color + "FF");
         gradient.addColorStop( 0.5, '#' + color + "AA");
         gradient.addColorStop( 1.0, '#' + color + "00");
@@ -39,6 +39,7 @@ export class Windtrail{
                 // depthWrite: false,
             }
         ));
+        this.line.frustumCulled = false;
 		this.line.pos = this.line.geometry.getAttribute( 'position' );
 
         this.boid_target = null;

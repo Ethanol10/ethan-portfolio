@@ -91,7 +91,7 @@ export default function Projects(props){
                                             return(
                                                 <div className='projects_video-container'>
                                                     <h4>{video.title}</h4>
-                                                    <iframe width="560" height="315" src={video.url} title={video.title} key={index}></iframe>
+                                                    <iframe src={video.url} title={video.title} key={index}></iframe>
                                                 </div>
                                             )
                                         })}
@@ -106,7 +106,7 @@ export default function Projects(props){
                                         {selectedProject.body_images.map((img, index) => {
                                             return(
                                                 <>
-                                                    <img src={img.img} alt={img.attribution} key={index}></img>
+                                                    <img width="100%" src={img.img} alt={img.attribution} key={index}></img>
                                                     <p>{img.attribution}</p>
                                                 </>
                                             )

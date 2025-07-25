@@ -121,7 +121,7 @@ export class Main{
       if(this.isFocused){
         this.renderer.render(scene, this.scene_cam);
       
-        // this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
+        this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
         
         for(let i = 0; i < OBJECT_LIST.length; i++){
           OBJECT_LIST[i].Update(delta);
