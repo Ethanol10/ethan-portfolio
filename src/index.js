@@ -7,15 +7,30 @@ import reportWebVitals from './reportWebVitals';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router";
 import NotFound from "./pages/NotFound";
+import { MonDocsHead } from './pages/monster-restaurant-docs/MonDocsHead';
+import { MonDocsMarkdownPage } from './pages/monster-restaurant-docs/MonDocsMarkdownPage';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
+
+const getMonAppetitDocs = () => {
+    return (
+        <>
+            <Route path="monappetitdocs" element={<MonDocsHead/>}>
+                <Route path=":slug" element={<MonDocsMarkdownPage />} />
+                <Route index element={<MonDocsMarkdownPage/>}/>
+            </Route>
+        </>
+    );
+}
+
 root.render(
     <BrowserRouter>
         <Routes>
-            <Route exact path="/" element={<App/>}/>
-            <Route exact path="/boids" element={<ThreeEntrypoint sceneInteractable={true}/>}/>
-            <Route exact path="/ping" element={<Pong/>}/>
+            <Route exact path="" element={<App/>}/>
+            <Route exact path="boids" element={<ThreeEntrypoint sceneInteractable={true}/>}/>
+            {getMonAppetitDocs()}
+            <Route exact path="ping" element={<Pong/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     </BrowserRouter>
