@@ -29,6 +29,10 @@ export class Target{
         }
     }
 
+    Destroy(){
+        // Doesn't seem like anything is here, leave it alone
+    }
+
     FixedUpdate(){
         for(let i = 0; i < MainObj.boidList.length; i++){
             let boidObj = MainObj.boidList[i];

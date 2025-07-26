@@ -8,7 +8,7 @@ export default function TitleCard(props){
 
     return (
     <div ref={innerRef} className="title-card_home">
-        <ThreeEntrypoint/>
+        <ThreeEntrypoint interactable={false}/>
         <div className="title-card_overlay">
             <Box
                 height="100%"

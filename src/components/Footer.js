@@ -35,6 +35,9 @@ export default function Footer(props){
             <div>
                 <a href="https://www.flaticon.com/free-icons/react" title="react icons">React icons created by srip - Flaticon</a>
             </div>
+            <div>
+                <a href="https://www.flaticon.com/free-icons/home" title="home icons">Home icons created by Dave Gandy - Flaticon</a>
+            </div>
             <p>Please inform me that I have missed an attribution if you believe that is the case! I will add it here.</p>
 
             <p>こっちまで来たの？　本当に来てくれてありがとう！！　また今度来てね！</p>

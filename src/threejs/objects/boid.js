@@ -57,13 +57,13 @@ export default class Boid{
         let shadowMesh = new THREE.CylinderGeometry(0.25, 0.5, 0.25);
 
         //Get random color from static vals
-        let shadowMat = new THREE.MeshBasicMaterial({
+        this.shadowMat = new THREE.MeshBasicMaterial({
             color: 0x000000,
             transparent: true,
             opacity: 0.00001
         });
 
-        this.shadowObj = new THREE.Mesh(shadowMesh, shadowMat);
+        this.shadowObj = new THREE.Mesh(shadowMesh, this.shadowMat);
         this.shadowObj.castShadow = true;
 
         //add to Scene
@@ -89,6 +89,11 @@ export default class Boid{
 
     getObj(){
         return this.obj;
+    }
+
+    Destroy(){
+        this.material.dispose();
+        this.shadowMat.dispose();
     }
 
     FixedUpdate(delta){
@@ -122,6 +127,10 @@ export default class Boid{
         if(!this.obj){
             return;
         }
+
+        if(this.obj.position === null){
+            return;
+        }
         
         if(isNaN(this.obj.position.x) || isNaN(this.obj.position.z)){
             this.obj.position.z = 0;
@@ -143,7 +152,11 @@ export default class Boid{
                 continue;
             }
 
-            let comparingBoid = MainObj.boidList[i];
+            let comparingBoid = MainObj.boidList[i];            
+            if(comparingBoid.hasOwnProperty("obj") === false){
+                // console.log(comparingBoid.obj);
+                continue;
+            }
             
             let dx = this.obj.position.x - comparingBoid.obj.position.x;
             let dy = this.obj.position.z - comparingBoid.obj.position.z;

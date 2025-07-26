@@ -48,6 +48,10 @@ export default class Ground{
         return this.ground;
     }
 
+    Destroy(){
+        this.groundMaterial.dispose();
+    }
+
     Update(delta){
         
     }

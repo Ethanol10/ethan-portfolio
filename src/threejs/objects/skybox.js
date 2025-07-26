@@ -10,7 +10,7 @@ import { getScene } from '../MainAppEntrypoint';
 
 export default class Skybox{
     constructor() {
-        let materialArray = [];
+        this.materialArray = [];
         let texture_ft = new THREE.TextureLoader().load(arid_ft);
         let texture_bk = new THREE.TextureLoader().load(arid_bk);
         let texture_up = new THREE.TextureLoader().load(arid_up);
@@ -18,21 +18,27 @@ export default class Skybox{
         let texture_rt = new THREE.TextureLoader().load(arid_rt);
         let texture_lf = new THREE.TextureLoader().load(arid_lf);
         
-        materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
-        materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
+        this.materialArray.push(new THREE.MeshBasicMaterial( { map: texture_ft }));
+        this.materialArray.push(new THREE.MeshBasicMaterial( { map: texture_bk }));
+        this.materialArray.push(new THREE.MeshBasicMaterial( { map: texture_up }));
+        this.materialArray.push(new THREE.MeshBasicMaterial( { map: texture_dn }));
+        this.materialArray.push(new THREE.MeshBasicMaterial( { map: texture_rt }));
+        this.materialArray.push(new THREE.MeshBasicMaterial( { map: texture_lf }));
 
         for (let i = 0; i < 6; i++){
-            materialArray[i].side = THREE.BackSide;
+            this.materialArray[i].side = THREE.BackSide;
         }
 
         let skyboxGeo = new THREE.BoxGeometry(1500, 1500, 1500);
-        this.skybox = new THREE.Mesh(skyboxGeo, materialArray);
+        this.skybox = new THREE.Mesh(skyboxGeo, this.materialArray);
 
         getScene().add(this.skybox);
         this.skybox.position.set(0, -250, 0);
+    }
+
+    Destroy(){
+        for(let i = 0; i < this.materialArray.length; i++){
+            this.materialArray[i].dispose();
+        }
     }
 }

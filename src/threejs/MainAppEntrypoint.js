@@ -1,9 +1,10 @@
 import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { EulerToRad, isNumber } from './ThreeJSHelpers';
 import Boid from './objects/boid';
 import Ground from './objects/ground';
 import { TARGET_RENDER_FRAMETIME, BOID_COUNT } from './StaticValues';
-// import Skybox from './objects/skybox';
+import Skybox from './objects/skybox';
 import { Target } from './objects/target';
 
 export function getScene(){
@@ -33,9 +34,9 @@ export let clock = null;
 
 export class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
-    constructor(refContainer){
+    constructor(refContainer, sceneInteractable = false){
       MainObj = this;
-
+      this.sceneInteractable = sceneInteractable;
       this.refContainer = refContainer;
 
       scene = new THREE.Scene();
@@ -57,7 +58,7 @@ export class Main{
       
       this.ground = new Ground();
 
-      // this.skybox = new Skybox();
+      this.skybox = new Skybox();
 
       let centerPoint = this.ground.getCenterPoint();
       
@@ -102,11 +103,19 @@ export class Main{
       this.scene_cam_container.position.set(this.ground.getCenterPoint().x, 0, this.ground.getCenterPoint().y);
 
       
-      this.scene_cam.position.z = 30;
-      this.scene_cam.position.x = 0;
-      this.scene_cam.position.y = 15;
-
+      this.scene_cam.position.set(0, 15, 30);
       this.scene_cam.rotation.x = EulerToRad(-45);
+      
+      if(this.sceneInteractable){
+        this.controls = new OrbitControls(this.scene_cam, this.renderer.domElement); 
+        this.scene_cam.parent = null;
+        this.scene_cam.position.set(10, 20, 10);
+        this.controls.target.set(this.ground.getCenterPoint().x, 0, this.ground.getCenterPoint().y);
+        this.controls.maxDistance = 100;
+        // this.scene_cam.rotation.x = EulerToRad(-45);
+        this.controls.update();
+      }
+
       // this.scene_cam_container.rotation.y = EulerToRad(-45);
       //setup timers
       this.gameLoopDelta = 0;
@@ -119,10 +128,15 @@ export class Main{
 
     Update(delta){
       if(this.isFocused){
-        this.renderer.render(scene, this.scene_cam);
-      
-        this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
-        
+        if(this.sceneInteractable){
+          this.controls.update();
+        }
+        else{
+          this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
+        }
+
+        this.renderer.render(scene, this.scene_cam);        
+
         for(let i = 0; i < OBJECT_LIST.length; i++){
           OBJECT_LIST[i].Update(delta);
         }
@@ -171,5 +185,13 @@ export class Main{
       }
 
       this.Update(this.gameLoopDelta);
+    }
+
+    Destroy(){
+      // Destroy everything?
+      for(let i = 0; i < OBJECT_LIST.length; i++){
+        OBJECT_LIST[i].Destroy();
+      }
+      this.renderer.dispose();
     }
   }

@@ -27,18 +27,18 @@ export class Windtrail{
         context.fillRect( 0, 0, 64, 8 );
 
         let texture = new THREE.CanvasTexture( canvas );
-
-        //Create the line mesh
-        this.line = new THREE.Mesh(
-            new THREE.PlaneGeometry( 1, 1, 20, 1 ), // Create a 1x1 tex with 20 segments in the width, and 1 in the height
-            new THREE.MeshBasicMaterial( {
+        this.windMaterial = new THREE.MeshBasicMaterial( {
                 map: texture,
                 // color: 0xffffff,
                 side:THREE.DoubleSide,
                 transparent: true,
                 // depthWrite: false,
-            }
-        ));
+            });
+        //Create the line mesh
+        this.line = new THREE.Mesh(
+            new THREE.PlaneGeometry( 1, 1, 20, 1 ), // Create a 1x1 tex with 20 segments in the width, and 1 in the height
+            this.windMaterial
+        );
         this.line.frustumCulled = false;
 		this.line.pos = this.line.geometry.getAttribute( 'position' );
 
@@ -49,6 +49,10 @@ export class Windtrail{
         getScene().add(this.line);
         AddNewObject(this);
         this.stopwatch = 0;
+    }
+
+    Destroy(){
+        this.windMaterial.dispose();
     }
 
     Update(delta){
