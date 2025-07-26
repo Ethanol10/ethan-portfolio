@@ -92,8 +92,13 @@ export default class Boid{
     }
 
     Destroy(){
-        this.material.dispose();
-        this.shadowMat.dispose();
+        if(this.material !== null){
+            this.material?.dispose();
+        }
+
+        if(this.shadowMat !== null){
+            this.shadowMat?.dispose();
+        }
     }
 
     FixedUpdate(delta){

@@ -52,7 +52,9 @@ export class Windtrail{
     }
 
     Destroy(){
-        this.windMaterial.dispose();
+        if(this.windMaterial !== null){
+            this.windMaterial?.dispose();   
+        }
     }
 
     Update(delta){

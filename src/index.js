@@ -6,15 +6,17 @@ import {Pong} from './pages/Pong';
 import reportWebVitals from './reportWebVitals';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router";
+import NotFound from "./pages/NotFound";
 
 const container = document.getElementById('root');
 const root = createRoot(container);
 root.render(
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<App/>} />
-            <Route path="/boids" element={<ThreeEntrypoint sceneInteractable={true}/>} />
-            <Route path="/ping" element={<Pong/>} />
+            <Route exact path="/" element={<App/>}/>
+            <Route exact path="/boids" element={<ThreeEntrypoint sceneInteractable={true}/>}/>
+            <Route exact path="/ping" element={<Pong/>}/>
+            <Route path="*" element={<NotFound/>}/>
         </Routes>
     </BrowserRouter>
 );

@@ -49,7 +49,9 @@ export default class Ground{
     }
 
     Destroy(){
-        this.groundMaterial.dispose();
+        if(this.groundMaterial !== null){
+            this.groundMaterial?.dispose();
+        }
     }
 
     Update(delta){

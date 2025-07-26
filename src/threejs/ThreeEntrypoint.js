@@ -11,7 +11,6 @@ function ThreeEntrypoint(props) {
 
   useEffect(() => {
     let threeApp = new Main(refContainer, sceneInteractable);
-
     const handleResize = () => {
       if(MainObj !== null){
         MainObj.ResizeCam();
@@ -45,7 +44,6 @@ function ThreeEntrypoint(props) {
       //Cleanup the Three Scene on unmount
       if(MainObj !== null){
         MainObj.Destroy();
-        console.log("cleanup!");
       }
     }
   }, [sceneInteractable, ]);

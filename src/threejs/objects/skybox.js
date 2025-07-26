@@ -38,7 +38,9 @@ export default class Skybox{
 
     Destroy(){
         for(let i = 0; i < this.materialArray.length; i++){
-            this.materialArray[i].dispose();
+            if(this.materialArray[i] !== null){
+                this.materialArray[i]?.dispose();
+            }
         }
     }
 }
