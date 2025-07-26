@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import githubImg from '../media/github-logo.png';
-import linkedinImg from '../media/linkedin.png';
+import githubImg from '../../../media/github-logo.png';
+import linkedinImg from '../../../media/linkedin.png';
 
 export default function Footer(props){
     const {innerRef} = props;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProjectCarousel from './ProjectCarousel';
 import MobileProjectCarousel from './MobileProjectCarousel';
-import {projectsList} from "../media/projects/projectsList";
+import {projectsList} from "../../../media/projects/projectsList";
 
 export default function Projects(props){
     const {innerRef} = props;

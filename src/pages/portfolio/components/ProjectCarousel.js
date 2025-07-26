@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
-import  { PROJECTS_CAROUSEL_IMG_TRANSITION_TIMER_MILLIS }from '../consts';
-import right_arrow from '../media/Icons/right_arrow.svg'; 
+import  { PROJECTS_CAROUSEL_IMG_TRANSITION_TIMER_MILLIS }from '../../../consts';
+import right_arrow from '../../../media/Icons/right_arrow.svg'; 
 
 export default function ProjectCarousel(props){
     const {items, setItem} = props;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import App from './App';
-import ThreeEntrypoint from './threejs/ThreeEntrypoint';
+import ThreeEntrypoint from './pages/portfolio/threejs/ThreeEntrypoint'
 import {Pong} from './pages/Pong';
 import reportWebVitals from './reportWebVitals';
 import { createRoot } from 'react-dom/client';

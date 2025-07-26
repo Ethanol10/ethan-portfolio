@@ -3,7 +3,7 @@ import { EulerToRad, easeInOutParabola } from '../ThreeJSHelpers';
 import { BOID_BOUNDS, BOID_COLOR_LIST } from '../StaticValues';
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { getScene, AddNewObject, MainObj, getClock } from '../MainAppEntrypoint';
-import airplane from '../../media/models/airplane_fixed.glb';
+import airplane from '../../../../media/models/airplane_fixed.glb';
 import { Windtrail } from './windtrail';
 
 export default class Boid{

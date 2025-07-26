@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { professionalExperienceContent, educationContent } from '../media/experienceContent';
+import { professionalExperienceContent, educationContent } from '../../../media/experienceContent';
 
 //Hover to expand cards!
 // Each entry is an expanding window, with a title, date joined/left, small description

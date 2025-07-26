@@ -1,14 +1,14 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import NavigationBar from './components/NavigationBar.js';
-import TitleCard from './components/TitleCard.js';
-import AboutCard from './components/AboutCard.js';
-import TechStack from './components/TechStack.js';
-import Footer from './components/Footer';
+import NavigationBar from './pages/portfolio/components/NavigationBar.js';
+import TitleCard from './pages/portfolio/components/TitleCard.js';
+import AboutCard from './pages/portfolio/components/AboutCard.js';
+import TechStack from './pages/portfolio/components/TechStack.js';
+import Footer from './pages/portfolio/components/Footer';
 import "./styles/index.scss";
 import "./styles/App.scss";
-import Projects from './components/Projects.js';
-import Experience from './components/Experience.js';
+import Projects from './pages/portfolio/components/Projects.js';
+import Experience from './pages/portfolio/components/Experience.js';
 
 function App() {
   const TitleCardRef = React.useRef(null);

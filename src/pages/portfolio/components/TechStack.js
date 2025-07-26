@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
-import { cardList } from '../media/cardlist';
-import close_icon from '../media/Icons/close_icon.svg'; 
-import { TECH_STACK_ROW_SIZE } from '../consts';
+import { cardList } from '../../../media/cardlist';
+import close_icon from '../../../media/Icons/close_icon.svg'; 
+import { TECH_STACK_ROW_SIZE } from '../../../consts';
 
 export default function TechStack(props) {
     const { innerRef } = props;

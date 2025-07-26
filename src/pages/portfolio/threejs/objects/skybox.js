@@ -1,10 +1,10 @@
 import * as THREE from 'three';
-import arid_ft from '../../media/textures/skybox_arid/arid2_ft.jpg';
-import arid_bk from '../../media/textures/skybox_arid/arid2_bk.jpg';
-import arid_up from '../../media/textures/skybox_arid/arid2_up.jpg';
-import arid_dn from '../../media/textures/skybox_arid/arid2_dn.jpg';
-import arid_rt from '../../media/textures/skybox_arid/arid2_rt.jpg';
-import arid_lf from '../../media/textures/skybox_arid/arid2_lf.jpg';
+import arid_ft from '../../../../media/textures/skybox_arid/arid2_ft.jpg';
+import arid_bk from '../../../../media/textures/skybox_arid/arid2_bk.jpg';
+import arid_up from '../../../../media/textures/skybox_arid/arid2_up.jpg';
+import arid_dn from '../../../../media/textures/skybox_arid/arid2_dn.jpg';
+import arid_rt from '../../../../media/textures/skybox_arid/arid2_rt.jpg';
+import arid_lf from '../../../../media/textures/skybox_arid/arid2_lf.jpg';
 import { getScene } from '../MainAppEntrypoint';
 
 

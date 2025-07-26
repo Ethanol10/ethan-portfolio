@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import {Main, MainObj} from './MainAppEntrypoint';
-import home from "../media/Icons/home.png";
+import home from "../../../media/Icons/home.png";
 import { useNavigate } from "react-router";
 
 
