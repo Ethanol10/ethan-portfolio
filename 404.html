@@ -26,8 +26,8 @@
 
       var l = window.location;
       let pathname = l.pathname;
-      
-      if(!pathname.startsWith('/docs')){
+
+      if (!window.location.pathname.includes('.') && !window.location.pathname.startsWith('/docs/')) {
         l.replace(
           l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
           l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
