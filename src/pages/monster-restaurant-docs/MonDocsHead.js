@@ -14,7 +14,22 @@ export function MonDocsHead(){
 
     function renderDesktopVariant(){
         const parentMap = parents.map((parent) => {
-            return <Link to={`${parent.slug}`}>{parent.title}</Link>
+            
+            const validChildren = [];
+            for (let i = 0; i < children.length; i++){
+                if(children[i].parent === parent.slug){
+                    validChildren.push(children[i]);
+                }
+            }
+            let childrenMap = validChildren.map((child) => {
+                return (<Link className='docs-nav-child-link' to={child.slug}>{child.title}</Link>);
+            });
+            return (
+                <>
+                    <Link to={`${parent.slug}`} className='docs-nav-parent-link'>{parent.title}</Link>
+                    {childrenMap}  
+                </>
+            );
         });
         return (
             <div className='docs-desktop-nav'>

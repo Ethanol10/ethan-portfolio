@@ -1,5 +1,6 @@
 .general-formatting{
     min-height: 20rem;
+    transition: all 0.5s ease-in-out;
 
     @media (min-width: $xs){
         padding: 5rem 1.5rem;
@@ -30,5 +31,4 @@
         min-height: 50rem;
     }
 
-    transition: all 0.5s ease-in-out;
 }
