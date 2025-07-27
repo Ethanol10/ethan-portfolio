@@ -21,14 +21,12 @@ export function MonDocsMarkdownPage(){
             return match ? text.slice(match[0].length) : text;
         }
 
-        fetch(`/docs/${correctSlug}.md`)
+        const basePath = process.env.PUBLIC_URL || '';
+        fetch(`${basePath}/docs/${correctSlug}.txt`)
         .then((res) => res.text())
         .then((text) => {  
-            // console.log(matter(text));
             // Get only the contents, not the front-matter + contents
-            // console.log(text);
             const strippedContent = stripFrontmatter(text);
-            // console.log(strippedContent);
             setContent(strippedContent);
         })
         .catch((e) => {

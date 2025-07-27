@@ -6,10 +6,10 @@ const matter = require('gray-matter');
 const docsDir = path.join(__dirname, "../public/docs");
 
 //Get the markdown files
-const files = fs.readdirSync(docsDir).filter(file => file.endsWith('.md'));
+const files = fs.readdirSync(docsDir).filter(file => file.endsWith('.txt'));
 
 // Set the Manifest Path (same folder as the docs.)
-const manifestPath = path.join(path.join(__dirname, "..//public/docs/"), 'manifest.json');
+const manifestPath = path.join(path.join(__dirname, "../public/docs/"), 'manifest.json');
 
 const manifest = files.map(filename => {
     //parse raw file piecing the filename and path
