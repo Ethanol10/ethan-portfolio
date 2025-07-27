@@ -1,20 +1,20 @@
 [
   {
-    "filename": "home.md",
+    "filename": "home.txt",
     "title": "Home",
     "date": "2025-07-27T00:00:00.000Z",
     "author": "Ethan Goh",
     "slug": "home"
   },
   {
-    "filename": "testpage.md",
+    "filename": "testpage.txt",
     "title": "Test Page",
     "date": "2025-07-27T00:00:00.000Z",
     "author": "Ethan Goh",
     "slug": "testpage"
   },
   {
-    "filename": "testpagechild.md",
+    "filename": "testpagechild.txt",
     "title": "Test Page Child",
     "date": "2025-07-27T00:00:00.000Z",
     "author": "Ethan Goh",
