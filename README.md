@@ -14,5 +14,12 @@ A website built to show-off abilities of myself in a single website.
 ## Deploying to Github pages:
 `npm run deploy`
 
+## For docs page:
+`npm run generate-manifest`
+
+OR 
+
+`npm run deploy` <-- This automatically runs the above command and then deploys to githubpages.
+
 ## Acknowledgements
 * Built in React
