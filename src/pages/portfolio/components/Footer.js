@@ -18,10 +18,10 @@ export default function Footer(props){
             <p>If you wish to contact me, you can contact me through the following:</p>
             <div className='footer_icons-container'>   
                 <a href='https://www.linkedin.com/in/ethan-goh-a85a39160/'>
-                    <img className={iconClassname} src={linkedinImg} alt="linkedIn link"></img>
+                    <img loading="lazy" className={iconClassname} src={linkedinImg} alt="linkedIn link"></img>
                 </a>
                 <a href='https://github.com/Ethanol10/'>
-                    <img className={iconClassname} src={githubImg} alt='github repo link'/>
+                    <img loading="lazy" className={iconClassname} src={githubImg} alt='github repo link'/>
                 </a>
             </div>
             <p style={{'paddingTop': '1rem'}}>Built in React</p>

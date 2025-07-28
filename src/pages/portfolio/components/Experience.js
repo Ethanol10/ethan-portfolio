@@ -24,7 +24,7 @@ export default function Experience(props){
         return(
             <div key={experience.id} className={containerClassnames} onClick={() => onClickExperience(experience)}>
                 <div className='experience-card_image-container'>
-                    <img alt={experience.short_description} src={experience.img}/>
+                    <img loading="lazy" alt={experience.short_description} src={experience.img}/>
                 </div>
                 <div className="experience-card_simple-text-container">
                     <h3>{experience.title}</h3>

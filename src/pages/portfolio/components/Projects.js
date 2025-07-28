@@ -73,7 +73,7 @@ export default function Projects(props){
                                             {selectedProject.related_urls.map((url, index) => {
                                                 return(
                                                     <a id={index} href={url.url}>
-                                                        <img src={url.img} alt={url.title} key={index} href={url.url}></img>
+                                                        <img loading="lazy" src={url.img} alt={url.title} key={index} href={url.url}></img>
                                                     </a>
                                                 )
                                             })}
@@ -106,7 +106,7 @@ export default function Projects(props){
                                         {selectedProject.body_images.map((img, index) => {
                                             return(
                                                 <>
-                                                    <img width="100%" src={img.img} alt={img.attribution} key={index}></img>
+                                                    <img loading="lazy" width="100%" src={img.img} alt={img.attribution} key={index}></img>
                                                     <p>{img.attribution}</p>
                                                 </>
                                             )

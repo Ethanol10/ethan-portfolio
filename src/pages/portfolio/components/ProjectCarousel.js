@@ -118,20 +118,20 @@ export default function ProjectCarousel(props){
             <div className='carousel_container-centering'>
 
                 <div ref={frontContainer} className={frontClassnames}>
-                    { frontImg && (<img alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>)}
-                    { frontImg && (<img alt={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].caption} ref={frontContainerSubsequentImg} className={frontSubsequentImgClassnames} src={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].img}></img>)}
+                    { frontImg && (<img loading="lazy" alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>)}
+                    { frontImg && (<img loading="lazy" alt={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].caption} ref={frontContainerSubsequentImg} className={frontSubsequentImgClassnames} src={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].img}></img>)}
                     { frontImg && (<p>{frontImg.imgs[imgIndex].caption}</p>)}
                     { position > 0 && 
                         (
                             <div className={leftButtonClassnames} onClick={triggerLeftAnim}>
-                                <img alt="left-button" className='carousel_left-button_arrow' src={right_arrow}/>
+                                <img loading="lazy" alt="left-button" className='carousel_left-button_arrow' src={right_arrow}/>
                             </div>
                         )
                     }
                     { position < items.length - 1 && 
                         (
                             <div className={rightButtonClassnames} onClick={triggerRightAnim}>
-                                <img alt="right-button" className='carousel_right-button_arrow' src={right_arrow}/>
+                                <img loading="lazy" alt="right-button" className='carousel_right-button_arrow' src={right_arrow}/>
                             </div>    
                         )
                     }
@@ -140,28 +140,28 @@ export default function ProjectCarousel(props){
 
                 <div className={leftClassnames}>
                     { leftImg && 
-                        ( <img alt={leftImg?.imgs[0].caption} className={leftImgClassnames} src={leftImg?.imgs[0].img}></img>)
+                        ( <img loading="lazy" alt={leftImg?.imgs[0].caption} className={leftImgClassnames} src={leftImg?.imgs[0].img}></img>)
                     }
                 </div>
 
                 <div className={rightClassnames}>
-                    { rightImg && (<img alt={rightImg?.imgs[0].caption} className={rightImgClassnames} src={rightImg?.imgs[0].img}></img>)} 
+                    { rightImg && (<img loading="lazy" alt={rightImg?.imgs[0].caption} className={rightImgClassnames} src={rightImg?.imgs[0].img}></img>)} 
                 </div>
 
                 <div className={leftHiddenClassnames}>
-                    { leftHiddenImg && (<img alt={leftHiddenImg?.imgs[0].caption} className={leftImgHiddenClassnames} src={leftHiddenImg?.imgs[0].img}></img>)}
+                    { leftHiddenImg && (<img loading="lazy" alt={leftHiddenImg?.imgs[0].caption} className={leftImgHiddenClassnames} src={leftHiddenImg?.imgs[0].img}></img>)}
                 </div>
 
                 <div className={rightHiddenClassnames}>
-                    { rightHiddenImg && (<img alt={rightHiddenImg?.imgs[0].caption} className={rightImgHiddenClassnames} src={rightHiddenImg?.imgs[0].img}></img>)}
+                    { rightHiddenImg && (<img loading="lazy" alt={rightHiddenImg?.imgs[0].caption} className={rightImgHiddenClassnames} src={rightHiddenImg?.imgs[0].img}></img>)}
                 </div>
 
                 <div className={rightInvisClassnames}>
-                    { rightInvisImg && (<img alt={rightInvisImg?.imgs[0].caption} className={rightImgInvisClassnames} src={rightInvisImg?.imgs[0].img}></img>)}
+                    { rightInvisImg && (<img loading="lazy" alt={rightInvisImg?.imgs[0].caption} className={rightImgInvisClassnames} src={rightInvisImg?.imgs[0].img}></img>)}
                 </div>
 
                 <div className={leftInvisClassnames}>
-                    { leftInvisImg && (<img alt={leftInvisImg?.imgs[0].caption} className={leftImgInvisClassnames} src={leftInvisImg.imgs[0].img}></img>)}
+                    { leftInvisImg && (<img loading="lazy" alt={leftInvisImg?.imgs[0].caption} className={leftImgInvisClassnames} src={leftInvisImg.imgs[0].img}></img>)}
                 </div>
             </div>
         </div>

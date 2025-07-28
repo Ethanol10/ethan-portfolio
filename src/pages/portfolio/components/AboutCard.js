@@ -13,7 +13,7 @@ export default function AboutCard(props){
                 </h1>
             </div>
             <div className="about-card_profile">
-                <img alt="Ethan Goh" src={profileImg} className="about-card_profile-img"/>
+                <img loading="lazy" alt="Ethan Goh" src={profileImg} className="about-card_profile-img"/>
                 <p className="about-card_width-text-clamp">{paragraphText.aboutText}</p>
             </div> 
         </div>

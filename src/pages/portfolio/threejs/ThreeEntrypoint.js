@@ -53,7 +53,7 @@ function ThreeEntrypoint(props) {
     <>
       {sceneInteractable && 
         <div className="boids-interactable-back-button" onClick={() => navigate("/")}>
-          <img alt="Return home" src={home}/>
+          <img loading="lazy" alt="Return home" src={home}/>
         </div>
       }
       <div ref={refContainer} className="threejs-container"></div>

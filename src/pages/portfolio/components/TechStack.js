@@ -32,13 +32,13 @@ export default function TechStack(props) {
         return (
             <div key={currentSelectedItem.id} className="tech-stack_singular-selection">
                 <div>
-                    <img alt={currentSelectedItem.token} src={currentSelectedItem.img} className={currentSelectedItem.imgClassname} />    
+                    <img loading="lazy" alt={currentSelectedItem.token} src={currentSelectedItem.img} className={currentSelectedItem.imgClassname} />    
                     <div className="tech-stack_singular-text-block">
                         <h2>{currentSelectedItem.name}</h2>
                         <p>{currentSelectedItem.name}</p>
                     </div>
                 </div>
-                <img onClick={SingularCardItemOnClick} src={close_icon} alt={"Close"} className="tech-stack_close-icon"></img>
+                <img loading="lazy" onClick={SingularCardItemOnClick} src={close_icon} alt={"Close"} className="tech-stack_close-icon"></img>
             </div>
         );
     }
@@ -96,7 +96,7 @@ export default function TechStack(props) {
                         <h3>{element.name}</h3>
                     </div>
                 </div>
-                <img onClick={() => CardItemOnClick(element)} alt={element.token} src={element.img} className={element.imgClassname}/>
+                <img loading="lazy" onClick={() => CardItemOnClick(element)} alt={element.token} src={element.img} className={element.imgClassname}/>
             </div>
         );
     }

@@ -70,30 +70,30 @@ export default function MobileProjectCarousel(props){
             <div className="mobile_carousel_container">
                 <div className="mobile_carousel-front">
                     {frontImg && (
-                        <img alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>
+                        <img loading="lazy" alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>
                     )}
                 </div>
                 <div className="mobile_carousel-back">
                     {frontImg && (
-                        <img alt={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].caption} ref={subImgRef} className={backImgClassnames} src={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].img}></img>
+                        <img loading="lazy" alt={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].caption} ref={subImgRef} className={backImgClassnames} src={frontImg?.imgs[(imgIndex + 1) % frontImg?.imgs.length].img}></img>
                     )}
                 </div>
                 <div className="mobile_carousel-next-project">
                     {frontImg && (
-                        <img alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>
+                        <img loading="lazy" alt={frontImg?.imgs[imgIndex].caption} className={frontImgClassnames} src={frontImg?.imgs[imgIndex].img}></img>
                     )}
                 </div>
                     { position > 0 && 
                         (
                             <div className={leftButtonClassnames} onClick={triggerLeftAnim}>
-                                <img alt="left-button" className='mobile-carousel_left-button_arrow' src={right_arrow}/>
+                                <img loading="lazy" alt="left-button" className='mobile-carousel_left-button_arrow' src={right_arrow}/>
                             </div>
                         )
                     }
                     { position < items.length - 1 && 
                         (
                             <div className={rightButtonClassnames} onClick={triggerRightAnim}>
-                                <img alt="right-button" className='mobile-carousel_right-button_arrow' src={right_arrow}/>
+                                <img loading="lazy" alt="right-button" className='mobile-carousel_right-button_arrow' src={right_arrow}/>
                             </div>    
                         )
                     }
