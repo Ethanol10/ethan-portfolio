@@ -5,7 +5,7 @@ import { useNavigate } from "react-router";
 
 
 function ThreeEntrypoint(props) {
-  const {sceneInteractable} = props;
+  const {sceneInteractable, setFocus} = props;
   const refContainer = useRef(null);
   const navigate = useNavigate();
 
@@ -20,12 +20,18 @@ function ThreeEntrypoint(props) {
     const handleFocus = () => {
       if(MainObj !== null){
         MainObj.SetFocusState(true);
+        if(setFocus !== undefined){
+          setFocus(true);
+        }
       }
     }
 
     const handleBlur = () => {
       if(MainObj !== null){
         MainObj.SetFocusState(false);
+        if(setFocus !== undefined){
+          setFocus(false);
+        }
       }
     }
 
