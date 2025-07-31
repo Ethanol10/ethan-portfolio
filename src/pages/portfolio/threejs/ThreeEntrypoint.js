@@ -8,7 +8,7 @@ function ThreeEntrypoint(props) {
   const {sceneInteractable, setFocus} = props;
   const refContainer = useRef(null);
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     let threeApp = new Main(refContainer, sceneInteractable);
     const handleResize = () => {
@@ -52,7 +52,7 @@ function ThreeEntrypoint(props) {
         MainObj.Destroy();
       }
     }
-  }, [sceneInteractable, ]);
+  }, [sceneInteractable, setFocus,]);
 
 
   return (

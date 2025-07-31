@@ -35,6 +35,16 @@
     img{
         max-width: 1080px;
     }
+    
+    pre{
+        background-color: #3e3e42;
+        border-color: #3e3e42;
+        border-style: solid;
+        border-radius: 2rem;
+        border-width: 0.5rem;
+        padding: 2rem;
+        color: #FFFFFF;
+    }
 }
 
 .docs-nav-child-link{

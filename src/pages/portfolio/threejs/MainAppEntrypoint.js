@@ -49,6 +49,7 @@ export class Main{
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
+      this.renderer.debug.checkShaderErrors = true;
       this.renderer.setSize(refContainer.current?.clientWidth, window.innerHeight);
       
       clock = new THREE.Clock();

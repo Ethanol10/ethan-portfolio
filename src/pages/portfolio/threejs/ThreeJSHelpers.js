@@ -1,3 +1,6 @@
+import { Noise } from 'noisejs';
+import * as THREE from "three";
+
 export const EulerToRad = (input) => {
     return (input * Math.PI) / 180; 
 }
@@ -42,4 +45,33 @@ export const easeInOutQuint = (progress) => {
     }
 
     return result;
+}
+
+
+export function generatePerlinNoise(width = 256, height= 256){
+    const noise = new Noise(Math.random());
+    const size = width * height;
+    const data = new Uint8Array(size * 4); // store the values in here, each bit is RGBA
+    let i = 0;
+
+    for (let x = 0; x < width; x ++){
+        for(let y = 0; y < height; y++){
+            //normalize the value between 0 - 255
+            const value = Math.floor((noise.perlin2(x / 50, y / 50) + 1) * (255/2) );
+            data[i++] = value;
+            data[i++] = value;
+            data[i++] = value;
+            data[i++] = 255;
+            // R G B then A
+        }
+    }
+
+    const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat);
+    texture.needsUpdate = true;
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.minFilter = THREE.LinearFilter;
+    texture.magFilter = THREE.LinearFilter;
+
+    return texture;
 }

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import Box from '@mui/material/Box';
 import ThreeEntrypoint from "../threejs/ThreeEntrypoint";
 import classNames from 'classnames';
@@ -7,16 +7,15 @@ export default function TitleCard(props){
 
     const {innerRef} = props;
     const [focusState, setFocusState] = useState(true);
+    const focusStateCallback = useCallback((val) => {
+        setFocusState(val);
+    }, []);
 
     const overlayClassName = classNames("title-card_overlay", {"title-card_unfocused": !focusState});
 
-    const setFocus = (state) => {
-        setFocusState(state);
-    }
-
     return (
     <div ref={innerRef} className="title-card_home">
-        <ThreeEntrypoint sceneInteractable={false} setFocus={setFocus}/>
+        <ThreeEntrypoint sceneInteractable={false} setFocus={focusStateCallback}/>
         <div className={overlayClassName}>
             <Box
                 height="100%"
