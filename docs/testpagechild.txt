@@ -8,6 +8,9 @@ parent: testpage
 
 
 # Arsonist, The Manic Incendiary
+```
+console.log("hey this is a test codeblock!");
+```
 
 <img loading="lazy" src="https://github.com/Popcorn-Factory/Arsonist-RoR2/blob/master/Thunderstorerelease/arsonistpodsmall.gif?raw=true">
 
