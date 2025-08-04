@@ -4,6 +4,14 @@
     width: 100%;
 }
 
+.docs-nav-bar_button{
+    margin: 1rem 1rem;
+}
+
+.docs-nav_container{
+
+}
+
 .docs-desktop-nav{
     position: sticky;
     top: 0;
@@ -12,6 +20,7 @@
     height: 100vh;
     display:flex;
     flex-direction: column;
+    transition: all 1s ease-in-out;
 
     padding: 1rem 1rem;
     a{
@@ -21,6 +30,7 @@
 
     &.closed{
         width: 0%;
+        padding: 0;
     }
 }
 
@@ -52,10 +62,22 @@
     margin: 0rem 0rem;
     margin-left: 2rem;
     padding: 0.5rem 0.3rem;
+    overflow-x: hidden;
+    transition: all 1s ease-in-out;
+
+    &.closed{
+        padding: 0;
+    }
 }
 
 .docs-nav-parent-link{
     background-color: #FFFFFF;
     padding: 0.5rem 0.3rem;
     margin: 0rem 0rem;
+    overflow-x: hidden;
+    transition: all 1s ease-in-out;
+    
+    &.closed{
+        padding: 0;
+    }
 }

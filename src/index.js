@@ -16,7 +16,7 @@ const root = createRoot(container);
 const getMonAppetitDocs = () => {
     return (
         <>
-            <Route path="appdocs" element={<MonDocsHead/>}>
+            <Route path="mondocs" element={<MonDocsHead/>}>
                 <Route path=":slug" element={<MonDocsMarkdownPage />} />
                 <Route index element={<MonDocsMarkdownPage/>}/>
             </Route>

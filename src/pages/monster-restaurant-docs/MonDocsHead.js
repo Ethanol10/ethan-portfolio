@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, Outlet } from 'react-router';
+import classNames from 'classnames';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export function MonDocsHead(){
     //This should render on top of everything in this URL path, so
@@ -11,6 +13,11 @@ export function MonDocsHead(){
 
     const [parents, setParents] = useState([]);
     const [children, setChildren] = useState([]);
+    const [drawerActive, setDrawerActive] = useState(true);
+
+    let drawerClassnames = classNames("docs-desktop-nav", {"closed": !drawerActive});
+    let parentClassnames = classNames("docs-nav-parent-link", {"closed": !drawerActive});
+    let childrenClassnames = classNames("docs-nav-child-link", {"closed": !drawerActive});
 
     function renderDesktopVariant(){
         const parentMap = parents.map((parent) => {
@@ -22,26 +29,34 @@ export function MonDocsHead(){
                 }
             }
             let childrenMap = validChildren.map((child) => {
-                return (<Link className='docs-nav-child-link' to={child.slug}>{child.title}</Link>);
+                return (<Link className={childrenClassnames} to={child.slug}>{child.title}</Link>);
             });
             return (
                 <>
-                    <Link to={`${parent.slug}`} className='docs-nav-parent-link'>{parent.title}</Link>
+                    <Link to={`${parent.slug}`} className={parentClassnames}>{parent.title}</Link>
                     {childrenMap}  
                 </>
             );
         });
         return (
-            <div className='docs-desktop-nav'>
-                {parentMap}
+            <div className="docs-nav_container"> 
+                <MenuIcon className="docs-nav-bar_button" onClick={toggleDrawer} />
+                <div className={drawerClassnames}>
+                    {parentMap}
+                </div>
             </div>
         );
+    }
+
+    function toggleDrawer(){
+        setDrawerActive(!drawerActive);
     }
 
     function renderMobileVariant(){
 
     }
 
+    //Start up the manifest load
     useEffect(() => {
         fetch(`/docs/manifest.json`)
             .then((res) =>{
