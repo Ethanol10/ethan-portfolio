@@ -1,0 +1,13 @@
+---
+title: Shader Tricks
+date: 2025-08-04
+author: Ethan Goh
+slug: shadertricks
+---
+
+
+# Shader Tricks
+I find myself often looking for ways to write shaders for specific effects, and then I end up never remembering how to implement it. So here we'll write some stuff down for future reference.
+
+## Separating Ground into Pillars based on a Grid
+In this example, I wanted to create a floor that is made up of pillars that deform based on a grid. 
