@@ -112,8 +112,19 @@ export class Main{
         this.scene_cam.parent = null;
         this.scene_cam.position.set(10, 20, 10);
         this.controls.target.set(this.ground.getCenterPoint().x, 0, this.ground.getCenterPoint().y);
-        this.controls.maxDistance = 100;
+        this.controls.maxDistance = 200;
+        this.controls.autoRotate = true;
+        this.controls.enableDamping = true;
+        this.controls.dampingFactor = 0.1;
+        this.controls.autoRotateSpeed = 0.5;
+        this.interactionTimer = 0;
         // this.scene_cam.rotation.x = EulerToRad(-45);
+
+        this.controls.addEventListener('start', () => {
+          console.log("Interaction started");
+          this.interactionTimer = 5;
+          this.controls.autoRotate = false;
+        });
         this.controls.update();
       }
 
@@ -130,6 +141,14 @@ export class Main{
     Update(delta){
       if(this.isFocused){
         if(this.sceneInteractable){
+          if(this.interactionTimer > 0){
+            this.interactionTimer -= delta;
+            this.controls.autoRotate = false;
+          }
+          if(this.interactionTimer <= 0 && !this.controls.autoRotate){
+            this.controls.autoRotate = true;
+          }
+
           this.controls.update();
         }
         else{

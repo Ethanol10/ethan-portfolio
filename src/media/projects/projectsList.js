@@ -19,7 +19,8 @@ import v2lee5 from "./v2lee5.png";
 import v2lee6 from "./v2lee6.png";
 import duo1 from "./duo1.jpg";
 import duo2 from "./duo2.jpg";
-
+import boids1 from "./boids1.png";
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 export const projectsList = 
 [
@@ -151,6 +152,29 @@ export const projectsList =
         ],
     },
     {
+        "id": "boids-threejs",
+        "title": "Boids Simulation in 3D",
+        "description": "A 3D simulation of boids (flocking behavior) using Three.js. I was always interested in implementing this myself since the first time I saw this in University, and I finally got around to implementing it in THREE.js.\n I also wanted to implement some effects that show interaction with the world around it, so I also got around to learning shaders to create some interesting visual effects. The system I've created in the background has object management, which allows the easy addition and lifecycle update of objects in the scene, making it more scaleable and easier to manage.",
+        "imgs": [
+            {
+                "img": boids1,
+                "caption": "Homepage of the portfolio website."
+            }
+        ],
+        "related_urls": [
+            {
+                "title": "Interactive Demo",
+                "url": "https://ethangoh.work/boids",
+                "img": <PlayArrowIcon style={{ width: "4rem", height: "4rem" }} className="projects_play-icon" />,
+            },
+            {
+                "title": "Github (Source code)",
+                "url": "https://github.com/Ethanol10/ethan-portfolio/tree/develop/src/pages/portfolio/threejs",
+                "img": githubImg,
+            }
+        ],
+    },
+    {
         "id": "duo-de-glance-bar",
         "title": "Surface Duo/Duo 2 Custom ROM features",
         "description": "In my free time, I was rather interested in adding some features to an existing Android ROM for the Surface Duo and Duo 2. After much deliberation, I was able to implement a few features that helped uplift the usability of the device.\n In one such example, I was able to add a new \"Glance Bar and Peek mode\" feature, which is a feature that was originally present in the Surface Duo 2. By peeking the device, the screen will power on and show some useful data with a clean animation of the background filling up to the percentage of the current battery. On Duo 2, this can be seen on the hinge side, which makes it easy to quickly glance on information on the device without having to open the phone.\n Furthermore, I was also interested into getting the pen charging capability to work, which was also present in the original firmware. Through some digging I did manage to find the specific file that controls the state of the pen charger, and was able to implement it into the custom ROM through some SE Linux permission changes.\n Through my time on this, I learned more about how Android works, the build process and more about Kotlin and Java.",
@@ -169,6 +193,7 @@ export const projectsList =
                 "title": "Github (Source code)",
                 "url": "https://github.com/Archfx/duo-de",
                 "img": githubImg,
-            }],
+            }
+        ],
     },
 ]

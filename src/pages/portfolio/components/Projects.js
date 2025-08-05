@@ -71,9 +71,15 @@ export default function Projects(props){
                                         <h3>Related links</h3>
                                         <div className='projects_link-container'>
                                             {selectedProject.related_urls.map((url, index) => {
+                                                //Check if the img is a component
+                                                let img = (<img loading="lazy" src={url.img} alt={url.title} key={index} href={url.url}></img>);
+                                                if(typeof url.img === "object"){
+                                                    img = url.img;
+                                                }
+
                                                 return(
                                                     <a id={index} href={url.url}>
-                                                        <img loading="lazy" src={url.img} alt={url.title} key={index} href={url.url}></img>
+                                                        {img}
                                                     </a>
                                                 )
                                             })}
