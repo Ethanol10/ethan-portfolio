@@ -10,7 +10,7 @@ export default class Ground{
     constructor(){
         let groundGeometry = new THREE.PlaneGeometry(1, 1, 1000, 1000);
         groundGeometry.rotateX(EulerToRad(-90));
-        this.groundMaterial = new THREE.MeshStandardMaterial({color: 0xd1ffbd});
+        this.groundMaterial = new THREE.MeshStandardMaterial({color: 0x69a1d6});
         // this.groundMaterial.wireframe = true;
         this.perlinTex = generatePerlinNoise(256, 256);
         this.clock = getClock();
@@ -36,7 +36,7 @@ export default class Ground{
                     vec3 transformed = vec3(position);                    
                     vec4 worldPos = modelMatrix * vec4(transformed, 1.0);
 
-                    float blockSize = 5.0;
+                    float blockSize = 3.0;
                     float bx = floor(transformed.x / blockSize);
                     float bz = floor(transformed.z / blockSize);
                     float worldBx = floor(worldPos.x / blockSize);
@@ -50,18 +50,18 @@ export default class Ground{
                     );
 
                     vec2 cellCenter = vec2(
-                        (bx + blockSize * 0.5) * blockSize,
-                        (bz + blockSize * 0.5) * blockSize
+                        (bx + (blockSize * 0.5)) * blockSize,
+                        (bz + (blockSize * 0.5)) * blockSize
                     );
 
                     for (int i = 0; i < BOID_POINT_MAX; i++) {
+                        if(i >= pointCount) break;
                         float dist = distance(cellCenterWorld, pointList[i].xz);
                         influence += 1.0 / (1.0 + dist * dist); // inverse-square falloff
                     }
 
                     vInfluence = influence;
-                    // transformed.xz = cellCenterWorld;
-                    transformed.y += influence * 0.003;
+                    transformed.y += influence * 0.002;
                 `
             );
 
@@ -78,8 +78,15 @@ export default class Ground{
                         diffuseColor *= texelColor;
                     #endif
 
-                    // Now tint the base color before lighting
-                    diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.0, 0.0, 0.0), clamp(vInfluence, 0.0, 1.0));
+                    // Posterize based on influence
+                    float levels = 3.0;
+                    float posterizeVal = floor(vInfluence * levels) / levels;
+                    
+                    //Remap to complimentary colour;
+                    float compR = abs(diffuseColor.r - 1.0);
+                    float compG = abs(diffuseColor.g - 1.0);
+                    float compB = abs(diffuseColor.b - 1.0);
+                    diffuseColor.rgb = mix(diffuseColor.rgb, vec3(compR, compG, compB), posterizeVal);
                 `
             );
         }
