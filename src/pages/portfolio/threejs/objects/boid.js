@@ -8,6 +8,7 @@ import { Windtrail } from './windtrail';
 
 export default class Boid{
     constructor(){
+        this.isInitialized = false;
         this.HOVER_POSITION = 0;
         this.WAVELENGTH = 2 + Math.random() * 5;
         this.AMPLITUDE = 1;
@@ -77,6 +78,7 @@ export default class Boid{
 
         this.trail = new Windtrail(material.color.getHexString());
         this.trail.boid_target = this;
+        this.isInitialized = true;
     }
 
     onLoading(xhr){

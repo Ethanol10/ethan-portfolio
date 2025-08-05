@@ -120,8 +120,8 @@ export class Main{
         this.interactionTimer = 0;
         // this.scene_cam.rotation.x = EulerToRad(-45);
 
+        // Event Listener to auto rotate after x amount of seconds
         this.controls.addEventListener('start', () => {
-          console.log("Interaction started");
           this.interactionTimer = 5;
           this.controls.autoRotate = false;
         });

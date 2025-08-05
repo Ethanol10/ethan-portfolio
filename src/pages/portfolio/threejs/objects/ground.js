@@ -17,43 +17,71 @@ export default class Ground{
         this.positionsArray = new Float32Array(BOID_COUNT * 3);
         //material modification
         this.groundMaterial.onBeforeCompile = (shader) => {
+            this.groundMaterial.userData.shader = shader;
+            shader.uniforms.pointList = { value: this.positionsArray };
+            shader.uniforms.time = { value: this.clock.getElapsedTime()};
+            shader.uniforms.pointCount = { value: BOID_COUNT};
             shader.vertexShader = `
                 #define BOID_POINT_MAX ${BOID_COUNT}
                 uniform float time;
                 uniform vec3 pointList[BOID_POINT_MAX];
                 uniform int pointCount;
 
-                float getProximity(vec3 worldPos) {
-                    float influence = 0.0;
-                    for (int i = 0; i < BOID_POINT_MAX; i++) {
-                        if (i >= pointCount) break;
-                        float dist = distance(worldPos.xz, pointList[i].xz);
-                        influence += 1.0 / (1.0 + dist);
-                    }
-                    return influence;
-                }
+                varying float vInfluence;
             ` + shader.vertexShader;
 
             shader.vertexShader = shader.vertexShader.replace(
                 "#include <begin_vertex>", 
                 `
-                    vec3 transformed = vec3(position);
+                    vec3 transformed = vec3(position);                    
+                    vec4 worldPos = modelMatrix * vec4(transformed, 1.0);
 
-                    float blockSize = 0.002;
-                    float blockX = floor(transformed.x / blockSize);
-                    float blockZ = floor(transformed.z / blockSize);
+                    float blockSize = 5.0;
+                    float bx = floor(transformed.x / blockSize);
+                    float bz = floor(transformed.z / blockSize);
+                    float worldBx = floor(worldPos.x / blockSize);
+                    float worldBz = floor(worldPos.z / blockSize);
 
-                    // Simple pillar height pattern
-                    float initHeight = 0.001;
-                    // float pillarHeight = mod(blockX + blockZ, 2.0) * initHeight;
-                    float pillarHeight = mod(blockX + blockZ, 2.0) * getProximity(vec3(blockX, 0, blockZ)); 
+                    float influence = 0.0;
+                    
+                    vec2 cellCenterWorld = vec2(
+                        (worldBx + blockSize * 0.5) * blockSize,
+                        (worldBz + blockSize * 0.5) * blockSize
+                    );
 
-                    // // Animate height
-                    // // pillarHeight *= sin(time + blockX * 0.5 + blockZ * 0.5);
+                    vec2 cellCenter = vec2(
+                        (bx + blockSize * 0.5) * blockSize,
+                        (bz + blockSize * 0.5) * blockSize
+                    );
 
-                    transformed.y += pillarHeight;
+                    for (int i = 0; i < BOID_POINT_MAX; i++) {
+                        float dist = distance(cellCenterWorld, pointList[i].xz);
+                        influence += 1.0 / (1.0 + dist * dist); // inverse-square falloff
+                    }
+
+                    vInfluence = influence;
+                    // transformed.xz = cellCenterWorld;
+                    transformed.y += influence * 0.003;
                 `
-            )
+            );
+
+            shader.fragmentShader = `
+                varying float vInfluence;
+            ` + shader.fragmentShader;
+
+            shader.fragmentShader = shader.fragmentShader.replace(
+                '#include <map_fragment>',
+                `
+                    #ifdef USE_MAP
+                        vec4 texelColor = texture2D( map, vMapUv );
+                        texelColor = mapTexelToLinear( texelColor );
+                        diffuseColor *= texelColor;
+                    #endif
+
+                    // Now tint the base color before lighting
+                    diffuseColor.rgb = mix(diffuseColor.rgb, vec3(0.0, 0.0, 0.0), clamp(vInfluence, 0.0, 1.0));
+                `
+            );
         }
         
         this.ground = new THREE.Mesh(groundGeometry, this.groundMaterial);
@@ -105,10 +133,20 @@ export default class Ground{
 
     updateBoidPositions(){
         for(let i = 0; i < MainObj.boidList.length; i++){
-            if(MainObj.boidList[i].position === undefined){
+            if(!MainObj.boidList[i].isInitialized){
                 continue;
             }
-            let worldPos = MainObj.boidList[i].getWorldPosition();
+            
+            if(MainObj.boidList[i].obj === undefined){
+                continue;
+            }
+
+            let worldPos = new THREE.Vector3();
+            // MainObj.boidList[i].obj.getWorldPosition(worldPos);
+            worldPos = MainObj.boidList[i].obj.position;
+            if(worldPos === undefined){
+                continue;
+            }
             this.positionsArray[i * 3] = worldPos.x;
             this.positionsArray[i * 3 + 1] = worldPos.y;
             this.positionsArray[i * 3 + 2] = worldPos.z;
@@ -119,11 +157,14 @@ export default class Ground{
         this.updateBoidPositions();
         
         if(this.clock){
-            this.groundMaterial.uniforms = {
-                time: { value: this.clock.getElapsedTime() },
-                pointList: { value: this.positionsArray },
-                pointCount: { value: MainObj.boidList.length } 
-            };
+            if(this.groundMaterial.userData.shader){
+                this.groundMaterial.userData.shader.uniforms = {
+                    time: { value: this.clock.getElapsedTime() },
+                    pointList: { value: this.positionsArray },
+                    pointCount: { value: MainObj.boidList.length } 
+                }
+            }
+            this.groundMaterial.needsUpdate = true;
         }
     }
 
