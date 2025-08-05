@@ -20,6 +20,7 @@ import v2lee6 from "./v2lee6.png";
 import duo1 from "./duo1.jpg";
 import duo2 from "./duo2.jpg";
 import boids1 from "./boids1.png";
+import boids2 from "./boids2.png";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 
 export const projectsList = 
@@ -157,8 +158,12 @@ export const projectsList =
         "description": "A 3D simulation of boids (flocking behavior) using Three.js. I was always interested in implementing this myself since the first time I saw this in University, and I finally got around to implementing it in THREE.js.\n I also wanted to implement some effects that show interaction with the world around it, so I also got around to learning shaders to create some interesting visual effects. The system I've created in the background has object management, which allows the easy addition and lifecycle update of objects in the scene, making it more scaleable and easier to manage.",
         "imgs": [
             {
+                "img": boids2,
+                "caption": "Current Version of boids on website."
+            },
+            {
                 "img": boids1,
-                "caption": "Homepage of the portfolio website."
+                "caption": "Initial version on boids."
             }
         ],
         "related_urls": [
