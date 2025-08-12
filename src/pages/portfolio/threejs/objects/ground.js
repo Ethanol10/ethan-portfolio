@@ -54,10 +54,12 @@ export default class Ground{
                         (bz + (blockSize * 0.5)) * blockSize
                     );
 
+                    float factor = 1.01;
                     for (int i = 0; i < BOID_POINT_MAX; i++) {
                         if(i >= pointCount) break;
                         float dist = distance(cellCenterWorld, pointList[i].xz);
                         influence += 1.0 / (1.0 + dist * dist); // inverse-square falloff
+                        influence *= factor;
                     }
 
                     vInfluence = influence;
@@ -96,7 +98,7 @@ export default class Ground{
 
         this.bounds = BOID_BOUNDS;
         this.BOUND_FACTOR = 20;
-        this.ground.position.set(this.bounds / 2, -5, this.bounds / 2);
+        this.ground.position.set(this.bounds / 2, -10, this.bounds / 2);
         this.ground.scale.set(BOID_BOUNDS * this.BOUND_FACTOR , BOID_BOUNDS *this.BOUND_FACTOR , BOID_BOUNDS * this.BOUND_FACTOR );
         //Bounds start from 0,0]
 
