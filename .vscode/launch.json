@@ -9,7 +9,7 @@
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "npm",
-            "runtimeVersion": "22.17.1",
+            "runtimeVersion": "22.18.0",
             "console": "integratedTerminal",
             "runtimeArgs": ["run", "start"],
             "skipFiles": [

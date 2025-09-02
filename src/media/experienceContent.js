@@ -7,9 +7,18 @@ const currentDate = new Date();
 
 export const professionalExperienceContent = [
     {
+        "id": "gc2",
+        "title": "SEEK: GradConnection - Software Engineer",
+        "date_range": `Sep 2025 - ${MONTHS_COMPACT[currentDate.getMonth()]} ${currentDate.getUTCFullYear()} (Present)`,
+        "short_description": "Worked on the development and maintenance of GradConnection's website, tackling issues on both the Frontend and Backend in React and Django respectively.",
+        "can_expand": true,
+        "img": gradconnectionImg,
+        "description": `Continued working on the development and maintenance of GradConnection's website, tackling issues on both the Frontend and Backend in React and Django respectively.`
+    },
+    {
         "id": "gc",
         "title": "SEEK: GradConnection - Associate Software Engineer",
-        "date_range": `Feb 2022 - ${MONTHS_COMPACT[currentDate.getMonth()]} ${currentDate.getUTCFullYear()} (Present)`,
+        "date_range": `Feb 2022 - Aug 2025`,
         "short_description": "Worked on the development and maintenance of GradConnection's website, tackling issues on both the Frontend and Backend in React and Django respectively.",
         "can_expand": true,
         "img": gradconnectionImg,
