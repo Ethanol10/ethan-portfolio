@@ -69,6 +69,10 @@ export class Windtrail{
             // Go through each of the slices on the mesh, and set the positions accordingly.
             // I think we should store the last no of positions and apply it to the mesh positions.
             // let time = this.clock.elapsedTime;
+            if(this.target_trail[0] === null){
+                //skip
+                continue;
+            }
 
             if (i > this.target_trail.length - 1){
                 let x = this.target_trail[0].x;

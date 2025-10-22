@@ -1,10 +1,29 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import furiganaize2 from "../media/furiganaize2.png";
+import home from "../media/Icons/home.png";
+import darkmode from "../media/Icons/darkmode.svg";
+import { useNavigate } from "react-router";
+import DomToImage from "dom-to-image";
+import classNames from "classnames";
 
 export default function Furiganaizer(){
     
     const textbox = useRef(null);
-    const [outputField, setOutputField] = useState("<p>No output yet!</p>");
+    const [outputField, setOutputField] = useState("<p>Type to start generating</p>");
+    const navigate = useNavigate();
+    const furiganaizeOutput = useRef(null);
+    const [img, setImg] = useState(null);
+    const [darkMode, setDarkMode] = useState(null);
+
+    useEffect(() => {
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            setDarkMode(true);
+        }
+        else{
+            setDarkMode(false);
+        }
+    }, []);
 
     function handleFuriganaize(){
         const text = textbox.current.value;
@@ -97,9 +116,32 @@ export default function Furiganaizer(){
         setOutputField(ruby);
     }
 
+    function handleImageGen(){
+        let element = furiganaizeOutput.current;
+        let options = {
+            bgcolor: "rgba(0, 0, 0, 0)"
+        }
+
+        DomToImage.toPng(element, options).then(function (dataUrl) {
+            let img = new Image();
+            img.src = dataUrl;
+            setImg(img);
+        })
+        .catch(function (error) {
+            console.error('Failed to render img:', error);
+        });
+    }
+
+    function invertMode(){
+        setDarkMode(!darkMode);
+    }
 
     return(
-        <div className="furiganaizer_formatting">
+        <div className={classNames("furiganaizer_formatting", {"dark": darkMode})}>
+            <div className="furiganaizer-back-button" >
+                <img loading="lazy" alt="Return home" src={home} onClick={() => navigate("/")}/>
+                <img loading="lazy" alt="Dark Mode" src={darkmode} onClick={invertMode}></img>
+            </div>
             <h1 className="furiganaizer_title">Furiganaizer</h1>
 
             <div>
@@ -115,11 +157,18 @@ export default function Furiganaizer(){
                     <br />
                     Example: (漢字=かんじ) produces:
                 </p>
-                <img src={furiganaize2} alt="Furiganaizer Example"></img>
+                <img className={classNames("furiganaizer_example", {"dark": darkMode})} src={furiganaize2} alt="Furiganaizer Example"></img>
             </div>
-            <textarea ref={textbox} className="furiganaizer_input" id="story" name="story" rows="5" cols="33"></textarea>
-            <button onClick={handleFuriganaize} className="furiganaizer_button">Furiganaize!</button>
-            <div className="furiganaizer_output" dangerouslySetInnerHTML={{ __html: outputField }}></div>
+            <textarea onChange={handleFuriganaize} ref={textbox} className="furiganaizer_input" id="story" name="story" rows="5" cols="33"></textarea>
+            <button onClick={handleImageGen} className="furiganaizer_button">Generate Image</button>
+            <div ref={furiganaizeOutput} className="furiganaizer_output" dangerouslySetInnerHTML={{ __html: outputField }}></div>
+
+            { img !== null ? (
+                <div className="furiganaize_output_img">
+                    <h4>Output Image:</h4>
+                    <img src={img.src}/>
+                </div>
+            ) : <></>}
         </div>
     );
 }

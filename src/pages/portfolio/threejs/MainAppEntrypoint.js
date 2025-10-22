@@ -31,6 +31,7 @@ export let scene = null;
 export let OBJECT_LIST = [];
 export let MainObj = null;
 export let clock = null;
+export let animationId = 0;
 
 export class Main{
   //Assume center is calculated from (0,0) to (bounds, bounds)
@@ -38,6 +39,7 @@ export class Main{
       MainObj = this;
       this.sceneInteractable = sceneInteractable;
       this.refContainer = refContainer;
+      this.destroying = false;
 
       scene = new THREE.Scene();
 
@@ -154,9 +156,11 @@ export class Main{
         else{
           this.scene_cam_container.rotation.y += EulerToRad(10) * delta;
         }
-
-        this.renderer.render(scene, this.scene_cam);        
-
+        
+        if(!this.destroying){
+          this.renderer.render(scene, this.scene_cam);
+        }
+        
         for(let i = 0; i < OBJECT_LIST.length; i++){
           OBJECT_LIST[i].Update(delta);
         }
@@ -194,7 +198,7 @@ export class Main{
     }
 
     Render(delta){
-      requestAnimationFrame(() => this.Render(clock.getDelta()));
+      animationId = requestAnimationFrame(() => this.Render(clock.getDelta()));
       if(isNumber(delta)){
         this.gameLoopDelta += delta;
       }
@@ -208,6 +212,8 @@ export class Main{
     }
 
     Destroy(){
+      this.destroying = true;
+      cancelAnimationFrame(animationId);
       // Destroy everything?
       for(let i = 0; i < OBJECT_LIST.length; i++){
         OBJECT_LIST[i].Destroy();

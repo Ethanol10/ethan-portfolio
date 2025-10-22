@@ -3,7 +3,6 @@ import {Main, MainObj} from './MainAppEntrypoint';
 import home from "../../../media/Icons/home.png";
 import { useNavigate } from "react-router";
 
-
 function ThreeEntrypoint(props) {
   const {sceneInteractable, setFocus} = props;
   const refContainer = useRef(null);
@@ -11,6 +10,7 @@ function ThreeEntrypoint(props) {
   
   useEffect(() => {
     let threeApp = new Main(refContainer, sceneInteractable);
+
     const handleResize = () => {
       if(MainObj !== null){
         MainObj.ResizeCam();

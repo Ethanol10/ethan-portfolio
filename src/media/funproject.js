@@ -7,12 +7,12 @@ export const funprojectslist =
         "id": "boid-sim",
         "name": "Boids Simulation",
         "img": boids,
-        "url": "https://ethangoh.work/boids",
+        "url": "boids",
     },
     {
         "id": "furiganaizer",
         "name": "Furiganaizer",
         "img": furiganaize,
-        "url": "https://ethangoh.work/furiganaize",
+        "url": "furiganaize",
     }
 ]

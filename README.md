@@ -3,7 +3,7 @@ A website built to show-off abilities of myself in a single website.
 
 
 ## Requirements
-- Node 22.17.1
+- Node 22.18.0
 
 ## Setting up the project
 `npm install`
