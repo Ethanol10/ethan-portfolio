@@ -35,10 +35,24 @@ function ThreeEntrypoint(props) {
       }
     }
 
+    const handleScroll = () => {
+      // Check if container is still in viewport
+      if(MainObj !== null){
+        if(refContainer.current.getBoundingClientRect().top < window.innerHeight &&
+        refContainer.current.getBoundingClientRect().bottom >= 300) {
+          handleFocus();
+        }
+        else {
+          handleBlur();
+        }
+      }
+    }
+
     //Set resize handler
     window.addEventListener('resize', handleResize);
     window.addEventListener("focus", handleFocus);
     window.addEventListener("blur", handleBlur);
+    window.addEventListener("scroll", handleScroll);
     threeApp.Render();
 
 
@@ -46,6 +60,7 @@ function ThreeEntrypoint(props) {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener("focus", handleFocus);
       window.removeEventListener("blur", handleBlur);
+      window.removeEventListener("scroll", handleScroll);
 
       //Cleanup the Three Scene on unmount
       if(MainObj !== null){

@@ -9,6 +9,7 @@ import "./styles/index.scss";
 import "./styles/App.scss";
 import Projects from './pages/portfolio/components/Projects.js';
 import Experience from './pages/portfolio/components/Experience.js';
+import ProjectsLinks from './pages/portfolio/components/ProjectsLink.js';
 
 function App() {
   const TitleCardRef = React.useRef(null);
@@ -16,6 +17,7 @@ function App() {
   const TechStackRef = React.useRef(null);
   const AcademicRef = React.useRef(null);
   const ProjectsRef = React.useRef(null);
+  const ProjectLinksRef = React.useRef(null);
   const FooterRef = React.useRef(null);
 
   var scrollToSectionCallback = (section) => {
@@ -35,6 +37,9 @@ function App() {
       case "Projects":
         ProjectsRef.current.scrollIntoView({behavior: "smooth"});
         break;
+      case "Fun Projects":
+        ProjectLinksRef.current.scrollIntoView({behavior: "smooth"});
+        break;
       case "Contact":
         FooterRef.current.scrollIntoView({behavior: "smooth"});
         break; 
@@ -52,6 +57,7 @@ function App() {
       <Experience innerRef={AcademicRef}/>
       <TechStack innerRef={TechStackRef}/>
       <Projects innerRef={ProjectsRef}/>
+      <ProjectsLinks innerRef={ProjectLinksRef}/>
       <Footer innerRef={FooterRef} />
     </>
   );

@@ -3,6 +3,7 @@ import './index.css';
 import App from './App';
 import ThreeEntrypoint from './pages/portfolio/threejs/ThreeEntrypoint'
 import {Pong} from './pages/Pong';
+import Furiganaizer from './pages/Furiganaizer';
 import reportWebVitals from './reportWebVitals';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router";
@@ -31,6 +32,7 @@ root.render(
             <Route exact path="boids" element={<ThreeEntrypoint sceneInteractable={true}/>}/>
             {getMonAppetitDocs()}
             <Route exact path="ping" element={<Pong/>}/>
+            <Route exact path="furiganaize" element={<Furiganaizer/>}/>
             <Route path="*" element={<NotFound/>}/>
         </Routes>
     </BrowserRouter>
