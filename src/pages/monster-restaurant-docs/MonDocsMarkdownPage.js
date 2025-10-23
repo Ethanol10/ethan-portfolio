@@ -6,7 +6,7 @@ import rehypeRaw from "rehype-raw";
 export function MonDocsMarkdownPage(){
     const {slug} = useParams();
     const [content, setContent] = useState('');
-    const [error, setError] = useState(null);
+    const [error] = useState(null);
 
     useEffect( () => {
         

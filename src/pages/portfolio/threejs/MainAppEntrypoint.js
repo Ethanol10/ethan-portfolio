@@ -219,5 +219,7 @@ export class Main{
         OBJECT_LIST[i].Destroy();
       }
       this.renderer.dispose();
+      // this.renderer.forceContextLoss();
+      // this.renderer.domElement.remove();
     }
   }

@@ -52,10 +52,6 @@ export function MonDocsHead(){
         setDrawerActive(!drawerActive);
     }
 
-    function renderMobileVariant(){
-
-    }
-
     //Start up the manifest load
     useEffect(() => {
         fetch(`/docs/manifest.json`)

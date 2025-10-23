@@ -166,7 +166,7 @@ export default function Furiganaizer(){
             { img !== null ? (
                 <div className="furiganaize_output_img">
                     <h4>Output Image:</h4>
-                    <img src={img.src}/>
+                    <img alt="Furiganaizer Output" src={img.src}/>
                 </div>
             ) : <></>}
         </div>

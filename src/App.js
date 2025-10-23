@@ -37,7 +37,7 @@ function App() {
       case "Projects":
         ProjectsRef.current.scrollIntoView({behavior: "smooth"});
         break;
-      case "Fun Projects":
+      case "Fun Stuff":
         ProjectLinksRef.current.scrollIntoView({behavior: "smooth"});
         break;
       case "Contact":
