@@ -8,7 +8,10 @@ $xxxl: 1920px;
 
 //Colours
 $contactMeColour: #D4D4D4;
-$techStackColour: #B4C9D6;
+$buildDetails: #6e6e6e;
+$techStackColour: #97caea;
+$experienceColour: #aadeff;
+$projectsLinksColour: #a7c0d0;
 
 @import "../styles/GeneralStyle";
 @import "../styles/TitleCardStyles";
@@ -17,3 +20,11 @@ $techStackColour: #B4C9D6;
 @import "../styles/NavigationBarStyle";
 @import "../styles/FooterStyle";
 @import "../styles/AllCardsStyle";
+@import "../styles/ExperienceCardStyle";
+@import "../styles/ProjectsCarousel";
+@import "../styles/ProjectsStyle";
+@import "../styles/ThreeJSStyle";
+@import "../styles/MobileProjectsCarouselStyle";
+@import "../styles/DocsStyle";
+@import "../styles/ProjectsLinksStyle";
+@import "../styles/FuriganaizerStyle";

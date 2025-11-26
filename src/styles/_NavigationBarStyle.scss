@@ -9,6 +9,14 @@
     cursor: pointer;
     transition: all 0.3s ease-in-out;
   }
+
+  span{
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;    
+    color: black;
+  }
 }
 
 .nav-bar_full-list{

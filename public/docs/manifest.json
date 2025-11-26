@@ -1,0 +1,31 @@
+[
+  {
+    "filename": "home.txt",
+    "title": "Home",
+    "date": "2025-07-27T00:00:00.000Z",
+    "author": "Ethan Goh",
+    "slug": "home"
+  },
+  {
+    "filename": "shadertricks.txt",
+    "title": "Shader Tricks",
+    "date": "2025-08-04T00:00:00.000Z",
+    "author": "Ethan Goh",
+    "slug": "shadertricks"
+  },
+  {
+    "filename": "testpage.txt",
+    "title": "Test Page",
+    "date": "2025-07-27T00:00:00.000Z",
+    "author": "Ethan Goh",
+    "slug": "testpage"
+  },
+  {
+    "filename": "testpagechild.txt",
+    "title": "Test Page Child",
+    "date": "2025-07-27T00:00:00.000Z",
+    "author": "Ethan Goh",
+    "slug": "testpagechild",
+    "parent": "testpage"
+  }
+]

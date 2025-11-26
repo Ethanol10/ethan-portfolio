@@ -1,0 +1,204 @@
+.mobile_carousel{
+    p {
+        color: #747474;
+        font-size: small; 
+        
+        overflow-x: hidden;
+    }
+}
+
+.mobile_carousel_container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: grid;
+    margin-bottom: 2rem;
+}
+
+.mobile_carousel-front{
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 2;
+    grid-area: inner-div;
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+
+        &.slideshow-transition-active{
+            animation-name: front-to-front-img;
+            animation-duration: 0.25s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+            animation-direction: reverse;
+        }
+    }
+}
+
+.mobile_carousel-back{
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 1;
+    grid-area: inner-div;
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        &.slideshow-transition-active{
+            animation-name: front-to-front-img;
+            animation-duration: 0.25s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+    }    
+}
+
+.mobile_carousel-next-project{
+    position: relative;
+    max-width: 100%;
+    max-height: 100%;
+    z-index: 1;
+    grid-area: inner-div;
+    & img {
+        width: 100%;
+        height: 100%;
+        object-fit:scale-down;
+        // &.slideshow-transition-active{
+        //     animation-name: front-to-front-img;
+        //     animation-duration: 0.25s;
+        //     animation-iteration-count: 1;
+        //     animation-fill-mode: forwards;
+        // }
+    }    
+}
+
+
+.mobile-carousel_right-button {
+    position: absolute;
+    z-index: 999;
+    color: white;
+    opacity: 70%;
+    top: 0px;
+    right: 0px;
+    width: 10rem;
+    height: 100%;
+    background-image: radial-gradient( farthest-corner at 100% 50%, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 50%);
+    transition: all 0.3s ease-in-out;
+
+    .mobile-carousel_right-button_arrow{
+        position:absolute;
+        right: 0;
+        top: 41%;
+        width: 3rem;
+        height: 3rem;
+        opacity: 100%;
+        transform: translateX(-0%);
+        margin: auto auto;
+        transition: all 0.3s ease-in-out;
+        background-color: unset;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    &:hover{     
+        opacity: 100%;
+        .mobile-carousel_right-button_arrow{
+            position:absolute;
+            right: 0;
+            top: 41%;
+            width: 3rem;
+            height: 3rem;
+            opacity: 100%;
+            transform: translateX(0%);
+            margin: auto auto;
+            transition: all 0.3s ease-in-out;
+    
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &.disable {
+        transition: unset;
+        opacity: 0%;
+        pointer-events: none;
+    }
+}
+
+.mobile-carousel_left-button {
+    position: absolute;
+    z-index: 999;
+    color: white;
+    top: 0px;
+    left: 0px;
+    width: 10rem;
+    height: 100%;
+    background-image: radial-gradient( farthest-corner at 0% 50%, rgb(178, 178, 178) 0%, rgba(255, 255, 255, 0) 50%);
+    transition: all 0.3s ease-in-out;
+
+    .mobile-carousel_left-button_arrow{
+        position:absolute;
+        left: 0;
+        top: 41%;
+        width: 3rem;
+        height: 3rem;
+        opacity: 100%;
+        rotate: 180deg;
+        transform: translateX(0%);
+        background-color: unset;
+        margin: auto auto;
+        transition: all 0.3s ease-in-out;
+
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+
+    &:hover{     
+        opacity: 100%;
+        .carousel_left-button_arrow{
+            position:absolute;
+            left: 0;
+            top: 41%;
+            width: 3rem;
+            height: 3rem;
+            opacity: 100%;
+            transform: translateX(0%);
+            margin: auto auto;
+            transition: all 0.3s ease-in-out;
+    
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    &.disable {
+        transition: unset;
+        opacity: 0%;
+        pointer-events: none;
+    }
+}
+
+
+// Image transitions
+@keyframes front-to-front-img{
+    from {
+        opacity: 0%;
+        z-index: 50;
+        left: 0;
+        top: 0;
+    }
+    to {
+        opacity: 100%;
+        z-index: 100;
+        left: 0;
+        top: 0;
+    }
+}

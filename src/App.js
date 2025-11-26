@@ -1,12 +1,15 @@
 import React from 'react';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import NavigationBar from './components/NavigationBar.js';
-import TitleCard from './components/TitleCard.js';
-import AboutCard from './components/AboutCard.js';
-import TechStack from './components/TechStack.js';
-import Footer from './components/Footer';
+import NavigationBar from './pages/portfolio/components/NavigationBar.js';
+import TitleCard from './pages/portfolio/components/TitleCard.js';
+import AboutCard from './pages/portfolio/components/AboutCard.js';
+import TechStack from './pages/portfolio/components/TechStack.js';
+import Footer from './pages/portfolio/components/Footer';
 import "./styles/index.scss";
 import "./styles/App.scss";
+import Projects from './pages/portfolio/components/Projects.js';
+import Experience from './pages/portfolio/components/Experience.js';
+import ProjectsLinks from './pages/portfolio/components/ProjectsLink.js';
 
 function App() {
   const TitleCardRef = React.useRef(null);
@@ -14,6 +17,7 @@ function App() {
   const TechStackRef = React.useRef(null);
   const AcademicRef = React.useRef(null);
   const ProjectsRef = React.useRef(null);
+  const ProjectLinksRef = React.useRef(null);
   const FooterRef = React.useRef(null);
 
   var scrollToSectionCallback = (section) => {
@@ -33,6 +37,9 @@ function App() {
       case "Projects":
         ProjectsRef.current.scrollIntoView({behavior: "smooth"});
         break;
+      case "Fun Stuff":
+        ProjectLinksRef.current.scrollIntoView({behavior: "smooth"});
+        break;
       case "Contact":
         FooterRef.current.scrollIntoView({behavior: "smooth"});
         break; 
@@ -47,7 +54,10 @@ function App() {
       <NavigationBar scrollToSectionCallback={scrollToSectionCallback}/>
       <TitleCard innerRef={TitleCardRef}/>
       <AboutCard innerRef={AboutCardRef}/>
+      <Experience innerRef={AcademicRef}/>
       <TechStack innerRef={TechStackRef}/>
+      <Projects innerRef={ProjectsRef}/>
+      <ProjectsLinks innerRef={ProjectLinksRef}/>
       <Footer innerRef={FooterRef} />
     </>
   );

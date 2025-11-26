@@ -1,3 +1,19 @@
 .footer_footer {
     background-color: $contactMeColour;
+    min-height: unset;
+}
+
+.footer_icon-img{
+    width: 50px;
+    height: 50px;
+    transition:all 0.3s ease-in-out;
+
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.footer_icons-container{
+    display: flex;
+    gap: 1rem;
 }

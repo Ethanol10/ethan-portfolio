@@ -1,3 +1,84 @@
 .tech-stack_background{
     background-color: $techStackColour,
 }
+
+.tech-stack_row{
+    justify-content: space-between;
+    display:flex;
+    padding: 4rem 0rem;
+
+    @media (max-width: $md){
+        padding: 2rem 0rem;
+        justify-content: center;
+    }
+}
+
+.tech-stack_item{
+    display: flex;
+    overflow-x: hidden;
+}
+
+.tech-stack_item-text{
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.tech-stack_item-absolute-container{
+    position: absolute;
+    color: rgba(1, 1, 1, 0);
+    background: radial-gradient(#B4C9D6, #ffffff00);
+    opacity: 0;
+    width: 200px;
+    height: 200px;
+
+    transition: color 0.25s ease-in-out, opacity 0.25s ease-in-out;
+
+    &:hover{
+        color: rgba(1,1,1,1);
+        opacity: 1
+    }
+}
+
+
+.tech-stack_singular-selection{
+    padding: 4rem 0rem 4rem 0rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tech-stack_singular-text-block{
+    padding: 4rem 0rem 4rem 0rem;
+}
+
+.tech-stack_close-icon{
+    width: 2rem;
+    height: 2rem;
+}
+
+.csharp-img{
+    max-width: 200px;
+}
+
+.javascript-img{
+    max-width: 200px;
+}
+
+.python-img{
+    max-width: 200px;
+}
+
+.react-img{
+    max-width: 200px;
+}
+
+.unity-img{
+    max-width: 200px;
+}
+
+.django-img{
+    max-width: 200px;
+}

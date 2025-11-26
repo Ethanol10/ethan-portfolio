@@ -1,0 +1,50 @@
+---
+title: Shader Tricks
+date: 2025-08-04
+author: Ethan Goh
+slug: shadertricks
+---
+
+
+# Shader Tricks
+I find myself often looking for ways to write shaders for specific effects, and then I end up never remembering how to implement it. So here we'll write some stuff down for future reference.
+
+## Separating Ground into Pillars based on a Grid
+In this example, I wanted to create a floor that is made up of pillars that deform based on a grid. 
+
+Using the following shader code:
+```
+                    vec3 transformed = vec3(position);                    
+                    vec4 worldPos = modelMatrix * vec4(transformed, 1.0);
+
+                    float blockSize = 3.0;
+                    float bx = floor(transformed.x / blockSize);
+                    float bz = floor(transformed.z / blockSize);
+                    float worldBx = floor(worldPos.x / blockSize);
+                    float worldBz = floor(worldPos.z / blockSize);
+
+                    float influence = 0.0;
+                    
+                    vec2 cellCenterWorld = vec2(
+                        (worldBx + blockSize * 0.5) * blockSize,
+                        (worldBz + blockSize * 0.5) * blockSize
+                    );
+
+                    vec2 cellCenter = vec2(
+                        (bx + (blockSize * 0.5)) * blockSize,
+                        (bz + (blockSize * 0.5)) * blockSize
+                    );
+
+                    float factor = 1.01;
+                    for (int i = 0; i < BOID_POINT_MAX; i++) {
+                        if(i >= pointCount) break;
+                        float dist = distance(cellCenterWorld, pointList[i].xz);
+                        influence += 1.0 / (1.0 + dist * dist); // inverse-square falloff
+                        influence *= factor;
+                    }
+
+                    vInfluence = influence;
+                    transformed.y += influence * 0.002;
+```
+
+We lock the coordinates according to a pre-determined block size, and then check to raise the according cell up a specific amount. 
