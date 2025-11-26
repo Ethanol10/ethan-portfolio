@@ -43,11 +43,17 @@ export class Main{
 
       scene = new THREE.Scene();
 
-      this.divider = 16;
-      this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
-      // this.scene_cam = new THREE.OrthographicCamera(-1 * window.innerWidth / this.divider, window.innerWidth / this.divider, window.innerHeight / this.divider, -1 * window.innerHeight / this.divider, 0.1, 2000);
+      if(this.sceneInteractable){
+        this.scene_cam = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 2000);
+      }
+      else{
+        //Ortho lmao
+        this.divider = 32;
+        this.scene_cam = new THREE.OrthographicCamera(-1 * window.innerWidth / this.divider, window.innerWidth / this.divider, window.innerHeight / this.divider, -1 * window.innerHeight / this.divider, -2000, 2000);
+      }
+
       // this.FRUSTRUM_SIZE = 16;
-      // this.scene_cam = new THREE.OrthographicCamera(this.FRUSTRUM_SIZE * window.innerWidth / window.innerHeight / -this.divider, this.FRUSTRUM_SIZE * window.innerWidth / window.innerHeight / this.divider, this.FRUSTRUM_SIZE / -this.divider, this.FRUSTRUM_SIZE / this.divider, 0.1, 2000);
+      // this.scene_cam = new THREE.OrthographicCamera(this.FRUSTRUM_SIZE * window.innerWidth / window.innerHeight / -this.divider, this.FRUSTRUM_SIZE * window.innerWidth / window.innerHeight / this.divider, this.FRUSTRUM_SIZE / -this.divider, this.FRUSTRUM_SIZE / this.divider, -100, 2000);
       this.renderer = new THREE.WebGLRenderer();
       this.renderer.shadowMap.enabled = true;
       this.renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
